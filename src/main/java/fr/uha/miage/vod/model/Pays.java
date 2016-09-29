@@ -1,8 +1,22 @@
 package fr.uha.miage.vod.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 public class Pays {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	private String nom;
+	
+	@OneToMany(mappedBy="pays")
+	private Set<Film> films = new HashSet<Film>();
 
 	public long getId() {
 		return id;

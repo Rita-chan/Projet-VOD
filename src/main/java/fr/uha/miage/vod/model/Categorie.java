@@ -1,8 +1,22 @@
 package fr.uha.miage.vod.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
 public class Categorie {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	private String intitule;
+	
+	@ManyToMany(mappedBy="categories")
+	private Set<Film> films = new HashSet<Film>();
 
 	public long getId() {
 		return id;

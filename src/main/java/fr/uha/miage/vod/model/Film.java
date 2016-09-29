@@ -1,6 +1,19 @@
 package fr.uha.miage.vod.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
 public class Film {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	private String titre;
 	private String synopsis;
@@ -10,6 +23,20 @@ public class Film {
 	private String video;
 	private String langue;
 	
+	@ManyToOne
+	private Realisateur realisateur;
+	
+	@ManyToMany
+	private Set<Acteur> acteurs = new HashSet<Acteur>(); 
+	
+	@ManyToOne
+	private Pays pays;
+	
+	@ManyToMany
+	private Set<Categorie> categories = new HashSet<Categorie>();
+	
+	@OneToMany(mappedBy="film")
+	private Set<Avis> avis = new HashSet<Avis>();
 	
 	public long getId() {
 		return id;

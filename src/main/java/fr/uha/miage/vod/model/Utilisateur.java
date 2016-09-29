@@ -1,6 +1,17 @@
 package fr.uha.miage.vod.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 public class Utilisateur {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	private String nom;
 	private String prenom;
@@ -8,6 +19,9 @@ public class Utilisateur {
 	private String mail;
 	private String mdp;
 	private int role;
+	
+	@OneToMany(mappedBy="utilisateur")
+	private Set<Avis> avis = new HashSet<Avis>();
 	
 	public long getId() {
 		return id;
