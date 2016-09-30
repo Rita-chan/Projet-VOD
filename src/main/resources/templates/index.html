@@ -1,10 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+	<meta charset="UTF-8"></meta>
+	<title>Accueil</title>
 </head>
 <body>
+	<h1>Bonjour !</h1>
 
+	<ul>
+		<li><a th:href="@{/acteurindex}">Acteur</a></li>
+		<li><a th:href="@{/avisindex}">Avis</a></li>
+		<li><a th:href="@{/categorieindex}">Catégorie</a></li>
+		<li>Films</li>
+		<li><a th:href="@{/pays}">Pays</a></li>
+		<li><a th:href="@{/realisateurindex}">Réalisateur</a></li>
+		<li><a th:href="@{/utilisateurindex}">Utilisateur</a></li>
+	</ul>
 </body>
 </html>
