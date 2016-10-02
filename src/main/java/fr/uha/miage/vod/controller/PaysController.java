@@ -19,14 +19,15 @@ public class PaysController {
 	@Autowired
 	private PaysRepository paysRepository;
 	
+	//Affiche le formulaire de création d'un pays
 	@GetMapping("/payscreer")
 	public String payscreerform(Model model){
 		model.addAttribute("pays", new Pays());
 		return "payscreer";
 	}
+	//Enregistre le pays créé, en verifiant qu'il corresponde aux critères
 	@PostMapping("/payscreer")
 	public String payscreer(@Valid Pays pays, BindingResult bindingResult){
-		
 		if(bindingResult.hasErrors())
 			return "payscreer";
 		
@@ -34,19 +35,25 @@ public class PaysController {
 		
 		return "redirect:/pays";
 	}
-	
+		
+	//Affiche le formulaire d'édition d'un pays		
 	@GetMapping("/paysmodifier/{id}")
 	public String paysmodifierform(@PathVariable("id") Long id, Model model){
 		Pays pays = paysRepository.findOne(id);
 		model.addAttribute("pays", pays);
 		return "paysmodifier";
 	}
+	//Enregistre le pays modifié, en vérifiant qu'il corresponde aux critères
 	@PostMapping("/paysmodifier")
-	public String paysmodifier(@Valid Pays pays){
+	public String paysmodifier(@Valid Pays pays, BindingResult bindingResult){
+		if(bindingResult.hasErrors())
+			return "paysmodifier";
+		
 		paysRepository.save(pays);
 		return "redirect:/pays";
 	}
 
+	//Affiche la liste des pays
 	@GetMapping("/pays")
 	public String pays(Model model){
 		Iterable<Pays> liste = paysRepository.findAll();
@@ -54,11 +61,7 @@ public class PaysController {
 		return "pays";
 	}
 	
-	@GetMapping("/paysindex")
-	public String paysindex(){
-		return "paysindex";
-	}
-	
+	//Supprime le pays sélectionné
 	@GetMapping("/payssupprimer/{id}")
 	public String payssupprimer(@PathVariable("id") Long id){
 		paysRepository.delete(id);

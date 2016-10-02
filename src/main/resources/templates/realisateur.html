@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<title>Liste des réalisateurs</title>
+</head>
+<body>
+	<a th:href="@{/realisateurcreer}">Créer un réalisateur</a>
+	
+	<div th:if="${#lists.isEmpty(realisateurs)}">
+		Il n'existe pas de realisateur dans la base.
+	</div>
+	<ul>
+		<li th:each="realisateur : ${realisateurs}"><span th:text="${realisateur.id}"></span>
+			- <span th:text="${realisateur.nom}"></span> <span th:text="${realisateur.prenom}"></span>
+			
+			<a th:href="@{/realisateurmodifier/{id}(id=${realisateur.id})}">Editer</a> |
+			<a th:href="@{/realisateursupprimer/{id}(id=${realisateur.id})}">Supprimer</a>
+			</li>
+
+	</ul>
+	<a th:href="@{/}">Retour à l'index</a>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<title>Créer un utilisateur</title>
+</head>
+<body>
+	<h1>Créer un utilisateur</h1>
+	<form action="#" th:action="@{/utilisateurcreer}" th:object="${utilisateur}" method="post">
+		<table>
+			<tr>
+				<td>Nom :</td>
+				<td><input type="text" th:field="*{nom}" /></td>
+			</tr>
+			<tr>
+				<td>Prénom :</td>
+				<td><input type="text" th:field="*{prenom}" /></td>
+			</tr>
+			<tr>
+				<td>Login :</td>
+				<td><input type="text" th:field="*{login}" /></td>
+				<td th:if="${#fields.hasErrors('login')}" th:errors="*{login}">Login
+					Error</td>
+			</tr>
+			<tr>
+				<td>Mail :</td>
+				<td><input type="text" th:field="*{mail}" /></td>
+				<td th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}">Mail
+					Error</td>
+			</tr>
+			<tr>
+				<td>Mot de passe :</td>
+				<td><input type="text" th:field="*{mdp}" /></td>
+				<td th:if="${#fields.hasErrors('mdp')}" th:errors="*{mdp}">MDP
+					Error</td>
+			</tr>
+			<tr>
+				<td>Role :</td>
+				<td><input type="text" th:field="*{role}" /></td>
+			</tr>
+			<tr>
+				<td><button type="submit">Créer l'utilisateur</button></td>
+			</tr>
+		</table>
+	</form>
+
+</body>
+</html>

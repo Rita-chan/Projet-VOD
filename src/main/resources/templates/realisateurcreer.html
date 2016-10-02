@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<title>Créer un réalisateur</title>
+</head>
+<body>
+	<h1>Créer un réalisateur</h1>
+	<form action="#" th:action="@{/realisateurcreer}" th:object="${realisateur}" method="post">
+		<table>
+			<tr>
+				<td>Nom :</td>
+				<td><input type="text" th:field="*{nom}" /></td>
+				<td th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}">Name
+					Error</td>
+			</tr>
+			<tr>
+				<td>Prénom :</td>
+				<td><input type="text" th:field="*{prenom}" /></td>
+			</tr>
+			<tr>
+				<td><button type="submit">Créer le réalisateur</button></td>
+			</tr>
+		</table>
+	</form>
+
+</body>
+</html>

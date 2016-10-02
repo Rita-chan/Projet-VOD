@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<title>Liste des utilisateurs</title>
+</head>
+<body>
+	<a th:href="@{/utilisateurcreer}">Créer un utilisateur</a>
+	
+	<div th:if="${#lists.isEmpty(utilisateurs)}">
+		Il n'existe pas d'utilisateur dans la base.
+	</div>
+	<ul>
+		<li th:each="utilisateur : ${utilisateurs}"><span th:text="${utilisateur.id}"></span>
+			- <span th:text="${utilisateur.nom}"></span> <span th:text="${utilisateur.prenom}"></span>
+			<span th:text="${utilisateur.login}"></span> <span th:text="${utilisateur.mail}"></span>
+			<span th:text="${utilisateur.mdp}"></span> <span th:text="${utilisateur.role}"></span>
+			
+			<a th:href="@{/utilisateurmodifier/{id}(id=${utilisateur.id})}">Editer</a> |
+			<a th:href="@{/utilisateursupprimer/{id}(id=${utilisateur.id})}">Supprimer</a>
+			</li>
+
+	</ul>
+	<a th:href="@{/}">Retour à l'index</a>
+</body>
+</html>

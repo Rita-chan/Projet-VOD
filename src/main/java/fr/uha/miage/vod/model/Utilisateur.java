@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Utilisateur {
@@ -17,8 +19,14 @@ public class Utilisateur {
 	private long id;
 	private String nom;
 	private String prenom;
+	@NotNull
+	@Size(min=2, max=30)
 	private String login;
+	@NotNull
+	@Size(min=2, max=30)
 	private String mail;
+	@NotNull
+	@Size(min=2, max=30)
 	private String mdp;
 	private int role;
 	
