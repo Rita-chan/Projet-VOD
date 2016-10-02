@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<title>Modifier un acteur</title>
+</head>
+<body>
+	<h1>Modifier un acteur</h1>
+	<form action="#" th:action="@{/acteurmodifier}" th:object="${acteur}" method="post">
+		<input type="hidden" th:field="*{id}" />
+		<table>
+			<tr>
+				<td>Nom :</td>
+				<td><input type="text" th:field="*{nom}" /></td>
+				<td th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}">Name
+					Error</td>
+			</tr>
+			<tr>
+				<td>Prénom :</td>
+				<td><input type="text" th:field="*{prenom}" /></td>
+			</tr>
+			<tr>
+				<td><button type="submit">Valider l'acteur</button></td>
+			</tr>
+		</table>
+	</form>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<title>Liste des acteurs</title>
+</head>
+<body>
+	<a th:href="@{/acteurcreer}">Créer un acteur</a>
+	
+	<div th:if="${#lists.isEmpty(acteurs)}">
+		Il n'existe pas d'acteur dans la base.
+	</div>
+	<ul>
+		<li th:each="acteur : ${acteurs}"><span th:text="${acteur.id}"></span>
+			- <span th:text="${acteur.nom}"></span> <span th:text="${acteur.prenom}"></span>
+			
+			<a th:href="@{/acteurmodifier/{id}(id=${acteur.id})}">Editer</a> |
+			<a th:href="@{/acteursupprimer/{id}(id=${acteur.id})}">Supprimer</a>
+			</li>
+
+	</ul>
+	<a th:href="@{/}">Retour à l'index</a>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<title>Liste des catégories</title>
+</head>
+<body>
+	<a th:href="@{/categoriecreer}">Créer une catégorie</a>
+	
+	<div th:if="${#lists.isEmpty(categories)}">
+		Il n'existe pas de catégorie dans la base.
+	</div>
+	<ul>
+		<li th:each="categorie : ${categories}"><span th:text="${categorie.id}"></span>
+			- <span th:text="${categorie.intitule}"></span>
+			
+			<a th:href="@{/categoriemodifier/{id}(id=${categorie.id})}">Editer</a> |
+			<a th:href="@{/categoriesupprimer/{id}(id=${categorie.id})}">Supprimer</a>
+			</li>
+
+	</ul>
+	<a th:href="@{/}">Retour à l'index</a>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<title>Liste des avis</title>
+</head>
+<body>
+	<a th:href="@{/aviscreer}">Créer un avis</a>
+	
+	<div th:if="${#lists.isEmpty(aviss)}">
+		Il n'existe aucun avis dans la base.
+	</div>
+	<ul>
+		<li th:each="avis : ${aviss}"><span th:text="${avis.id}"></span>
+			- <span th:text="${avis.note}"></span> <span th:text="${avis.commentaire}"></span>
+			
+			<a th:href="@{/avismodifier/{id}(id=${avis.id})}">Editer</a> |
+			<a th:href="@{/avissupprimer/{id}(id=${avis.id})}">Supprimer</a>
+			</li>
+
+	</ul>
+	<a th:href="@{/}">Retour à l'index</a>
+</body>
+</html>
