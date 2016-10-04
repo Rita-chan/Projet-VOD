@@ -58,7 +58,6 @@ public class FilmController {
 		List<Realisateur> listeRealisateurs = (List<Realisateur>) realisateurRepository.findAll();
 		model.addAttribute("listeRealisateurs", listeRealisateurs);
 		
-		
 		return "filmcreer";
 	}
 
