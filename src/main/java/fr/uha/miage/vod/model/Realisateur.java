@@ -44,6 +44,13 @@ public class Realisateur {
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
+	public Set<Film> getFilms() {
+		return films;
+	}
+	public void setFilms(Set<Film> films) {
+		this.films = films;
+	}
+	
 	
 	
 }

@@ -43,5 +43,7 @@ public class Categorie {
 	public void setIntitule(String intitule) {
 		this.intitule = intitule;
 	}
+	
+	
 
 }
