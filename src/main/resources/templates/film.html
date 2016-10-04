@@ -11,13 +11,30 @@
 		Il n'existe aucun film dans la base.
 	</div>
 	<ul>
-		<li th:each="film : ${films}"><span th:text="${film.id}"></span>
-			- <span th:text="${film.titre}"></span> <span th:text="${film.version}"></span>
-			
-			
+		<li th:each="film : ${films}">
+			<span th:text="${film.id}"></span> - 
+			<span th:text="${film.titre}"></span> -  
+			<span th:text="${film.synopsis}"></span> - 
+			<span th:text="${film.duree}"></span> - 
+			<span th:text="${film.jaquette}"></span> - 
+			<span th:text="${film.sortie}"></span> - 
+			<span th:text="${film.video}"></span> - 
+			<span th:text="${film.version}"></span> - 
 			
 			<span th:each=" categorie : ${film.categories}" >	
-				<span th:text="${categorie.intitule}"></span></span>
+				<span th:text="${categorie.intitule}"></span></span> - 
+				
+			<span th:each=" acteur : ${film.acteurs}" >	
+				<span th:text="${acteur.prenom}"></span> <span th:text="${acteur.nom}"> </span>
+			</span>
+				
+			<span th:each=" real : ${film.realisateur}" >	
+				<span th:text="${real.prenom}"></span> <span th:text="${real.nom}"> </span>
+			</span>
+				
+			<span th:each=" pay : ${film.pays}" >	
+				<span th:text="${pay.nom}"></span>
+			</span>
 			
 			<a th:href="@{/filmmodifier/{id}(id=${film.id})}">Editer</a> |
 			<a th:href="@{/filmsupprimer/{id}(id=${film.id})}">Supprimer</a>
