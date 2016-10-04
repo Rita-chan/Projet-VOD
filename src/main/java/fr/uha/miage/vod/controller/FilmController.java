@@ -1,5 +1,7 @@
 package fr.uha.miage.vod.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,18 +12,29 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import fr.uha.miage.vod.model.Categorie;
 import fr.uha.miage.vod.model.Film;
+import fr.uha.miage.vod.repository.CategorieRepository;
 import fr.uha.miage.vod.repository.FilmRepository;
 
 @Controller
 public class FilmController {
 	@Autowired
 	private FilmRepository filmRepository;
+	
+	@Autowired
+	private CategorieRepository categorieRepository;
 
 	// Affiche le formulaire de création d'un film
 	@GetMapping("/filmcreer")
 	public String filmcreerform(Model model) {
 		model.addAttribute("film", new Film());
+		
+		
+		List<Categorie> listeCategories = (List<Categorie>) categorieRepository.findAll();
+		model.addAttribute("listeCategories", listeCategories);
+		
+		
 		return "filmcreer";
 	}
 

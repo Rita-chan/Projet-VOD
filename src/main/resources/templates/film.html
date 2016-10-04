@@ -1,10 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<meta charset="UTF-8"/>
+<title>Liste des films</title>
 </head>
 <body>
+	<a th:href="@{/filmcreer}">Créer un film</a>
+	
+	<div th:if="${#lists.isEmpty(films)}">
+		Il n'existe aucun film dans la base.
+	</div>
+	<ul>
+		<li th:each="film : ${films}"><span th:text="${film.id}"></span>
+			- <span th:text="${film.titre}"></span> <span th:text="${film.version}"></span>
+			
+			
+			
+			<span th:each=" categorie : ${film.categories}" >	
+				<span th:text="${categorie.intitule}"></span></span>
+			
+			<a th:href="@{/filmmodifier/{id}(id=${film.id})}">Editer</a> |
+			<a th:href="@{/filmsupprimer/{id}(id=${film.id})}">Supprimer</a>
+			</li>
 
+	</ul>
+	<a th:href="@{/}">Retour à l'index</a>
 </body>
 </html>

@@ -20,6 +20,14 @@ public class Categorie {
 	@ManyToMany(mappedBy="categories")
 	private Set<Film> films = new HashSet<Film>();
 
+	public Set<Film> getFilms() {
+		return films;
+	}
+
+	public void setFilms(Set<Film> films) {
+		this.films = films;
+	}
+
 	public long getId() {
 		return id;
 	}

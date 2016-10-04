@@ -6,8 +6,8 @@
 </head>
 <body>
 	<h1>Créer un film</h1>
-	<form action="#" th:action="@{/filmcreer}"
-		th:object="${film}" method="post">
+	<form action="#" th:action="@{/filmcreer}" th:object="${film}"
+		method="post">
 		<table>
 			<tr>
 				<td>Titre :</td>
@@ -35,28 +35,18 @@
 			</tr>
 			<tr>
 				<td>Version :</td>
-				<td>
-			<!-- <div th:each="vers : ${version}" class="radio">
-                <input type="radio" th:value="${vers}" th:field="*{vers}" />
-                <label th:for="${#ids.prev('vers')}" th:text="${vers.description}">VO</label>
-            </div>
-            <div th:remove="all" class="radio">
-                <input type="radio" />
-                <label>VF</label>
-            </div>-->
-            
-            
-            <label th:each="vers : ${version}">
-                  <input type="radio" th:text="${vers.Description}" th:field="*{version}" th:value="${vers.Description}"/>
-            </label>
-            
-            </td>
+				<td><input type="radio" name="version" value="VF" /> VF <input
+					type="radio" name="version" value="VO" /> VO <input type="radio"
+					name="version" value="VOSTFR" /> VOSTFR</td>
 			</tr>
 			<tr>
 				<td>Catégorie :</td>
-				<td><input type="text" th:field="*{categories}" /></td>
+				<td><select th:field="*{categories}" th:multiple="*{categories}">
+						<option th:each=" categorie : ${listeCategories}"
+							th:text="${categorie.intitule}" th:value="${categorie.id}"></option>
+				</select></td>
 			</tr>
-			<tr>
+			<!-- <tr>
 				<td>Acteur :</td>
 				<td><input type="text" th:field="*{acteurs}" /></td>
 			</tr>
@@ -67,7 +57,7 @@
 			<tr>
 				<td>Pays :</td>
 				<td><input type="text" th:field="*{pays}" /></td>
-			</tr>
+			</tr>-->
 
 			<tr>
 				<td><button type="submit">Créer le film</button></td>

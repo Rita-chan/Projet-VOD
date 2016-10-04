@@ -23,7 +23,7 @@ public class Film {
 	private String jaquette;
 	private int sortie;
 	private String video;
-	private Version version;
+	private String version;
 	
 	@ManyToOne
 	private Realisateur realisateur;
@@ -83,10 +83,10 @@ public class Film {
 		this.video = video;
 	}
 	
-	public Version getVersion() {
+	public String getVersion() {
 		return version;
 	}
-	public void setVersion(Version version) {
+	public void setVersion(String version) {
 		this.version = version;
 	}
 	public Realisateur getRealisateur() {
