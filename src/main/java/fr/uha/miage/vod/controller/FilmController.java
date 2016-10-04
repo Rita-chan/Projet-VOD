@@ -25,6 +25,8 @@ import fr.uha.miage.vod.repository.RealisateurRepository;
 
 @Controller
 public class FilmController {
+	
+	//Création des repository
 	@Autowired
 	private FilmRepository filmRepository;
 	
