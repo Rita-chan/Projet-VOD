@@ -12,10 +12,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import fr.uha.miage.vod.model.Acteur;
 import fr.uha.miage.vod.model.Categorie;
 import fr.uha.miage.vod.model.Film;
+import fr.uha.miage.vod.model.Pays;
+import fr.uha.miage.vod.model.Realisateur;
+import fr.uha.miage.vod.repository.ActeurRepository;
 import fr.uha.miage.vod.repository.CategorieRepository;
 import fr.uha.miage.vod.repository.FilmRepository;
+import fr.uha.miage.vod.repository.PaysRepository;
+import fr.uha.miage.vod.repository.RealisateurRepository;
 
 @Controller
 public class FilmController {
@@ -24,6 +30,15 @@ public class FilmController {
 	
 	@Autowired
 	private CategorieRepository categorieRepository;
+	
+	@Autowired
+	private ActeurRepository acteurRepository;
+	
+	@Autowired
+	private PaysRepository paysRepository;
+	
+	@Autowired
+	private RealisateurRepository realisateurRepository;
 
 	// Affiche le formulaire de création d'un film
 	@GetMapping("/filmcreer")
@@ -33,6 +48,15 @@ public class FilmController {
 		
 		List<Categorie> listeCategories = (List<Categorie>) categorieRepository.findAll();
 		model.addAttribute("listeCategories", listeCategories);
+		
+		List<Acteur> listeActeurs = (List<Acteur>) acteurRepository.findAll();
+		model.addAttribute("listeActeurs", listeActeurs);
+		
+		List<Pays> listePayss = (List<Pays>) paysRepository.findAll();
+		model.addAttribute("listePayss", listePayss);
+		
+		List<Realisateur> listeRealisateurs = (List<Realisateur>) realisateurRepository.findAll();
+		model.addAttribute("listeRealisateurs", listeRealisateurs);
 		
 		
 		return "filmcreer";
