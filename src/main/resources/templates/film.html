@@ -26,15 +26,15 @@
 				
 			<span th:each=" acteur : ${film.acteurs}" >	
 				<span th:text="${acteur.prenom}"></span> <span th:text="${acteur.nom}"> </span>
-			</span>
-				
-			<span th:each=" real : ${film.realisateur}" >	
+			</span> - 
+			
+			<span th:each=" real : ${film.realisateur}" >
 				<span th:text="${real.prenom}"></span> <span th:text="${real.nom}"> </span>
-			</span>
-				
-			<span th:each=" pay : ${film.pays}" >	
+			</span>	- 
+					
+			<span th:each=" pay : ${film.pays}" >
 				<span th:text="${pay.nom}"></span>
-			</span>
+			</span>	- 
 			
 			<a th:href="@{/filmmodifier/{id}(id=${film.id})}">Editer</a> |
 			<a th:href="@{/filmsupprimer/{id}(id=${film.id})}">Supprimer</a>

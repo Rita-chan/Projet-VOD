@@ -49,21 +49,21 @@
 				<td>Acteur :</td>
 				<td><select th:field="*{acteurs}" th:multiple="*{acteurs}">
 						<option th:each=" acteur : ${listeActeurs}"
-							th:text="${acteur.prenom} ${acteur.nom}" th:value="${acteur.id}"></option>
+							th:text="${acteur.prenom} + ' ' + ${acteur.nom}" th:value="${acteur.id}"></option>
 				</select></td>
 			</tr>
 			<tr>
 				<td>Réalisateur :</td>
 				<td><select th:field="*{realisateur}">
 						<option th:each=" real : ${listeRealisateurs}"
-							th:text="${real.prenom} ${real.nom}" th:value="${real.id}"></option>
+							th:text="${real.prenom} + ' ' + ${real.nom}" th:value="${real.id}"></option>
 				</select></td>
 			</tr>
 			<tr>
 				<td>Pays :</td>
 				<td><select th:field="*{pays}">
 						<option th:each=" pay : ${listePayss}"
-							th:text="${pay.prenom} ${pay.nom}" th:value="${pay.id}"></option>
+							th:text="${pay.nom}" th:value="${pay.id}"></option>
 				</select></td>
 			</tr>
 			<tr>

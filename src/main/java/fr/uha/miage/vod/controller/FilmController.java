@@ -80,6 +80,19 @@ public class FilmController {
 	public String filmmodifierform(@PathVariable("id") Long id, Model model) {
 		Film film = filmRepository.findOne(id);
 		model.addAttribute("film", film);
+		
+		List<Categorie> listeCategories = (List<Categorie>) categorieRepository.findAll();
+		model.addAttribute("listeCategories", listeCategories);
+		
+		List<Acteur> listeActeurs = (List<Acteur>) acteurRepository.findAll();
+		model.addAttribute("listeActeurs", listeActeurs);
+		
+		List<Pays> listePayss = (List<Pays>) paysRepository.findAll();
+		model.addAttribute("listePayss", listePayss);
+		
+		List<Realisateur> listeRealisateurs = (List<Realisateur>) realisateurRepository.findAll();
+		model.addAttribute("listeRealisateurs", listeRealisateurs);
+		
 		return "filmmodifier";
 	}
 
@@ -87,8 +100,8 @@ public class FilmController {
 	// critères
 	@PostMapping("/filmmodifier")
 	public String filmmodifier(@Valid Film film, BindingResult bindingResult) {
-		if (bindingResult.hasErrors())
-			return "filmmodifier";
+		/*f (bindingResult.hasErrors())
+			return "filmmodifier";*/
 
 		filmRepository.save(film);
 		return "redirect:/film";
