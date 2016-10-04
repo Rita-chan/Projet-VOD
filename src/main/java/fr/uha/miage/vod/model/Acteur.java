@@ -45,4 +45,14 @@ public class Acteur {
 		this.prenom = prenom;
 	}
 
+	public Set<Film> getFilms() {
+		return films;
+	}
+
+	public void setFilms(Set<Film> films) {
+		this.films = films;
+	}
+	
+	
+
 }

@@ -75,6 +75,12 @@ public class Utilisateur {
 	public void setRole(int role) {
 		this.role = role;
 	}
+	public Set<Avis> getAvis() {
+		return avis;
+	}
+	public void setAvis(Set<Avis> avis) {
+		this.avis = avis;
+	}
 	
 	
 }

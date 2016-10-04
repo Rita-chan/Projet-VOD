@@ -40,4 +40,14 @@ public class Pays {
 		this.nom = nom;
 	}
 
+	public Set<Film> getFilms() {
+		return films;
+	}
+
+	public void setFilms(Set<Film> films) {
+		this.films = films;
+	}
+	
+	
+
 }
