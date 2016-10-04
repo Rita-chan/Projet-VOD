@@ -23,7 +23,7 @@ public class Film {
 	private String jaquette;
 	private int sortie;
 	private String video;
-	private String langue;
+	private Version version;
 	
 	@ManyToOne
 	private Realisateur realisateur;
@@ -82,12 +82,42 @@ public class Film {
 	public void setVideo(String video) {
 		this.video = video;
 	}
-	public String getLangue() {
-		return langue;
-	}
-	public void setLangue(String langue) {
-		this.langue = langue;
-	}
 	
+	public Version getVersion() {
+		return version;
+	}
+	public void setVersion(Version version) {
+		this.version = version;
+	}
+	public Realisateur getRealisateur() {
+		return realisateur;
+	}
+	public void setRealisateur(Realisateur realisateur) {
+		this.realisateur = realisateur;
+	}
+	public Set<Acteur> getActeurs() {
+		return acteurs;
+	}
+	public void setActeurs(Set<Acteur> acteurs) {
+		this.acteurs = acteurs;
+	}
+	public Pays getPays() {
+		return pays;
+	}
+	public void setPays(Pays pays) {
+		this.pays = pays;
+	}
+	public Set<Categorie> getCategories() {
+		return categories;
+	}
+	public void setCategories(Set<Categorie> categories) {
+		this.categories = categories;
+	}
+	public Set<Avis> getAvis() {
+		return avis;
+	}
+	public void setAvis(Set<Avis> avis) {
+		this.avis = avis;
+	}
 	
 }

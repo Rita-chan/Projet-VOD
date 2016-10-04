@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Créer un film</title>
+</head>
+<body>
+	<h1>Créer un film</h1>
+	<form action="#" th:action="@{/filmcreer}"
+		th:object="${film}" method="post">
+		<table>
+			<tr>
+				<td>Titre :</td>
+				<td><input type="text" th:field="*{titre}" /></td>
+			</tr>
+			<tr>
+				<td>Synopsis :</td>
+				<td><textarea rows="4" cols="50" th:field="*{synopsis}"></textarea></td>
+			</tr>
+			<tr>
+				<td>Durée :</td>
+				<td><input type="text" th:field="*{duree}" /></td>
+			</tr>
+			<tr>
+				<td>Jaquette :</td>
+				<td><input type="text" th:field="*{jaquette}" /></td>
+			</tr>
+			<tr>
+				<td>Année de sortie :</td>
+				<td><input type="text" th:field="*{sortie}" /></td>
+			</tr>
+			<tr>
+				<td>Vidéo :</td>
+				<td><input type="text" th:field="*{video}" /></td>
+			</tr>
+			<tr>
+				<td>Version :</td>
+				<td>
+			<!-- <div th:each="vers : ${version}" class="radio">
+                <input type="radio" th:value="${vers}" th:field="*{vers}" />
+                <label th:for="${#ids.prev('vers')}" th:text="${vers.description}">VO</label>
+            </div>
+            <div th:remove="all" class="radio">
+                <input type="radio" />
+                <label>VF</label>
+            </div>-->
+            
+            
+            <label th:each="vers : ${version}">
+                  <input type="radio" th:text="${vers.Description}" th:field="*{version}" th:value="${vers.Description}"/>
+            </label>
+            
+            </td>
+			</tr>
+			<tr>
+				<td>Catégorie :</td>
+				<td><input type="text" th:field="*{categories}" /></td>
+			</tr>
+			<tr>
+				<td>Acteur :</td>
+				<td><input type="text" th:field="*{acteurs}" /></td>
+			</tr>
+			<tr>
+				<td>Réalisateur :</td>
+				<td><input type="text" th:field="*{realisateur}" /></td>
+			</tr>
+			<tr>
+				<td>Pays :</td>
+				<td><input type="text" th:field="*{pays}" /></td>
+			</tr>
+
+			<tr>
+				<td><button type="submit">Créer le film</button></td>
+			</tr>
+		</table>
+	</form>
+
+</body>
+</html>
