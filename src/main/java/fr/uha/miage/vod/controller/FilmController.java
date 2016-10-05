@@ -72,6 +72,24 @@ public class FilmController {
 
 		filmRepository.save(film);
 
+		for (Acteur acteur : film.getActeurs())
+		{
+			acteur.ajouterFilm(film);
+			acteurRepository.save(acteur);
+		}
+		
+		for (Categorie categorie : film.getCategories())
+		{
+			categorie.ajouterFilm(film);
+			categorieRepository.save(categorie);
+		}
+		
+			film.getPays().ajouterFilm(film);
+			paysRepository.save(film.getPays());
+		
+			film.getRealisateur().ajouterFilm(film);
+			realisateurRepository.save(film.getRealisateur());
+		
 		return "redirect:/film";
 	}
 
@@ -102,8 +120,8 @@ public class FilmController {
 	public String filmmodifier(@Valid Film film, BindingResult bindingResult) {
 		/*f (bindingResult.hasErrors())
 			return "filmmodifier";*/
-
-		filmRepository.save(film);
+		filmsupprimer(film.getId());
+		filmRepository.save(film);		
 		return "redirect:/film";
 	}
 
@@ -118,6 +136,26 @@ public class FilmController {
 	// Supprime le film sélectionné
 	@GetMapping("/filmsupprimer/{id}")
 	public String filmsupprimer(@PathVariable("id") Long id) {
+		
+		Film film = filmRepository.findOne(id);
+		for (Acteur acteur : film.getActeurs())
+		{
+			acteur.supprimerFilm(film);
+			acteurRepository.save(acteur);
+		}
+		
+		for (Categorie categorie : film.getCategories())
+		{
+			categorie.supprimerFilm(film);
+			categorieRepository.save(categorie);
+		}
+		
+		film.getPays().supprimerFilm(film);
+		paysRepository.save(film.getPays());
+		
+		film.getRealisateur().supprimerFilm(film);
+		realisateurRepository.save(film.getRealisateur());
+		
 		filmRepository.delete(id);
 		return "redirect:/film";
 	}

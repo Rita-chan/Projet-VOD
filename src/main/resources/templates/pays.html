@@ -14,6 +14,10 @@
 		<li th:each="pays : ${payss}"><span th:text="${pays.id}"></span>
 			- <span th:text="${pays.nom}"></span>
 			
+			 - <span th:each=" film : ${pays.films}" >	
+				<span th:text="${film.titre}"></span> - 
+			</span>
+			
 			<a th:href="@{/paysmodifier/{id}(id=${pays.id})}">Editer</a> |
 			<a th:href="@{/payssupprimer/{id}(id=${pays.id})}">Supprimer</a>
 			</li>

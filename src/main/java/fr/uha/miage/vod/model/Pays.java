@@ -48,6 +48,14 @@ public class Pays {
 		this.films = films;
 	}
 	
+	public void ajouterFilm(Film film)
+	{
+		this.films.add(film);
+	}
 	
+	public void supprimerFilm(Film film)
+	{
+		this.films.remove(film);
+	}
 
 }

@@ -14,6 +14,10 @@
 		<li th:each="acteur : ${acteurs}"><span th:text="${acteur.id}"></span>
 			- <span th:text="${acteur.nom}"></span> <span th:text="${acteur.prenom}"></span>
 			
+			 - <span th:each=" film : ${acteur.films}" >	
+				<span th:text="${film.titre}"></span> - 
+			</span>
+			
 			<a th:href="@{/acteurmodifier/{id}(id=${acteur.id})}">Editer</a> |
 			<a th:href="@{/acteursupprimer/{id}(id=${acteur.id})}">Supprimer</a>
 			</li>

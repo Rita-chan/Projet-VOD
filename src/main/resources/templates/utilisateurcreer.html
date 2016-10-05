@@ -30,7 +30,7 @@
 			</tr>
 			<tr>
 				<td>Mot de passe :</td>
-				<td><input type="text" th:field="*{mdp}" /></td>
+				<td><input type="password" th:field="*{mdp}" /></td>
 				<td th:if="${#fields.hasErrors('mdp')}" th:errors="*{mdp}">MDP
 					Error</td>
 			</tr>

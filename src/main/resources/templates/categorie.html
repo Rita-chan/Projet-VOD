@@ -14,6 +14,10 @@
 		<li th:each="categorie : ${categories}"><span th:text="${categorie.id}"></span>
 			- <span th:text="${categorie.intitule}"></span>
 			
+			 - <span th:each=" film : ${categorie.films}" >	
+				<span th:text="${film.titre}"></span> - 
+			</span>
+			
 			<a th:href="@{/categoriemodifier/{id}(id=${categorie.id})}">Editer</a> |
 			<a th:href="@{/categoriesupprimer/{id}(id=${categorie.id})}">Supprimer</a>
 			</li>
