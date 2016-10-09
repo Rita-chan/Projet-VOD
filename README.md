@@ -1,5 +1,5 @@
 # Projet-VOD
-Il s'agit de notre projet d'application web en M2 MIAGE
-  BOHN Cindy
-  JEAN Anita
+Il s'agit de notre projet d'application web en M2 MIAGE <br>
+BOHN Cindy <br>
+JEAN Anita
   
