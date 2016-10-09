@@ -10,6 +10,7 @@
 	<div th:if="${#lists.isEmpty(utilisateurs)}">
 		Il n'existe pas d'utilisateur dans la base.
 	</div>
+	<!--  
 	<ul>
 		<li th:each="utilisateur : ${utilisateurs}"><span th:text="${utilisateur.id}"></span>
 			- <span th:text="${utilisateur.nom}"></span> <span th:text="${utilisateur.prenom}"></span>
@@ -21,6 +22,38 @@
 			</li>
 
 	</ul>
+	-->
+	
+	<table>
+		<thead>
+			<tr>
+				<th>Id Utilisateur</th>
+				<th>Nom</th>
+				<th>Prénom</th>
+				<th>Login</th>
+				<th>Email</th>
+				<th>Mot de passe</th>
+				<th>Rôle</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="utilisateur : ${utilisateurs}">
+				<td th:text="${utilisateur.id}" />
+				<td th:text="${utilisateur.nom}" />
+				<td th:text="${utilisateur.prenom}" />
+				<td th:text="${utilisateur.login}" />
+				<td th:text="${utilisateur.mail}" />
+				<td th:text="${utilisateur.mdp}" />
+				<td th:text="${utilisateur.role}" />
+				<td>
+					<a th:href="@{/utilisateurmodifier/{id}(id=${utilisateur.id})}">Editer</a> |
+					<a th:href="@{/utilisateursupprimer/{id}(id=${utilisateur.id})}">Supprimer</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	
 	<a th:href="@{/}">Retour à l'index</a>
 </body>
 </html>
