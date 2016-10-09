@@ -10,6 +10,7 @@
 	<div th:if="${#lists.isEmpty(films)}">
 		Il n'existe aucun film dans la base.
 	</div>
+	<!--  
 	<ul>
 		<li th:each="film : ${films}">
 			<span th:text="${film.id}"></span> - 
@@ -41,6 +42,47 @@
 			</li>
 
 	</ul>
+	-->
+	
+	<table>
+		<thead>
+			<tr>
+				<th>Id Film</th>
+				<th>Titre</th>
+				<th>Synopsis</th>
+				<th>Durée</th>
+				<th>Jaquette</th>
+				<th>Sortie</th>
+				<th>Vidéo</th>
+				<th>Version</th>
+				<th>Catégorie</th>
+				<th>Acteurs</th>
+				<th>Réalisateur</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="film : ${films}">
+				<td th:text="${film.id}" />
+				<td th:text="${film.titre}" />
+				<td th:text="${film.synopsis}" />
+				<td th:text="${film.duree}" />
+				<td th:text="${film.jaquette}" />
+				<td th:text="${film.sortie}" />
+				<td th:text="${film.video}" />
+				<td th:text="${film.version}" />
+				<td th:each=" categorie : ${film.categories}"> <span th:text="${categorie.intitule}"></span> </td>
+				<td th:each=" acteur : ${film.acteurs}"> <span th:text="${acteur.prenom}"></span> <span th:text="${acteur.nom}"> </span> </td>
+				<td th:each=" real : ${film.realisateur}"> <span th:text="${real.prenom}"></span> <span th:text="${real.nom}"> </span> </td>
+				<td th:each=" pay : ${film.pays}"> <span th:text="${pay.nom}"></span> </td> 
+				<td>
+					<a th:href="@{/filmmodifier/{id}(id=${film.id})}">Editer</a> <br/> 
+					<a th:href="@{/filmsupprimer/{id}(id=${film.id})}">Supprimer</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	
 	<a th:href="@{/}">Retour à l'index</a>
 </body>
 </html>

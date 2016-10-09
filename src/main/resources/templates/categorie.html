@@ -10,6 +10,7 @@
 	<div th:if="${#lists.isEmpty(categories)}">
 		Il n'existe pas de catégorie dans la base.
 	</div>
+	<!--  
 	<ul>
 		<li th:each="categorie : ${categories}"><span th:text="${categorie.id}"></span>
 			- <span th:text="${categorie.intitule}"></span>
@@ -23,6 +24,30 @@
 			</li>
 
 	</ul>
+	-->
+	
+	<table>
+		<thead>
+			<tr>
+				<th>Id Catégorie</th>
+				<th>Intitulé</th>
+				<th>Films</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="categorie : ${categories}">
+				<td th:text="${categorie.id}" />
+				<td th:text="${categorie.intitule}" />
+				<td th:each=" film : ${categorie.films}"> <span th:text="${film.titre}"></span> </td>
+				<td>
+					<a th:href="@{/categoriemodifier/{id}(id=${categorie.id})}">Editer</a> <br/> 
+					<a th:href="@{/categoriesupprimer/{id}(id=${categorie.id})}">Supprimer</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	
 	<a th:href="@{/}">Retour à l'index</a>
 </body>
 </html>
