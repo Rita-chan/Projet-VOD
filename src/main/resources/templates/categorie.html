@@ -39,7 +39,7 @@
 			<tr th:each="categorie : ${categories}">
 				<td th:text="${categorie.id}" />
 				<td th:text="${categorie.intitule}" />
-				<td th:each=" film : ${categorie.films}"> <span th:text="${film.titre}"></span> </td>
+				<td> <span th:each=" film : ${categorie.films}"> <span th:text="${film.titre}"></span> <br /></span></td>
 				<td>
 					<a th:href="@{/categoriemodifier/{id}(id=${categorie.id})}">Editer</a> <br/> 
 					<a th:href="@{/categoriesupprimer/{id}(id=${categorie.id})}">Supprimer</a>

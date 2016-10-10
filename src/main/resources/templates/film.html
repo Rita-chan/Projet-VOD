@@ -73,8 +73,8 @@
 				<td th:text="${film.sortie}" />
 				<td th:text="${film.video}" />
 				<td th:text="${film.version}" />
-				<td th:each=" categorie : ${film.categories}"> <span th:text="${categorie.intitule}"></span> </td>
-				<td th:each=" acteur : ${film.acteurs}"> <span th:text="${acteur.prenom}"></span> <span th:text="${acteur.nom}"> </span> </td>
+				<td> <span th:each=" categorie : ${film.categories}"> <span th:text="${categorie.intitule}"></span> </span></td>
+				<td> <span th:each=" acteur : ${film.acteurs}"> <span th:text="${acteur.prenom}"></span> <span th:text="${acteur.nom}"> </span> <br /></span></td>
 				<td th:each=" real : ${film.realisateur}"> <span th:text="${real.prenom}"></span> <span th:text="${real.nom}"> </span> </td>
 				<td th:each=" pay : ${film.pays}"> <span th:text="${pay.nom}"></span> </td> 
 				<td>

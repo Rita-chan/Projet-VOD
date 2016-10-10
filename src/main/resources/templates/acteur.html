@@ -40,7 +40,7 @@
 				<td th:text="${acteur.id}" />
 				<td th:text="${acteur.nom}" />
 				<td th:text="${acteur.prenom}"/>
-				<td th:each=" film : ${acteur.films}"> <span th:text="${film.titre}"></span> </td>
+				<td> <span th:each=" film : ${acteur.films}"> <span th:text="${film.titre}"></span> <br /></span></td>
 				<td>
 					<a th:href="@{/acteurmodifier/{id}(id=${acteur.id})}">Editer</a> <br/>
 					<a th:href="@{/acteursupprimer/{id}(id=${acteur.id})}">Supprimer</a>
