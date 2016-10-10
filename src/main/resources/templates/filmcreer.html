@@ -6,7 +6,12 @@
 </head>
 <body>
 	<h1>Créer un film</h1>
-	<form action="#" th:action="@{/filmcreer}" th:object="${film}" method="post">
+	
+	<div th:if="${message}">
+		<h2 th:text="${message}"/>
+	</div>
+	
+	<form action="#" th:action="@{/filmcreer}" th:object="${film}" method="post" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<td>Titre :</td>
@@ -22,7 +27,8 @@
 			</tr>
 			<tr>
 				<td>Jaquette :</td>
-				<td><input type="text" th:field="*{jaquette}" /></td>
+				<!-- <td><input type="text" th:field="*{jaquette}" /></td> -->
+				<td><input type="file" name="file" /></td>
 			</tr>
 			<tr>
 				<td>Année de sortie :</td>

@@ -7,7 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Bean;
 
+import fr.uha.miage.vod.file.StorageProperties;
+import fr.uha.miage.vod.file.StorageService;
 import fr.uha.miage.vod.model.Acteur;
 import fr.uha.miage.vod.model.Categorie;
 import fr.uha.miage.vod.model.Film;
@@ -22,6 +26,7 @@ import fr.uha.miage.vod.repository.RealisateurRepository;
 import fr.uha.miage.vod.repository.UtilisateurRepository;
 
 @SpringBootApplication
+@EnableConfigurationProperties(StorageProperties.class)
 public class Application implements CommandLineRunner{
 	
 	@Autowired
@@ -170,4 +175,13 @@ public class Application implements CommandLineRunner{
 		utilisateurRepository.save(util2);
 		utilisateurRepository.save(admin);
 	}
+	
+	@Bean
+	CommandLineRunner init(StorageService storageService) {
+		return (args) -> {
+            storageService.deleteAll();
+            storageService.init();
+		};
+	}
+	
 }

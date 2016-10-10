@@ -64,10 +64,11 @@
 		<tbody>
 			<tr th:each="film : ${films}">
 				<td th:text="${film.id}" />
-				<td th:text="${film.titre}" />
+				<td th:text="${film.titre }" />
 				<td th:text="${film.synopsis}" />
 				<td th:text="${film.duree}" />
-				<td th:text="${film.jaquette}" />
+				<!-- <td th:text="${film.jaquette}" /> -->
+				<td> <img th:src= "@{/files/{jaquette}(jaquette=${film.jaquette})}" height="42" width="42"/> </td>
 				<td th:text="${film.sortie}" />
 				<td th:text="${film.video}" />
 				<td th:text="${film.version}" />

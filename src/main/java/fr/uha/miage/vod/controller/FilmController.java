@@ -1,17 +1,29 @@
 package fr.uha.miage.vod.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import fr.uha.miage.vod.file.StorageFileNotFoundException;
+import fr.uha.miage.vod.file.StorageService;
 import fr.uha.miage.vod.model.Acteur;
 import fr.uha.miage.vod.model.Categorie;
 import fr.uha.miage.vod.model.Film;
@@ -25,6 +37,13 @@ import fr.uha.miage.vod.repository.RealisateurRepository;
 
 @Controller
 public class FilmController {
+	
+	private final StorageService storageService;
+
+    @Autowired
+    public FilmController(StorageService storageService) {
+        this.storageService = storageService;
+    }
 	
 	//Création des repository
 	@Autowired
@@ -47,6 +66,14 @@ public class FilmController {
 	public String filmcreerform(Model model) {
 		model.addAttribute("film", new Film());
 		
+		  model.addAttribute("files", storageService
+	                .loadAll()
+	                .map(path ->
+	                        MvcUriComponentsBuilder
+	                                .fromMethodName(FilmController.class, "serveFile", path.getFileName().toString())
+	                                .build().toString())
+	                .collect(Collectors.toList()));
+		
 		
 		List<Categorie> listeCategories = (List<Categorie>) categorieRepository.findAll();
 		model.addAttribute("listeCategories", listeCategories);
@@ -66,10 +93,13 @@ public class FilmController {
 	// Enregistre le film créé, en verifiant qu'il corresponde aux
 	// critères
 	@PostMapping("/filmcreer")
-	public String filmcreer(@Valid Film film, BindingResult bindingResult) {
+	public String filmcreer(@Valid Film film, BindingResult bindingResult, @RequestParam("file") MultipartFile file,
+            RedirectAttributes redirectAttributes) {
+		
 		if (bindingResult.hasErrors())
 			return "filmcreer";
-
+		
+		film.setJaquette(file.getOriginalFilename());
 		filmRepository.save(film);
 
 		for (Acteur acteur : film.getActeurs())
@@ -89,6 +119,10 @@ public class FilmController {
 		
 			film.getRealisateur().ajouterFilm(film);
 			realisateurRepository.save(film.getRealisateur());
+			
+			storageService.store(file);
+	        redirectAttributes.addFlashAttribute("message",
+	                "You successfully uploaded " + file.getOriginalFilename() + "!");
 		
 		return "redirect:/film";
 	}
@@ -159,4 +193,21 @@ public class FilmController {
 		filmRepository.delete(id);
 		return "redirect:/film";
 	}
+	
+	
+	@GetMapping("/files/{filename:.+}")
+    @ResponseBody
+    public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
+
+        Resource file = storageService.loadAsResource(filename);
+        return ResponseEntity
+                .ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\""+file.getFilename()+"\"")
+                .body(file);
+    }
+	
+	@ExceptionHandler(StorageFileNotFoundException.class)
+    public ResponseEntity handleStorageFileNotFound(StorageFileNotFoundException exc) {
+        return ResponseEntity.notFound().build();
+    }
 }
