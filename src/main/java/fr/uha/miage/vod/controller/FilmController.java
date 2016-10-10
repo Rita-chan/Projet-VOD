@@ -37,27 +37,27 @@ import fr.uha.miage.vod.repository.RealisateurRepository;
 
 @Controller
 public class FilmController {
-	
+
 	private final StorageService storageService;
 
-    @Autowired
-    public FilmController(StorageService storageService) {
-        this.storageService = storageService;
-    }
-	
-	//Création des repository
+	@Autowired
+	public FilmController(StorageService storageService) {
+		this.storageService = storageService;
+	}
+
+	// Création des repository
 	@Autowired
 	private FilmRepository filmRepository;
-	
+
 	@Autowired
 	private CategorieRepository categorieRepository;
-	
+
 	@Autowired
 	private ActeurRepository acteurRepository;
-	
+
 	@Autowired
 	private PaysRepository paysRepository;
-	
+
 	@Autowired
 	private RealisateurRepository realisateurRepository;
 
@@ -65,65 +65,65 @@ public class FilmController {
 	@GetMapping("/filmcreer")
 	public String filmcreerform(Model model) {
 		model.addAttribute("film", new Film());
-		
-		  model.addAttribute("files", storageService
-	                .loadAll()
-	                .map(path ->
-	                        MvcUriComponentsBuilder
-	                                .fromMethodName(FilmController.class, "serveFile", path.getFileName().toString())
-	                                .build().toString())
-	                .collect(Collectors.toList()));
-		
-		
+
+		model.addAttribute("files",
+				storageService.loadAll()
+						.map(path -> MvcUriComponentsBuilder
+								.fromMethodName(FilmController.class, "serveFile", path.getFileName().toString())
+								.build().toString())
+						.collect(Collectors.toList()));
+
 		List<Categorie> listeCategories = (List<Categorie>) categorieRepository.findAll();
 		model.addAttribute("listeCategories", listeCategories);
-		
+
 		List<Acteur> listeActeurs = (List<Acteur>) acteurRepository.findAll();
 		model.addAttribute("listeActeurs", listeActeurs);
-		
+
 		List<Pays> listePayss = (List<Pays>) paysRepository.findAll();
 		model.addAttribute("listePayss", listePayss);
-		
+
 		List<Realisateur> listeRealisateurs = (List<Realisateur>) realisateurRepository.findAll();
 		model.addAttribute("listeRealisateurs", listeRealisateurs);
-		
+
 		return "filmcreer";
 	}
 
 	// Enregistre le film créé, en verifiant qu'il corresponde aux
 	// critères
 	@PostMapping("/filmcreer")
-	public String filmcreer(@Valid Film film, BindingResult bindingResult, @RequestParam("file") MultipartFile file,
-            RedirectAttributes redirectAttributes) {
-		
+	public String filmcreer(@Valid Film film, BindingResult bindingResult, @RequestParam("file") MultipartFile jaquette, @RequestParam("file1") MultipartFile video,
+			RedirectAttributes redirectAttributes) {
+
 		if (bindingResult.hasErrors())
 			return "filmcreer";
-		
-		film.setJaquette(file.getOriginalFilename());
+
+		film.setJaquette(jaquette.getOriginalFilename());		
+		film.setVideo(video.getOriginalFilename());
 		filmRepository.save(film);
 
-		for (Acteur acteur : film.getActeurs())
-		{
+		for (Acteur acteur : film.getActeurs()) {
 			acteur.ajouterFilm(film);
 			acteurRepository.save(acteur);
 		}
-		
-		for (Categorie categorie : film.getCategories())
-		{
+
+		for (Categorie categorie : film.getCategories()) {
 			categorie.ajouterFilm(film);
 			categorieRepository.save(categorie);
 		}
+
+		film.getPays().ajouterFilm(film);
+		paysRepository.save(film.getPays());
+
+		film.getRealisateur().ajouterFilm(film);
+		realisateurRepository.save(film.getRealisateur());
+
+		storageService.store(jaquette);
+		redirectAttributes.addFlashAttribute("message", "La jaquette a bien été uploadée.");
+
 		
-			film.getPays().ajouterFilm(film);
-			paysRepository.save(film.getPays());
-		
-			film.getRealisateur().ajouterFilm(film);
-			realisateurRepository.save(film.getRealisateur());
-			
-			storageService.store(file);
-	        redirectAttributes.addFlashAttribute("message",
-	                "You successfully uploaded " + file.getOriginalFilename() + "!");
-		
+		storageService.store(video);
+		//redirectAttributes.addFlashAttribute("message", "La video a bien été uploadée.");
+
 		return "redirect:/film";
 	}
 
@@ -132,19 +132,19 @@ public class FilmController {
 	public String filmmodifierform(@PathVariable("id") Long id, Model model) {
 		Film film = filmRepository.findOne(id);
 		model.addAttribute("film", film);
-		
+
 		List<Categorie> listeCategories = (List<Categorie>) categorieRepository.findAll();
 		model.addAttribute("listeCategories", listeCategories);
-		
+
 		List<Acteur> listeActeurs = (List<Acteur>) acteurRepository.findAll();
 		model.addAttribute("listeActeurs", listeActeurs);
-		
+
 		List<Pays> listePayss = (List<Pays>) paysRepository.findAll();
 		model.addAttribute("listePayss", listePayss);
-		
+
 		List<Realisateur> listeRealisateurs = (List<Realisateur>) realisateurRepository.findAll();
 		model.addAttribute("listeRealisateurs", listeRealisateurs);
-		
+
 		return "filmmodifier";
 	}
 
@@ -152,10 +152,11 @@ public class FilmController {
 	// critères
 	@PostMapping("/filmmodifier")
 	public String filmmodifier(@Valid Film film, BindingResult bindingResult) {
-		/*f (bindingResult.hasErrors())
-			return "filmmodifier";*/
+		/*
+		 * f (bindingResult.hasErrors()) return "filmmodifier";
+		 */
 		filmsupprimer(film.getId());
-		filmRepository.save(film);		
+		filmRepository.save(film);
 		return "redirect:/film";
 	}
 
@@ -170,44 +171,40 @@ public class FilmController {
 	// Supprime le film sélectionné
 	@GetMapping("/filmsupprimer/{id}")
 	public String filmsupprimer(@PathVariable("id") Long id) {
-		
+
 		Film film = filmRepository.findOne(id);
-		for (Acteur acteur : film.getActeurs())
-		{
+		for (Acteur acteur : film.getActeurs()) {
 			acteur.supprimerFilm(film);
 			acteurRepository.save(acteur);
 		}
-		
-		for (Categorie categorie : film.getCategories())
-		{
+
+		for (Categorie categorie : film.getCategories()) {
 			categorie.supprimerFilm(film);
 			categorieRepository.save(categorie);
 		}
-		
+
 		film.getPays().supprimerFilm(film);
 		paysRepository.save(film.getPays());
-		
+
 		film.getRealisateur().supprimerFilm(film);
 		realisateurRepository.save(film.getRealisateur());
-		
+
 		filmRepository.delete(id);
 		return "redirect:/film";
 	}
-	
-	
-	@GetMapping("/files/{filename:.+}")
-    @ResponseBody
-    public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
 
-        Resource file = storageService.loadAsResource(filename);
-        return ResponseEntity
-                .ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\""+file.getFilename()+"\"")
-                .body(file);
-    }
-	
+	@GetMapping("/files/{filename:.+}")
+	@ResponseBody
+	public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
+
+		Resource file = storageService.loadAsResource(filename);
+		return ResponseEntity.ok()
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
+				.body(file);
+	}
+
 	@ExceptionHandler(StorageFileNotFoundException.class)
-    public ResponseEntity handleStorageFileNotFound(StorageFileNotFoundException exc) {
-        return ResponseEntity.notFound().build();
-    }
+	public ResponseEntity handleStorageFileNotFound(StorageFileNotFoundException exc) {
+		return ResponseEntity.notFound().build();
+	}
 }
