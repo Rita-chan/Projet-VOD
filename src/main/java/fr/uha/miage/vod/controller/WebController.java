@@ -11,4 +11,8 @@ public class WebController {
 		return "index";
 	}
 	
+	@GetMapping("/adminindex")
+	public String adminindex(){
+		return "adminindex";
+	}
 }

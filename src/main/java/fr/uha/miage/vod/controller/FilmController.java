@@ -167,6 +167,15 @@ public class FilmController {
 		model.addAttribute("films", liste);
 		return "film";
 	}
+	
+	// Visionne le film sélectionné
+		@GetMapping("/filmvisionner/{id}")
+		public String filmvisionner(Model model, @PathVariable("id") Long id) {
+			Film film = filmRepository.findOne(id);
+			model.addAttribute("film", film);
+			return "filmvisionner";
+		}
+		
 
 	// Supprime le film sélectionné
 	@GetMapping("/filmsupprimer/{id}")

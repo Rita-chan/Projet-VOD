@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<title>Voir un film</title>
+</head>
+<body>
+<video th:object="${film}" controls="controls">
+
+  <source th:src="@{/files/{video}(video=${film.video})}" type="video/mp4"/> 
+  <!-- <source th:src="@{/files/konata timotei!! ^^.mp4" type="video/mp4"/>  -->
+</video>
+</body>
+</html>
