@@ -8,39 +8,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Great Movies - By AC - Admin</title>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Augment Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
- <!-- Bootstrap Core CSS -->
-<link href="admin/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
-<!-- Custom CSS -->
-<link href="admin/css/style.css" rel='stylesheet' type='text/css' />
-<!-- Graph CSS -->
-<link href="admin/css/font-awesome.css" rel="stylesheet"/> 
-<!-- jQuery -->
-<link href='//fonts.googleapis.com/css?family=Roboto:700,500,300,100italic,100,400' rel='stylesheet' type='text/css'/>
-<!-- lined-icons -->
-<link rel="stylesheet" href="admin/css/icon-font.min.css" type='text/css' />
-<!-- //lined-icons -->
-<script src="admin/js/jquery-1.10.2.min.js"></script>
-<script src="admin/js/amcharts.js"></script>	
-<script src="admin/js/serial.js"></script>	
-<script src="admin/js/light.js"></script>	
-<script src="admin/js/radar.js"></script>	
-<link href="admin/css/barChart.css" rel='stylesheet' type='text/css' />
-<link href="admin/css/fabochart.css" rel='stylesheet' type='text/css' />
-<!--clock init-->
-<script src="admin/js/css3clock.js"></script>
-<!--Easy Pie Chart-->
-<!--skycons-icons-->
-<script src="admin/js/skycons.js"></script>
-
-<script src="admin/js/jquery.easydropdown.js"></script>
-
-<!--//skycons-icons-->
+<meta charset="UTF-8"/>
 </head> 
 <body>
    <div class="page-container" th:fragment="header">
@@ -68,44 +36,44 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							   <!--//down-->
                            <div class="menu">
 									<ul id="menu" >
-									
-										<li><a th:href="@{/acteur}"><i class="fa fa-user"></i><span>Acteur</span></a>
+										<li><a th:href="@{/adminindex}"><i class="fa fa-tachometer"></i><span>Accueil admin</span><span class="fa fa-angle-right" style="float: right"></span></a></li>
+										<li><a th:href="@{/acteur}"><i class="fa fa-user"></i><span>Acteur</span><span class="fa fa-angle-right" style="float: right"></span></a>
 											<ul>
 												<li><a th:href="@{/acteur}"><span>Visualisation</span></a></li>
 												<li><a th:href="@{/acteurcreer}"><span>Création</span></a></li>
 											</ul>
 										</li>
-										<li><a th:href="@{/avis}"><i class="lnr lnr-pencil"></i><span>Avis</span></a>
+										<li><a th:href="@{/avis}"><i class="lnr lnr-pencil"></i><span>Avis</span><span class="fa fa-angle-right" style="float: right"></span></a>
 											<ul>
 												<li><a th:href="@{/avis}"><span>Visualisation</span></a></li>
 												<li><a th:href="@{/aviscreer}"><span>Création</span></a></li>
 											</ul>
 										</li>
-										<li><a th:href="@{/categorie}"><i class="fa fa-tags"></i><span>Catégorie</span></a>
+										<li><a th:href="@{/categorie}"><i class="fa fa-tags"></i><span>Catégorie</span><span class="fa fa-angle-right" style="float: right"></span></a>
 											<ul>
 												<li><a th:href="@{/categorie}"><span>Visualisation</span></a></li>
 												<li><a th:href="@{/categoriecreer}"><span>Création</span></a></li>
 											</ul>
 										</li>
-										<li><a th:href="@{/film}"><i class="fa fa-film"></i><span>Films</span></a>
+										<li><a th:href="@{/film}"><i class="fa fa-film"></i><span>Films</span><span class="fa fa-angle-right" style="float: right"></span></a>
 											<ul>
 												<li><a th:href="@{/film}"><span>Visualisation</span></a></li>
 												<li><a th:href="@{/filmcreer}"><span>Création</span></a></li>
 											</ul>
 										</li>
-										<li><a th:href="@{/pays}"><i class="fa fa-flag-o"></i><span>Pays</span></a>
+										<li><a th:href="@{/pays}"><i class="fa fa-flag-o"></i><span>Pays</span><span class="fa fa-angle-right" style="float: right"></span></a>
 											<ul>
 												<li><a th:href="@{/pays}"><span>Visualisation</span></a></li>
 												<li><a th:href="@{/payscreer}"><span>Création</span></a></li>
 											</ul>
 										</li>
-										<li><a th:href="@{/realisateur}"><i class="fa fa-user"></i><span>Réalisateur</span></a>
+										<li><a th:href="@{/realisateur}"><i class="fa fa-user"></i><span>Réalisateur</span><span class="fa fa-angle-right" style="float: right"></span></a>
 											<ul>
 												<li><a th:href="@{/realisateur}"><span>Visualisation</span></a></li>
 												<li><a th:href="@{/realisateurcreer}"><span>Création</span></a></li>
 											</ul>
 										</li>
-										<li><a th:href="@{/utilisateur}"><i class="fa fa-users"></i><span>Utilisateur</span></a>
+										<li><a th:href="@{/utilisateur}"><i class="fa fa-users"></i><span>Utilisateur</span><span class="fa fa-angle-right" style="float: right"></span></a>
 											<ul>
 												<li><a th:href="@{/utilisateur}"><span>Visualisation</span></a></li>
 												<li><a th:href="@{/utilisateurcreer}"><span>Création</span></a></li>
@@ -113,7 +81,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										</li>
 									
 									
-										<li><a href="index.html"><i class="fa fa-tachometer"></i> <span>Dashboard</span></a></li>
 										 <li id="menu-academico" ><a href="#"><i class="fa fa-table"></i> <span> Tabs &amp; Panels</span> <span class="fa fa-angle-right" style="float: right"></span></a>
 										   <ul id="menu-academico-sub" >
 											<li id="menu-academico-avaliacoes" ><a href="tabs.html"> Tabs &amp; Panels</a></li>
@@ -122,56 +89,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											
 										  </ul>
 										</li>
-										 <li id="menu-academico" ><a href="#"><i class="fa fa-file-text-o"></i> <span>Ui Elements</span> <span class="fa fa-angle-right" style="float: right"></span></a>
-											 <ul id="menu-academico-sub" >
-												<li id="menu-academico-avaliacoes" ><a href="forms.html">Forms</a></li>
-												<li id="menu-academico-boletim" ><a href="validation.html">Validation Forms</a></li>
-												<li id="menu-academico-boletim" ><a href="table.html">Tables</a></li>
-												<li id="menu-academico-boletim" ><a href="buttons.html">Buttons</a></li>
-											  </ul>
-										 </li>
-									<li><a href="typography.html"><i class="lnr lnr-pencil"></i> <span>Typography</span></a></li>
-									<li id="menu-academico" ><a href="#"><i class="lnr lnr-book"></i> <span>Pages</span> <span class="fa fa-angle-right" style="float: right"></span></a>
-										  <ul id="menu-academico-sub" >
-										    <li id="menu-academico-avaliacoes" ><a href="login.html">Login</a></li>
-										    <li id="menu-academico-boletim" ><a href="register.html">Register</a></li>
-											<li id="menu-academico-boletim" ><a href="404.html">404</a></li>
-											<li id="menu-academico-boletim" ><a href="sign.html">Sign up</a></li>
-											<li id="menu-academico-boletim" ><a href="profile.html">Profile</a></li>
-										  </ul>
-									 </li>
-									 <li><a href="#"><i class="lnr lnr-envelope"></i> <span>Mail Box</span><span class="fa fa-angle-right" style="float: right"></span></a>
-									   <ul>
-										<li><a href="inbox.html"><i class="fa fa-inbox"></i> Inbox</a></li>
-										<li><a href="compose.html"><i class="fa fa-pencil-square-o"></i> Compose Mail</a></li>
-										<li><a href="editor.html"><span class="lnr lnr-highlight"></span> Editors Page</a></li>
-									
-									  </ul>
-									</li>
-							        <li id="menu-academico" ><a href="#"><i class="lnr lnr-layers"></i> <span>Components</span> <span class="fa fa-angle-right" style="float: right"></span></a>
-										 <ul id="menu-academico-sub" >
-											<li id="menu-academico-avaliacoes" ><a href="grids.html">Grids</a></li>
-											<li id="menu-academico-boletim" ><a href="media.html">Media Objects</a></li>
-
-										  </ul>
-									 </li>
-									<li><a href="chart.html"><i class="lnr lnr-chart-bars"></i> <span>Charts</span> <span class="fa fa-angle-right" style="float: right"></span></a>
-									  <ul>
-										<li><a href="map.html"><i class="lnr lnr-map"></i> Maps</a></li>
-										<li><a href="graph.html"><i class="lnr lnr-apartment"></i> Graph Visualization</a></li>
-									</ul>
-									</li>
-									<li id="menu-comunicacao" ><a href="#"><i class="fa fa-smile-o"></i> <span>More</span><span class="fa fa-angle-double-right" style="float: right"></span></a>
-									  <ul id="menu-comunicacao-sub" >
-										<li id="menu-mensagens" style="width:120px" ><a href="project.html">Projects <i class="fa fa-angle-right" style="float: right; margin-right: -8px; margin-top: 2px;"></i></a>
-										  <ul id="menu-mensagens-sub" >
-											<li id="menu-mensagens-enviadas" style="width:130px" ><a href="ribbon.html">Ribbons</a></li>
-											<li id="menu-mensagens-recebidas"  style="width:130px"><a href="blank.html">Blank</a></li>
-										  </ul>
-										</li>
-										<li id="menu-arquivos" ><a href="500.html">500</a></li>
-									  </ul>
-									</li>
 								  </ul>
 								</div>
 							  </div>

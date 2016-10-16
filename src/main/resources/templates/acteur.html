@@ -1,39 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8"/>
-<title>Liste des acteurs</title>
-<link th:href="@{/adminnavigateur.html}"/>
-
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
- <!-- Bootstrap Core CSS -->
-<link href="admin/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
-<!-- Custom CSS -->
-<link href="admin/css/style.css" rel='stylesheet' type='text/css' />
-<!-- Graph CSS -->
-<link href="admin/css/font-awesome.css" rel="stylesheet"/> 
-<!-- jQuery -->
-<link href='//fonts.googleapis.com/css?family=Roboto:700,500,300,100italic,100,400' rel='stylesheet' type='text/css'/>
-<!-- lined-icons -->
-<link rel="stylesheet" href="admin/css/icon-font.min.css" type='text/css' />
-<!-- //lined-icons -->
-<script src="admin/js/jquery-1.10.2.min.js"></script>
-<script src="admin/js/amcharts.js"></script>	
-<script src="admin/js/serial.js"></script>	
-<script src="admin/js/light.js"></script>	
-<script src="admin/js/radar.js"></script>	
-<link href="admin/css/barChart.css" rel='stylesheet' type='text/css' />
-<link href="admin/css/fabochart.css" rel='stylesheet' type='text/css' />
-<!--clock init-->
-<script src="admin/js/css3clock.js"></script>
-<!--Easy Pie Chart-->
-<!--skycons-icons-->
-<script src="admin/js/skycons.js"></script>
-
-<script src="admin/js/jquery.easydropdown.js"></script>
-
-<!--//skycons-icons-->
-
+<head th:replace="adminheader :: headImport">
+	<meta charset="UTF-8"/>
+	<title id="titrePage">Great Movies - By AC - Admin - Liste des acteurs</title>
 </head>
 <body>
 
@@ -41,27 +10,14 @@
 <div class="left-content">
 <div class="inner-content">
 <div class="outter-wp">
-	<a th:href="@{/acteurcreer}">Créer un acteur</a>
-	
+	<a class="btn btn-lg" th:href="@{/acteurcreer}" role="button">Créer un acteur</a>
+	<a class="btn btn-primary btn-lg" th:href="@{/acteurcreer}">Créer un acteur</a>
+	<a class="btn btn-info btn-lg" th:href="@{/acteurcreer}">Créer un acteur</a>
+	<a class="btn btn-link btn-lg" th:href="@{/acteurcreer}">Créer un acteur</a>
 	<div th:if="${#lists.isEmpty(acteurs)}">
 		Il n'existe pas d'acteur dans la base.
 	</div>
-	<!-- >
-	<ul>
-		<li th:each="acteur : ${acteurs}"><span th:text="${acteur.id}"></span>
-			- <span th:text="${acteur.nom}"></span> <span th:text="${acteur.prenom}"></span>
-			
-			 - <span th:each=" film : ${acteur.films}" >	
-				<span th:text="${film.titre}"></span> - 
-			</span>
-			
-			<a th:href="@{/acteurmodifier/{id}(id=${acteur.id})}">Editer</a> |
-			<a th:href="@{/acteursupprimer/{id}(id=${acteur.id})}">Supprimer</a>
-			</li>
-
-	</ul>
-	 -->
-	 <table>
+	 <table class="table table-bordered text-center">
 		<thead>
 			<tr>
 				<th>Id Acteur</th>
@@ -78,13 +34,12 @@
 				<td th:text="${acteur.prenom}"/>
 				<td> <span th:each=" film : ${acteur.films}"> <span th:text="${film.titre}"></span> <br /></span></td>
 				<td>
-					<a th:href="@{/acteurmodifier/{id}(id=${acteur.id})}">Editer</a> <br/>
-					<a th:href="@{/acteursupprimer/{id}(id=${acteur.id})}">Supprimer</a>
+					<a class="btn-sm btn-primary" th:href="@{/acteurmodifier/{id}(id=${acteur.id})}">Editer</a>
+					<a class="btn-sm btn-info" th:href="@{/acteursupprimer/{id}(id=${acteur.id})}">Supprimer</a>
 				</td>
 			</tr>
 		</tbody>
 	</table>
-	<a th:href="@{/}">Retour à l'index</a>
 	</div></div></div>
 </body>
 </html>
