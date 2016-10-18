@@ -11,7 +11,7 @@
 		<div class="inner-content">
 			<div class="outter-wp">
 				<h1>Modifier un acteur</h1>
-				<div style="display: inline-block;">
+				<div class="admin-formulaire">
 					<form action="#" th:action="@{/acteurmodifier}"
 						th:object="${acteur}" method="post">
 						<input type="hidden" th:field="*{id}" />
@@ -32,7 +32,7 @@
 						</table>
 					</form>
 				</div>
-				<div style="display: inline-block;">
+				<div class="admin-table-droite">
 				<div th:replace="admintableacteur :: tableacteur">&nbsp;</div></div>
 			</div>
 		</div>
