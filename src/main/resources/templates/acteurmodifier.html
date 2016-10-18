@@ -27,13 +27,14 @@
 								<td><input type="text" th:field="*{prenom}" /></td>
 							</tr>
 							<tr>
-								<td><button type="submit">Valider l'acteur</button></td>
+								<td><button type="submit" class="btn btn-primary">Valider l'acteur</button></td>
 							</tr>
 						</table>
 					</form>
 				</div>
 				<div class="admin-table-droite">
-				<div th:replace="admintableacteur :: tableacteur">&nbsp;</div></div>
+					<div th:replace="admintableacteur :: tableacteur">&nbsp;</div>
+				</div>
 			</div>
 		</div>
 	</div>

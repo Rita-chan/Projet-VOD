@@ -1,20 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="adminimport :: headImport">
-<meta charset="UTF-8" />
-<title id="titrePage">Great Movies - By AC - Admin - Liste des
-	réalisateurs</title>
+<html>
+<head>
+<meta charset="UTF-8"/>
 </head>
 <body>
-	<a class="btn btn-primary btn-lg" th:href="@{/realisateurcreer}">Créer
-		un réalisateur</a>
-
-	<div th:if="${#lists.isEmpty(realisateurs)}">Il n'existe pas de
-		realisateur dans la base.</div>
-
-	<div th:replace="admintablerealisateur :: table(realisateur)">&nbsp;</div>
-
-	<!-- <table>
+<table class="table table-bordered text-center"  th:fragment="tablerealisateur">
 		<thead>
 			<tr>
 				<th>Id Réalisateur</th>
@@ -36,6 +26,6 @@
 				</td>
 			</tr>
 		</tbody>
-	</table>-->
+	</table
 </body>
 </html>

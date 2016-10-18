@@ -1,18 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="adminimport :: headImport">
+<html>
+<head>
 <meta charset="UTF-8"/>
-<title id="titrePage">Great Movies - By AC - Admin - Liste des catégories</title>
 </head>
 <body>
-	<a class="btn btn-primary btn-lg" th:href="@{/categoriecreer}">Créer une catégorie</a>
-	
-	<div th:if="${#lists.isEmpty(categories)}">
-		Il n'existe pas de catégorie dans la base.
-	</div>
-	
-	<div th:replace="admintablecategorie :: tablecategorie">&nbsp;</div>
-	<!-- <table>
+<table class="table table-bordered text-center"  th:fragment="tablecategorie">
 		<thead>
 			<tr>
 				<th>Id Catégorie</th>
@@ -32,6 +24,6 @@
 				</td>
 			</tr>
 		</tbody>
-	</table>-->
+	</table>
 </body>
 </html>

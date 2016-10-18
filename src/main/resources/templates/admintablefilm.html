@@ -1,20 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="adminimport :: headImport">
+<html>
+<head>
 <meta charset="UTF-8"/>
-<title id="titrePage">Great Movies - By AC - Admin - Liste des films</title>
 </head>
 <body>
-	<a class="btn btn-primary btn-lg" th:href="@{/filmcreer}">Créer un film</a>
-	
-	<div th:if="${#lists.isEmpty(films)}">
-		Il n'existe aucun film dans la base.
-	</div>
-	
-	<div th:replace="admintablefilm :: tablefilm">&nbsp;</div>
-	
-	<!--
-	<table>
+<table class="table table-bordered text-center"  th:fragment="tablefilm">
 		<thead>
 			<tr>
 				<th>Id Film</th>
@@ -39,7 +29,7 @@
 				<td th:text="${film.synopsis}" />
 				<td th:text="${film.duree}" />
 				<!-- <td th:text="${film.jaquette}" /> -->
-		<!-- 	<td> <img th:src= "@{/files/{jaquette}(jaquette=${film.jaquette})}" height="42" width="42"/> </td>
+		 	<td> <img th:src= "@{/files/{jaquette}(jaquette=${film.jaquette})}" height="42" width="42"/> </td>
 				<td th:text="${film.sortie}" />
 				<td th:text="${film.video}" />
 				<td th:text="${film.version}" />
@@ -54,6 +44,6 @@
 				</td>
 			</tr>
 		</tbody>
-	</table>-->
+	</table>
 </body>
 </html>

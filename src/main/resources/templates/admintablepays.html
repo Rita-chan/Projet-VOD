@@ -1,18 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="adminimport :: headImport">
-<meta charset="UTF-8" />
-<title id="titrePage">Great Movies - By AC - Admin - Liste des pays</title>
+<html>
+<head>
+<meta charset="UTF-8"/>
 </head>
 <body>
-	<a class="btn btn-primary btn-lg" th:href="@{/payscreer}">Créer un pays</a>
-
-	<div th:if="${#lists.isEmpty(payss)}">Il n'existe pas de pays
-		dans la base.</div>
-		
-		<div th:replace="admintablepays :: tablepays">&nbsp;</div>
-<!-- 
-	<table>
+<table class="table table-bordered text-center"  th:fragment="tablepays">
 		<thead>
 			<tr>
 				<th>Id Pays</th>
@@ -32,6 +24,6 @@
 				</td>
 			</tr>
 		</tbody>
-	</table>-->
+	</table>
 </body>
 </html>

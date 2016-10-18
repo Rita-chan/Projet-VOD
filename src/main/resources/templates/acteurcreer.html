@@ -12,26 +12,30 @@
 			<div class="outter-wp">
 				<div>
 					<h1>Créer un acteur</h1>
-					<form action="#" th:action="@{/acteurcreer}" th:object="${acteur}"
-						method="post">
-						<table>
-							<tr>
-								<td>Nom :</td>
-								<td><input type="text" th:field="*{nom}" /></td>
-								<td th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}">Name
-									Error</td>
-							</tr>
-							<tr>
-								<td>Prénom :</td>
-								<td><input type="text" th:field="*{prenom}" /></td>
-							</tr>
-							<tr>
-								<td><button type="submit">Créer l'acteur</button></td>
-							</tr>
-						</table>
-					</form>
+					<div class="admin-formulaire">
+						<form action="#" th:action="@{/acteurcreer}" th:object="${acteur}"
+							method="post">
+							<table>
+								<tr>
+									<td>Nom :</td>
+									<td><input type="text" th:field="*{nom}" /></td>
+									<td th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}">Name
+										Error</td>
+								</tr>
+								<tr>
+									<td>Prénom :</td>
+									<td><input type="text" th:field="*{prenom}" /></td>
+								</tr>
+								<tr>
+									<td><button type="submit" class="btn btn-primary">Créer l'acteur</button></td>
+								</tr>
+							</table>
+						</form>
+					</div>
 				</div>
-				<div th:replace="admintableacteur :: tableacteur">&nbsp;</div>
+				<div class="admin-table-droite">
+					<div th:replace="admintableacteur :: tableacteur">&nbsp;</div>
+				</div>
 			</div>
 		</div>
 	</div>

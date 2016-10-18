@@ -23,6 +23,8 @@ public class PaysController {
 	@GetMapping("/payscreer")
 	public String payscreerform(Model model){
 		model.addAttribute("pays", new Pays());
+		Iterable<Pays> liste = paysRepository.findAll();
+		model.addAttribute("payss", liste);
 		return "payscreer";
 	}
 	//Enregistre le pays créé, en verifiant qu'il corresponde aux critères
@@ -41,6 +43,8 @@ public class PaysController {
 	public String paysmodifierform(@PathVariable("id") Long id, Model model){
 		Pays pays = paysRepository.findOne(id);
 		model.addAttribute("pays", pays);
+		Iterable<Pays> liste = paysRepository.findAll();
+		model.addAttribute("payss", liste);
 		return "paysmodifier";
 	}
 	//Enregistre le pays modifié, en vérifiant qu'il corresponde aux critères
