@@ -44,6 +44,8 @@ public class ActeurController {
 	public String acteurmodifierform(@PathVariable("id") Long id, Model model) {
 		Acteur acteur = acteurRepository.findOne(id);
 		model.addAttribute("acteur", acteur);
+		Iterable<Acteur> liste = acteurRepository.findAll();
+		model.addAttribute("acteurs", liste);
 		return "acteurmodifier";
 	}
 
