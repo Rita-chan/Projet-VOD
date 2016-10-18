@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="adminheader :: headImport">
+<head th:replace="adminimport :: headImport">
 	<meta charset="UTF-8"/>
 	<title id="titrePage">Great Movies - By AC - Admin - Liste des acteurs</title>
 </head>
@@ -10,14 +10,14 @@
 <div class="left-content">
 <div class="inner-content">
 <div class="outter-wp">
-	<a class="btn btn-lg" th:href="@{/acteurcreer}" role="button">Créer un acteur</a>
 	<a class="btn btn-primary btn-lg" th:href="@{/acteurcreer}">Créer un acteur</a>
-	<a class="btn btn-info btn-lg" th:href="@{/acteurcreer}">Créer un acteur</a>
-	<a class="btn btn-link btn-lg" th:href="@{/acteurcreer}">Créer un acteur</a>
 	<div th:if="${#lists.isEmpty(acteurs)}">
 		Il n'existe pas d'acteur dans la base.
 	</div>
-	 <table class="table table-bordered text-center">
+	
+	<div th:replace="admintableacteur :: tableacteur">&nbsp;</div>
+	
+	 <!-- <table class="table table-bordered text-center">
 		<thead>
 			<tr>
 				<th>Id Acteur</th>
@@ -39,7 +39,7 @@
 				</td>
 			</tr>
 		</tbody>
-	</table>
+	</table>-->
 	</div></div></div>
 </body>
 </html>

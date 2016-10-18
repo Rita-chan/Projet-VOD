@@ -23,6 +23,8 @@ public class ActeurController {
 	@GetMapping("/acteurcreer")
 	public String acteurcreerform(Model model) {
 		model.addAttribute("acteur", new Acteur());
+		Iterable<Acteur> liste = acteurRepository.findAll();
+		model.addAttribute("acteurs", liste);
 		return "acteurcreer";
 	}
 
