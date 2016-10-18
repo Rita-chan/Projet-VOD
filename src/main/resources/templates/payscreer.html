@@ -1,24 +1,32 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="adminimport :: headImport">
-<meta charset="UTF-8"/>
-<title id="titrePage">Great Movies - By AC - Admin - Créer un pays</title>
+<meta charset="UTF-8" />
+<title id="titrePage">Great Movies - By AC - Admin - Créer un
+	pays</title>
 </head>
 <body>
-	<h1>Créer un pays</h1>
-	<form action="#" th:action="@{/payscreer}" th:object="${pays}" method="post">
-		<table>
-			<tr>
-				<td>Nom :</td>
-				<td><input type="text" th:field="*{nom}" /></td>
-				<td th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}">Name
-					Error</td>
-			</tr>
-			<tr>
-				<td><button type="submit">Créer le pays</button></td>
-			</tr>
-		</table>
-	</form>
-
+	<div th:replace="adminnavigateur :: header">&nbsp;</div>
+	<div class="left-content">
+		<div class="inner-content">
+			<div class="outter-wp">
+				<h1>Créer un pays</h1>
+				<form action="#" th:action="@{/payscreer}" th:object="${pays}"
+					method="post">
+					<table>
+						<tr>
+							<td>Nom :</td>
+							<td><input type="text" th:field="*{nom}" /></td>
+							<td th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}">Name
+								Error</td>
+						</tr>
+						<tr>
+							<td><button type="submit">Créer le pays</button></td>
+						</tr>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

@@ -1,37 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="adminimport :: headImport">
-<meta charset="UTF-8"/>
-<title id="titrePage">Great Movies - By AC - Admin - Liste des catégories</title>
+<meta charset="UTF-8" />
+<title id="titrePage">Great Movies - By AC - Admin - Liste des
+	catégories</title>
 </head>
 <body>
-	<a class="btn btn-primary btn-lg" th:href="@{/categoriecreer}">Créer une catégorie</a>
-	
-	<div th:if="${#lists.isEmpty(categories)}">
-		Il n'existe pas de catégorie dans la base.
+	<div th:replace="adminnavigateur :: header">&nbsp;</div>
+	<div class="left-content">
+		<div class="inner-content">
+			<div class="outter-wp">
+				<a class="btn btn-primary btn-lg" th:href="@{/categoriecreer}">Créer
+					une catégorie</a>
+
+				<div th:if="${#lists.isEmpty(categories)}">Il n'existe pas de
+					catégorie dans la base.</div>
+
+				<div th:replace="admintablecategorie :: tablecategorie">&nbsp;</div>
+			</div>
+		</div>
 	</div>
-	
-	<div th:replace="admintablecategorie :: tablecategorie">&nbsp;</div>
-	<!-- <table>
-		<thead>
-			<tr>
-				<th>Id Catégorie</th>
-				<th>Intitulé</th>
-				<th>Films</th>
-				<th>Actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="categorie : ${categories}">
-				<td th:text="${categorie.id}" />
-				<td th:text="${categorie.intitule}" />
-				<td> <span th:each=" film : ${categorie.films}"> <span th:text="${film.titre}"></span> <br /></span></td>
-				<td>
-					<a th:href="@{/categoriemodifier/{id}(id=${categorie.id})}">Editer</a> <br/> 
-					<a th:href="@{/categoriesupprimer/{id}(id=${categorie.id})}">Supprimer</a>
-				</td>
-			</tr>
-		</tbody>
-	</table>-->
 </body>
 </html>
