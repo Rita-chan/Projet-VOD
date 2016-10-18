@@ -1,29 +1,42 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8"/>
-<title>Modifier un acteur</title>
+<head th:replace="adminimport :: headImport">
+<meta charset="UTF-8" />
+<title id="titrePage">Great Movies - By AC - Admin - Modifier un
+	acteur</title>
 </head>
 <body>
-	<h1>Modifier un acteur</h1>
-	<form action="#" th:action="@{/acteurmodifier}" th:object="${acteur}" method="post">
-		<input type="hidden" th:field="*{id}" />
-		<table>
-			<tr>
-				<td>Nom :</td>
-				<td><input type="text" th:field="*{nom}" /></td>
-				<td th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}">Name
-					Error</td>
-			</tr>
-			<tr>
-				<td>Prénom :</td>
-				<td><input type="text" th:field="*{prenom}" /></td>
-			</tr>
-			<tr>
-				<td><button type="submit">Valider l'acteur</button></td>
-			</tr>
-		</table>
-	</form>
-
+	<div th:replace="adminnavigateur :: header">&nbsp;</div>
+	<div class="left-content">
+		<div class="inner-content">
+			<div class="outter-wp">
+				<h1>Modifier un acteur</h1>
+				<div class="admin-formulaire">
+					<form action="#" th:action="@{/acteurmodifier}"
+						th:object="${acteur}" method="post">
+						<input type="hidden" th:field="*{id}" />
+						<table>
+							<tr>
+								<td>Nom :</td>
+								<td><input type="text" th:field="*{nom}" /></td>
+								<td th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}">Name
+									Error</td>
+							</tr>
+							<tr>
+								<td>Prénom :</td>
+								<td><input type="text" th:field="*{prenom}" /></td>
+							</tr>
+							<tr>
+								<td><button type="submit" class="btn btn-primary">Valider l'acteur</button></td>
+							</tr>
+						</table>
+					</form>
+				</div>
+				<div class="admin-table-droite">
+					<div th:replace="admintableacteur :: tableacteur">&nbsp;</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

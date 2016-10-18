@@ -1,26 +1,33 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="adminimport :: headImport">
 <meta charset="UTF-8" />
-<title>Créer une catégorie</title>
+<title id="titrePage">Great Movies - By AC - Admin - Créer une
+	catégorie</title>
 </head>
 <body>
-	<h1>Créer une catégorie</h1>
-	<form action="#" th:action="@{/categoriecreer}"
-		th:object="${categorie}" method="post">
-		<table>
-			<tr>
-				<td>Intitulé :</td>
-				<td><input type="text" th:field="*{intitule}" /></td>
-				<td th:if="${#fields.hasErrors('intitule')}" th:errors="*{intitule}">Intitule
-					Error</td>
-			</tr>
+	<div th:replace="adminnavigateur :: header">&nbsp;</div>
+	<div class="left-content">
+		<div class="inner-content">
+			<div class="outter-wp">
+				<h1>Créer une catégorie</h1>
+				<form action="#" th:action="@{/categoriecreer}"
+					th:object="${categorie}" method="post">
+					<table>
+						<tr>
+							<td>Intitulé :</td>
+							<td><input type="text" th:field="*{intitule}" /></td>
+							<td th:if="${#fields.hasErrors('intitule')}"
+								th:errors="*{intitule}">Intitule Error</td>
+						</tr>
 
-			<tr>
-				<td><button type="submit">Créer la catégorie</button></td>
-			</tr>
-		</table>
-	</form>
-
+						<tr>
+							<td><button type="submit">Créer la catégorie</button></td>
+						</tr>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

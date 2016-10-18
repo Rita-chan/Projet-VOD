@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+</head>
+<body>
+	<table class="table table-bordered text-center"  th:fragment="tableacteur">
+		<thead>
+			<tr>
+				<th>Id Acteur</th>
+				<th>Nom</th>
+				<th>Prénom</th>
+				<th>Films</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="acteur : ${acteurs}">
+				<td th:text="${acteur.id}" />
+				<td th:text="${acteur.nom}" />
+				<td th:text="${acteur.prenom}" />
+				<td><span th:each=" film : ${acteur.films}"> <span
+						th:text="${film.titre}"></span> <br /></span></td>
+				<td><a class="btn-sm btn-primary"
+					th:href="@{/acteurmodifier/{id}(id=${acteur.id})}">Editer</a> <a
+					class="btn-sm btn-info"
+					th:href="@{/acteursupprimer/{id}(id=${acteur.id})}">Supprimer</a></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

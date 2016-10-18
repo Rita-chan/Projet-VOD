@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+</head>
+<body>
+<table class="table table-bordered text-center"  th:fragment="tablecategorie">
+		<thead>
+			<tr>
+				<th>Id Catégorie</th>
+				<th>Intitulé</th>
+				<th>Films</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="categorie : ${categories}">
+				<td th:text="${categorie.id}" />
+				<td th:text="${categorie.intitule}" />
+				<td> <span th:each=" film : ${categorie.films}"> <span th:text="${film.titre}"></span> <br /></span></td>
+				<td>
+					<a class="btn-sm btn-primary" th:href="@{/categoriemodifier/{id}(id=${categorie.id})}">Editer</a> <br/> 
+					<a class="btn-sm btn-info" th:href="@{/categoriesupprimer/{id}(id=${categorie.id})}">Supprimer</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

@@ -23,6 +23,8 @@ public class CategorieController {
 	@GetMapping("/categoriecreer")
 	public String categoriecreerform(Model model) {
 		model.addAttribute("categorie", new Categorie());
+		Iterable<Categorie> liste = categorieRepository.findAll();
+		model.addAttribute("categories", liste);
 		return "categoriecreer";
 	}
 
@@ -43,6 +45,8 @@ public class CategorieController {
 	public String categoriemodifierform(@PathVariable("id") Long id, Model model) {
 		Categorie categorie = categorieRepository.findOne(id);
 		model.addAttribute("categorie", categorie);
+		Iterable<Categorie> liste = categorieRepository.findAll();
+		model.addAttribute("categories", liste);
 		return "categoriemodifier";
 	}
 

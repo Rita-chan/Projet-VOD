@@ -1,52 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="adminimport :: headImport">
 <meta charset="UTF-8" />
-<title>Liste des pays</title>
+<title id="titrePage">Great Movies - By AC - Admin - Liste des
+	pays</title>
 </head>
 <body>
-	<a th:href="@{/payscreer}">Créer un pays</a>
+	<div th:replace="adminnavigateur :: header">&nbsp;</div>
+	<div class="left-content">
+		<div class="inner-content">
+			<div class="outter-wp">
+				<a class="btn btn-primary btn-lg" th:href="@{/payscreer}">Créer
+					un pays</a>
 
-	<div th:if="${#lists.isEmpty(payss)}">Il n'existe pas de pays
-		dans la base.</div>
-	<!--
-	<ul>
-		<li th:each="pays : ${payss}"><span th:text="${pays.id}"></span>
-			- <span th:text="${pays.nom}"></span>
-			
-			 - <span th:each=" film : ${pays.films}" >	
-				<span th:text="${film.titre}"></span> - 
-			</span>
-			
-			<a th:href="@{/paysmodifier/{id}(id=${pays.id})}">Editer</a> |
-			<a th:href="@{/payssupprimer/{id}(id=${pays.id})}">Supprimer</a>
-			</li>
+				<div th:if="${#lists.isEmpty(payss)}">Il n'existe pas de pays
+					dans la base.</div>
 
-	</ul>
-	  -->
-
-	<table>
-		<thead>
-			<tr>
-				<th>Id Pays</th>
-				<th>Pays</th>
-				<th>Films</th>
-				<th>Actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="pays : ${payss}">
-				<td th:text="${pays.id}" />
-				<td th:text="${pays.nom}" />
-				<td> <span th:each=" film : ${pays.films}"> <span th:text="${film.titre}"></span> <br /></span></td>
-				<td>
-					<a th:href="@{/paysmodifier/{id}(id=${pays.id})}">Editer</a> <br/> 
-					<a th:href="@{/payssupprimer/{id}(id=${pays.id})}">Supprimer</a>
-				</td>
-			</tr>
-		</tbody>
-	</table>
-
-	<a th:href="@{/}">Retour à l'index</a>
+				<div th:replace="admintablepays :: tablepays">&nbsp;</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

@@ -24,6 +24,8 @@ public class RealisateurController {
 	@GetMapping("/realisateurcreer")
 	public String realisateurcreerform(Model model){
 		model.addAttribute("realisateur", new Realisateur());
+		Iterable<Realisateur> liste = realisateurRepository.findAll();
+		model.addAttribute("realisateurs", liste);
 		return "realisateurcreer";
 	}
 	//Enregistre le réalisateur créé, en verifiant qu'il corresponde aux critères
@@ -42,6 +44,8 @@ public class RealisateurController {
 	public String realisateurmodifierform(@PathVariable("id") Long id, Model model){
 		Realisateur realisateur = realisateurRepository.findOne(id);
 		model.addAttribute("realisateur", realisateur);
+		Iterable<Realisateur> liste = realisateurRepository.findAll();
+		model.addAttribute("realisateurs", liste);
 		return "realisateurmodifier";
 	}
 	//Enregistre le réalisateur modifié, en vérifiant qu'il corresponde aux critères

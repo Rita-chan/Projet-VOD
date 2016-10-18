@@ -23,6 +23,8 @@ public class ActeurController {
 	@GetMapping("/acteurcreer")
 	public String acteurcreerform(Model model) {
 		model.addAttribute("acteur", new Acteur());
+		Iterable<Acteur> liste = acteurRepository.findAll();
+		model.addAttribute("acteurs", liste);
 		return "acteurcreer";
 	}
 
@@ -42,6 +44,8 @@ public class ActeurController {
 	public String acteurmodifierform(@PathVariable("id") Long id, Model model) {
 		Acteur acteur = acteurRepository.findOne(id);
 		model.addAttribute("acteur", acteur);
+		Iterable<Acteur> liste = acteurRepository.findAll();
+		model.addAttribute("acteurs", liste);
 		return "acteurmodifier";
 	}
 

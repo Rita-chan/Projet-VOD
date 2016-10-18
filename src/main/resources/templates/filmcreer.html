@@ -1,81 +1,92 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="adminimport :: headImport">
 <meta charset="UTF-8" />
-<title>Créer un film</title>
+<title id="titrePage">Great Movies - By AC - Admin - Créer un
+	film</title>
 </head>
 <body>
-	<h1>Créer un film</h1>
-	
-	<div th:if="${message}">
-		<h2 th:text="${message}"/>
-	</div>
-	
-	<form action="#" th:action="@{/filmcreer}" th:object="${film}" method="post" enctype="multipart/form-data">
-		<table>
-			<tr>
-				<td>Titre :</td>
-				<td><input type="text" th:field="*{titre}" /></td>
-			</tr>
-			<tr>
-				<td>Synopsis :</td>
-				<td><textarea rows="4" cols="50" th:field="*{synopsis}"></textarea></td>
-			</tr>
-			<tr>
-				<td>Durée :</td>
-				<td><input type="text" th:field="*{duree}" /></td>
-			</tr>
-			<tr>
-				<td>Jaquette :</td>
-				<td><input type="file" name="file" accept="image/*"/></td>
-			</tr>
-			<tr>
-				<td>Année de sortie :</td>
-				<td><input type="text" th:field="*{sortie}" /></td>
-			</tr>
-			<tr>
-				<td>Vidéo :</td>
-				<td><input type="file" name="file1" accept="video/*"/></td>
-			</tr>
-			<tr>
-				<td>Version :</td>
-				<td><input type="radio" th:name="version" th:value="VF" /> VF 
-				<input type="radio" th:name="version" th:value="VO" /> VO 
-				<input type="radio" th:name="version" th:value="VOSTFR" /> VOSTFR</td>
-			</tr>
-			<tr>
-				<td>Catégorie :</td>
-				<td><select th:field="*{categories}" th:multiple="*{categories}">
-						<option th:each=" categorie : ${listeCategories}"
-							th:text="${categorie.intitule}" th:value="${categorie.id}"></option>
-				</select></td>
-			</tr>
-			<tr>
-				<td>Acteur :</td>
-				<td><select th:field="*{acteurs}" th:multiple="*{acteurs}">
-						<option th:each=" acteur : ${listeActeurs}"
-							th:text="${acteur.prenom} + ' ' + ${acteur.nom}" th:value="${acteur.id}"></option>
-				</select></td>
-			</tr>
-			<tr>
-				<td>Réalisateur :</td>
-				<td><select th:field="*{realisateur}">
-						<option th:each=" real : ${listeRealisateurs}"
-							th:text="${real.prenom} + ' ' + ${real.nom}" th:value="${real.id}"></option>
-				</select></td>
-			</tr>
-			<tr>
-				<td>Pays :</td>
-				<td><select th:field="*{pays}">
-						<option th:each=" pay : ${listePayss}"
-							th:text="${pay.nom}" th:value="${pay.id}"></option>
-				</select></td>
-			</tr>
-			<tr>
-				<td><button type="submit">Créer le film</button></td>
-			</tr>
-		</table>
-	</form>
+	<div th:replace="adminnavigateur :: header">&nbsp;</div>
+	<div class="left-content">
+		<div class="inner-content">
+			<div class="outter-wp">
+				<h1>Créer un film</h1>
 
+				<div th:if="${message}">
+					<h2 th:text="${message}" />
+				</div>
+
+				<form action="#" th:action="@{/filmcreer}" th:object="${film}"
+					method="post" enctype="multipart/form-data">
+					<table>
+						<tr>
+							<td>Titre :</td>
+							<td><input type="text" th:field="*{titre}" /></td>
+						</tr>
+						<tr>
+							<td>Synopsis :</td>
+							<td><textarea rows="4" cols="50" th:field="*{synopsis}"></textarea></td>
+						</tr>
+						<tr>
+							<td>Durée :</td>
+							<td><input type="text" th:field="*{duree}" /></td>
+						</tr>
+						<tr>
+							<td>Jaquette :</td>
+							<td><input type="file" name="file" accept="image/*" /></td>
+						</tr>
+						<tr>
+							<td>Année de sortie :</td>
+							<td><input type="text" th:field="*{sortie}" /></td>
+						</tr>
+						<tr>
+							<td>Vidéo :</td>
+							<td><input type="file" name="file1" accept="video/*" /></td>
+						</tr>
+						<tr>
+							<td>Version :</td>
+							<td><input type="radio" th:name="version" th:value="VF" />
+								VF <input type="radio" th:name="version" th:value="VO" /> VO <input
+								type="radio" th:name="version" th:value="VOSTFR" /> VOSTFR</td>
+						</tr>
+						<tr>
+							<td>Catégorie :</td>
+							<td><select th:field="*{categories}"
+								th:multiple="*{categories}">
+									<option th:each=" categorie : ${listeCategories}"
+										th:text="${categorie.intitule}" th:value="${categorie.id}"></option>
+							</select></td>
+						</tr>
+						<tr>
+							<td>Acteur :</td>
+							<td><select th:field="*{acteurs}" th:multiple="*{acteurs}">
+									<option th:each=" acteur : ${listeActeurs}"
+										th:text="${acteur.prenom} + ' ' + ${acteur.nom}"
+										th:value="${acteur.id}"></option>
+							</select></td>
+						</tr>
+						<tr>
+							<td>Réalisateur :</td>
+							<td><select th:field="*{realisateur}">
+									<option th:each=" real : ${listeRealisateurs}"
+										th:text="${real.prenom} + ' ' + ${real.nom}"
+										th:value="${real.id}"></option>
+							</select></td>
+						</tr>
+						<tr>
+							<td>Pays :</td>
+							<td><select th:field="*{pays}">
+									<option th:each=" pay : ${listePayss}" th:text="${pay.nom}"
+										th:value="${pay.id}"></option>
+							</select></td>
+						</tr>
+						<tr>
+							<td><button type="submit">Créer le film</button></td>
+						</tr>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

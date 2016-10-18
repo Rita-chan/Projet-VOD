@@ -85,6 +85,9 @@ public class FilmController {
 		List<Realisateur> listeRealisateurs = (List<Realisateur>) realisateurRepository.findAll();
 		model.addAttribute("listeRealisateurs", listeRealisateurs);
 
+		Iterable<Film> liste = filmRepository.findAll();
+		model.addAttribute("films", liste);
+		
 		return "filmcreer";
 	}
 
@@ -145,6 +148,9 @@ public class FilmController {
 		List<Realisateur> listeRealisateurs = (List<Realisateur>) realisateurRepository.findAll();
 		model.addAttribute("listeRealisateurs", listeRealisateurs);
 
+		Iterable<Film> liste = filmRepository.findAll();
+		model.addAttribute("films", liste);
+		
 		return "filmmodifier";
 	}
 
