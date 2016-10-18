@@ -3,6 +3,7 @@ package fr.uha.miage.vod;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -146,29 +147,31 @@ public class Application implements CommandLineRunner{
 		real2.ajouterFilm(film2);
 		realisateurRepository.save(real1);
 		realisateurRepository.save(real2);
-		
-		
+	
 		
 		Utilisateur util1 = new Utilisateur();
 		util1.setNom("Util1");
 		util1.setPrenom("Nous");
 		util1.setLogin("Util1");
 		util1.setMail("util1@util1.fr");
-		util1.setMdp("mdp");
+    	String hashed1 = BCrypt.hashpw("util1", BCrypt.gensalt(12));
+    	util1.setMdp(hashed1);
 		
 		Utilisateur util2 = new Utilisateur();
 		util2.setNom("Util2");
 		util2.setPrenom("Vous");
 		util2.setLogin("Util2");
 		util2.setMail("util2@util2.fr");
-		util2.setMdp("mdp");
+		String hashed2 = BCrypt.hashpw("util2", BCrypt.gensalt(12));
+    	util2.setMdp(hashed2);
 		
 		Utilisateur admin = new Utilisateur();
 		admin.setNom("Admin");
 		admin.setPrenom("Ils");
 		admin.setLogin("Admin");
 		admin.setMail("admin@admin.fr");
-		admin.setMdp("mdp");
+		String hashed3 = BCrypt.hashpw("admin", BCrypt.gensalt(12));
+    	admin.setMdp(hashed3);
 		admin.setRole(1);
 		
 		utilisateurRepository.save(util1);

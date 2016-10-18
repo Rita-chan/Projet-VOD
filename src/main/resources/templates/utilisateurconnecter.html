@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<title>Se connecter</title>
+</head>
+<body>
+	<h1>Se connecter</h1>
+	<form action="#" th:action="@{/utilisateurconnecter}" th:object="${utilisateur}" method="post">
+		<table>
+			<tr>
+				<td>Mail :</td>
+				<td><input type="text" th:field="*{mail}" /></td>
+			</tr>
+			<tr>
+				<td>Mot de passe :</td>
+				<td><input type="password" th:field="*{mdp}" /></td>
+			</tr>
+			<tr>
+				<td><button type="submit">Valider</button></td>
+			</tr>
+		</table>
+	</form>
+
+</body>
+</html>
