@@ -6,7 +6,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head></head>
+<head><meta charset="UTF-8"/></head>
 <body>
 
 	<nav class="navbar navbar-inverse navbar-fixed-top" th:fragment="nav">
@@ -31,17 +31,29 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					</form>
 				</div>
 				<div class="header-top-right">
-					<!--  <div class="file">
-						<a href="upload.html">Upload</a>
-					</div> -->
-					
-					<div class="signin">
+					<!-- <div class="file"><a href="upload.html">Upload</a></div>  -->
+
+					<div class="signin" th:if="${session.id == null}">
 						<a th:href="@{/utilisateurcreer}">Inscription</a>
 					</div>
 					
-					<div class="signin">
+					<div class="signin" th:if="${session.id == null}">
 						<a th:href="@{/utilisateurconnecter}">Connexion</a>
 					</div>
+					
+					<div class="signin" th:if="${session.id != null}">
+						<a th:text="'Bienvenue ' + ${session.nomprenom}" ></a>
+					</div>
+					
+					<div class="signin" th:if="${session.id != null}">
+						<a th:href="@{/deconnexion}">Déconnexion</a>
+					</div>
+					
+					<div class="signin" th:if="${session.id != null}  and ${session.role == 1}">
+						<a th:href="@{/adminindex}">Administration</a>
+					</div>
+					
+					<!-- <div class="clearfix"> </div> -->
 					
 				</div>
 			</div>

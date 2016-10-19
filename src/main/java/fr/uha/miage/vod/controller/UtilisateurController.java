@@ -128,15 +128,15 @@ public class UtilisateurController {
 		// suppression du message d'erreur
 		session.removeAttribute("msgerreur");
 				
-				//Quand l'administrateur se connecte
+				/*//Quand l'administrateur se connecte
 				if (utilisateurRepository.findByMail(utilisateur.getMail()).getMail() == "admin@admin.fr") {
 					System.out.println("admin email");
 					if (BCrypt.checkpw(utilisateur.getMdp(), utilisateurRepository.findByMail(utilisateur.getMail()).getMdp()))
 		        	{
 		        		System.out.println("mdp admin ok");
-		        		return "redirect:/adminindex";
+		        		return "redirect:/";
 		        	}
-				}
+				}*/
 				
 				//Quand tous les autres utilisateurs se connectent
 				
@@ -145,7 +145,6 @@ public class UtilisateurController {
 					
 					// Vérifie le mdp à partir du hash
 					if (BCrypt.checkpw(utilisateur.getMdp(), utilisateurRepository.findByMail(utilisateur.getMail()).getMdp())) {
-						System.out.println("mdp ok");
 						
 						// Récupère l'id de l'utilisateur connecté
 						long id = utilisateurRepository.findByMail(utilisateur.getMail()).getId();
@@ -154,9 +153,14 @@ public class UtilisateurController {
 		    			String nom = utilisateurRepository.findByMail(utilisateur.getMail()).getNom();
 		    			String prenom = utilisateurRepository.findByMail(utilisateur.getMail()).getPrenom();
 		    			
+		    			//Récupère le rôle de l'utilisateur connecté
+		    			int role = utilisateurRepository.findByMail(utilisateur.getMail()).getRole();
+		    			
 		    			// Met en session l'id, le nom et le prénom de l'utilisateur connecté 
 		        		session.setAttribute("id", id);
 		    			session.setAttribute("nomprenom", prenom + " " + nom);
+		    			session.setAttribute("role", role);
+		    			
 		    			
 		    			// Supprime le message d'erreur
 		        		session.removeAttribute("msgerreur");

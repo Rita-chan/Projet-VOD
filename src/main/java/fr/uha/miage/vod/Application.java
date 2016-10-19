@@ -1,7 +1,13 @@
 package fr.uha.miage.vod;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Path;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +16,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
+import fr.uha.miage.vod.controller.FilmController;
 import fr.uha.miage.vod.file.StorageProperties;
 import fr.uha.miage.vod.file.StorageService;
 import fr.uha.miage.vod.model.Acteur;
@@ -28,31 +40,30 @@ import fr.uha.miage.vod.repository.UtilisateurRepository;
 
 @SpringBootApplication
 @EnableConfigurationProperties(StorageProperties.class)
-public class Application implements CommandLineRunner{
-	
+public class Application implements CommandLineRunner {
+
 	@Autowired
 	private FilmRepository filmRepository;
-	
+
 	@Autowired
 	private CategorieRepository categorieRepository;
-	
+
 	@Autowired
 	private ActeurRepository acteurRepository;
-	
+
 	@Autowired
 	private PaysRepository paysRepository;
-	
+
 	@Autowired
 	private RealisateurRepository realisateurRepository;
-	
+
 	@Autowired
 	private UtilisateurRepository utilisateurRepository;
-	
+
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
-	
-	
+
 	@Override
 	public void run(String... arg0) throws Exception {
 	
@@ -94,7 +105,7 @@ public class Application implements CommandLineRunner{
 		film1.setTitre("Titre1");
 		film1.setSynopsis("Synopsis passionnant du premier film");
 		film1.setDuree("20");
-		film1.setJaquette("Ici");
+		film1.setJaquette("ch1.jpg");
 		film1.setSortie(2015);
 		film1.setVideo("Là");
 		film1.setVersion("VO");
@@ -102,12 +113,14 @@ public class Application implements CommandLineRunner{
 		film1.setActeurs(acte1);
 		film1.setRealisateur(real1);
 		film1.setPays(pays1);
+			
 		
 		Film film2 = new Film();
 		film2.setTitre("Titre2");
 		film2.setSynopsis("Synopsis passionnant du deuxième film");
 		film2.setDuree("30");
-		film2.setJaquette("Ici");
+		film2.setJaquette("ch2.jpg");
+		
 		film2.setSortie(2016);
 		film2.setVideo("Là");
 		film2.setVersion("VF");
@@ -178,13 +191,13 @@ public class Application implements CommandLineRunner{
 		utilisateurRepository.save(util2);
 		utilisateurRepository.save(admin);
 	}
-	
+
 	@Bean
 	CommandLineRunner init(StorageService storageService) {
 		return (args) -> {
-            storageService.deleteAll();
-            storageService.init();
+			storageService.deleteAll();
+			storageService.init();
 		};
 	}
-	
+
 }

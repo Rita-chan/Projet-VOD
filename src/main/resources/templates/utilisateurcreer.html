@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="adminimport :: headImport">
+<!--  <head th:replace="adminimport :: headImport">
 <meta charset="UTF-8"/>
 <title id="titrePage">Great Movies - By AC - Admin - Créer un utilisateur</title>
-</head>
+</head> -->
+
+<head th:include="fragments/head :: head"></head>
+
 <body>
 	<h1>Créer un utilisateur</h1>
 	<form action="#" th:action="@{/utilisateurcreer}" th:object="${utilisateur}" method="post">

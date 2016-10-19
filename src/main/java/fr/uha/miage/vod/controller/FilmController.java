@@ -203,7 +203,7 @@ public class FilmController {
 
 		film.getRealisateur().supprimerFilm(film);
 		realisateurRepository.save(film.getRealisateur());
-
+		
 		filmRepository.delete(id);
 		return "redirect:/film";
 	}
@@ -214,8 +214,9 @@ public class FilmController {
 
 		Resource file = storageService.loadAsResource(filename);
 		return ResponseEntity.ok()
-				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")		
 				.body(file);
+				
 	}
 
 	@ExceptionHandler(StorageFileNotFoundException.class)

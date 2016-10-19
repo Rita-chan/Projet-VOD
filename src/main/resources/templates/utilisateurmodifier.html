@@ -8,7 +8,7 @@
 	<h1>Modifier un utilisateur</h1>
 	<form action="#" th:action="@{/utilisateurcreer}" th:object="${utilisateur}" method="post">
 		<input type="hidden" th:field="*{id}" />
-		<table>
+		<table class="table">
 			<tr>
 				<td>Nom :</td>
 				<td><input type="text" th:field="*{nom}" /></td>

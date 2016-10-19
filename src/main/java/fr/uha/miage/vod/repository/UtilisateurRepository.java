@@ -10,5 +10,6 @@ public interface UtilisateurRepository extends CrudRepository<Utilisateur, Long>
 	public Utilisateur findByMail(String email);
 	public Utilisateur findByNom(String nom);
 	public Utilisateur findByPrenom(String prenom);
+	public Utilisateur findByRole(int role);
 	
 }

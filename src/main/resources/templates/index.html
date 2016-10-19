@@ -9,14 +9,32 @@
 	
 	<div th:replace="sidebar :: sidebar">&nbsp;</div>
 	
+	<!-- Anita
+	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+		<div class="main-grids">
+			<div class="top-grids">
+				<div class="recommended-info" th:each="categorie : ${categories}">
+					<h3 th:text="${categorie.intitule}" ></h3>
+				</div>
+				<div class="col-md-4 resent-grid recommended-grid slider-top-grids">
+					<div class="resent-grid-img recommended-grid-img" th:each="film : ${films}">
+						<a th:href="@{/filmvisionner/{id}(id=${film.id})}"><img  th:src="@{/files/{jaquette}(jaquette=${film.jaquette})}" alt="" /></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	Anita -->
+	
+	
 	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 		<div class="main-grids">
 			<div class="top-grids">
 				<div class="recommended-info">
-					<h3>Recent Videos</h3>
+					<h3>Recent Videos</h3>		
 				</div>
 				<div class="col-md-4 resent-grid recommended-grid slider-top-grids">
-					<div class="resent-grid-img recommended-grid-img">
+					<div class="resent-grid-img recommended-grid-img" >
 						<a href="single.html"><img src="images/t1.jpg" alt="" /></a>
 						<div class="time">
 							<p>3:04</p>
