@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Informations - By AC</title>
+<head th:include="fragments/head :: head"></head>
+</head>
+
+
+<body>
+
+	<nav th:replace="nav :: nav">&nbsp;</nav>
+	<div th:replace="sidebar :: sidebar">&nbsp;</div>
+	
+	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+		<div class="main-grids">
+	<h1>Informations</h1>
+	<div>
+		<img th:src="@{/files/{jaquette}(jaquette=${film.jaquette})}" height="480" />
+		<h1 th:text="${film.titre}"></h1>
+		<span th:text="${film.synopsis}"></span> <br/>
+		<span th:each=" categorie : ${film.categories}"> 
+			<span th:text="${categorie.intitule}"></span>
+		</span> 
+		<span> | </span>
+		<span th:each=" pay : ${film.pays}"> 
+			<span th:text="${pay.nom}"></span>
+		</span>
+		<span> | </span>
+		<span th:text="${film.sortie}"></span> <span> | </span>
+		
+		<span th:text="${film.version}"></span> <span> | </span>
+		
+		<span th:text="${film.duree}"></span> <br/>
+		<span>De </span> 
+		<span th:each=" real : ${film.realisateur}">
+			<span th:text="${real.prenom}"></span> <span th:text="${real.nom}"></span> <br/>
+			</span>
+		<span>Avec </span> 
+			<span th:each=" acteur : ${film.acteurs}"> 
+			<span th:text="${acteur.prenom}"></span> <span th:text="${acteur.nom}"> </span> <br/>
+			</span>
+	</div>
+	</div>
+	</div>
+	
+
+
+
+
+	<!--  <div class="clearfix"></div> -->
+	<!--  <div class="drop-menu"></div> -->
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="js/bootstrap.min.js"></script>
+	<!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+</body>
+</html>

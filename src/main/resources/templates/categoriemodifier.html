@@ -11,22 +11,28 @@
 		<div class="inner-content">
 			<div class="outter-wp">
 				<h1>Modifier une catégorie</h1>
-				<form action="#" th:action="@{/categoriemodifier}"
-					th:object="${categorie}" method="post">
-					<input type="hidden" th:field="*{id}" />
-					<table>
-						<tr>
-							<td>Intitulé :</td>
-							<td><input type="text" th:field="*{intitule}" /></td>
-							<td th:if="${#fields.hasErrors('intitule')}"
-								th:errors="*{intitule}">Intitule Error</td>
-						</tr>
+				<div class="admin-formulaire">
+					<form action="#" th:action="@{/categoriemodifier}"
+						th:object="${categorie}" method="post">
+						<input type="hidden" th:field="*{id}" />
+						<table>
+							<tr>
+								<td>Intitulé :</td>
+								<td><input type="text" th:field="*{intitule}" /></td>
+								<td th:if="${#fields.hasErrors('intitule')}"
+									th:errors="*{intitule}">Intitule Error</td>
+							</tr>
 
-						<tr>
-							<td><button type="submit" class="btn btn-primary">Valider la catégorie</button></td>
-						</tr>
-					</table>
-				</form>
+							<tr>
+								<td><button type="submit" class="btn btn-primary">Valider</button></td>
+								<td><a class="btn btn-info" th:href="@{/categorie}">Annuler</a></td>
+							</tr>
+						</table>
+					</form>
+				</div>
+				<div class="admin-table-droite">
+					<div th:replace="admintablecategorie :: tablecategorie">&nbsp;</div>
+				</div>
 			</div>
 		</div>
 	</div>

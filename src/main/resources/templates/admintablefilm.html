@@ -19,7 +19,6 @@
 				<th>Acteurs</th>
 				<th>Réalisateur</th>
 				<th>Pays</th>
-				<th>Actions</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -37,11 +36,6 @@
 				<td> <span th:each=" acteur : ${film.acteurs}"> <span th:text="${acteur.prenom}"></span> <span th:text="${acteur.nom}"> </span> <br /></span></td>
 				<td th:each=" real : ${film.realisateur}"> <span th:text="${real.prenom}"></span> <span th:text="${real.nom}"> </span> </td>
 				<td th:each=" pay : ${film.pays}"> <span th:text="${pay.nom}"></span> </td> 
-				<td>
-					<a class="btn-sm btn-primary" th:href="@{/filmmodifier/{id}(id=${film.id})}">Editer</a> <br/> 
-					<a class="btn-sm btn-info" th:href="@{/filmsupprimer/{id}(id=${film.id})}">Supprimer</a>
-					<a class="btn-sm btn-primary" th:href="@{/filmvisionner/{id}(id=${film.id})}">Voir</a>
-				</td>
 			</tr>
 		</tbody>
 	</table>
