@@ -24,12 +24,7 @@ public class WebController {
 		
 		Iterable<Categorie> listeCategorie = categorieRepository.findAll();
 		model.addAttribute("categories", listeCategorie);
-		
-		for(Categorie categorie: listeCategorie) {
-			Iterable<Film> listeFilm = filmRepository.findByCategories(categorie);
-			model.addAttribute("films", listeFilm);
-		}
-		
+			
 		
 		return "index";
 	}
