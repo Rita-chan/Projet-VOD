@@ -10,7 +10,6 @@
 				<th>Id Catégorie</th>
 				<th>Intitulé</th>
 				<th>Films</th>
-				<th>Actions</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -18,10 +17,6 @@
 				<td th:text="${categorie.id}" />
 				<td th:text="${categorie.intitule}" />
 				<td> <span th:each=" film : ${categorie.films}"> <span th:text="${film.titre}"></span> <br /></span></td>
-				<td>
-					<a class="btn-sm btn-primary" th:href="@{/categoriemodifier/{id}(id=${categorie.id})}">Editer</a> <br/> 
-					<a class="btn-sm btn-info" th:href="@{/categoriesupprimer/{id}(id=${categorie.id})}">Supprimer</a>
-				</td>
 			</tr>
 		</tbody>
 	</table>

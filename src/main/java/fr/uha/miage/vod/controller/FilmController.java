@@ -72,6 +72,7 @@ public class FilmController {
 								.fromMethodName(FilmController.class, "serveFile", path.getFileName().toString())
 								.build().toString())
 						.collect(Collectors.toList()));
+			
 
 		List<Categorie> listeCategories = (List<Categorie>) categorieRepository.findAll();
 		model.addAttribute("listeCategories", listeCategories);
@@ -87,20 +88,20 @@ public class FilmController {
 
 		Iterable<Film> liste = filmRepository.findAll();
 		model.addAttribute("films", liste);
-		
+
 		return "filmcreer";
 	}
 
 	// Enregistre le film créé, en verifiant qu'il corresponde aux
 	// critères
 	@PostMapping("/filmcreer")
-	public String filmcreer(@Valid Film film, BindingResult bindingResult, @RequestParam("file") MultipartFile jaquette, @RequestParam("file1") MultipartFile video,
-			RedirectAttributes redirectAttributes) {
+	public String filmcreer(@Valid Film film, BindingResult bindingResult, @RequestParam("file") MultipartFile jaquette,
+			@RequestParam("file1") MultipartFile video, RedirectAttributes redirectAttributes) {
 
 		if (bindingResult.hasErrors())
 			return "filmcreer";
 
-		film.setJaquette(jaquette.getOriginalFilename());		
+		film.setJaquette(jaquette.getOriginalFilename());
 		film.setVideo(video.getOriginalFilename());
 		filmRepository.save(film);
 
@@ -123,9 +124,9 @@ public class FilmController {
 		storageService.store(jaquette);
 		redirectAttributes.addFlashAttribute("message", "La jaquette a bien été uploadée.");
 
-		
 		storageService.store(video);
-		//redirectAttributes.addFlashAttribute("message", "La video a bien été uploadée.");
+		// redirectAttributes.addFlashAttribute("message", "La video a bien été
+		// uploadée.");
 
 		return "redirect:/film";
 	}
@@ -150,7 +151,7 @@ public class FilmController {
 
 		Iterable<Film> liste = filmRepository.findAll();
 		model.addAttribute("films", liste);
-		
+
 		return "filmmodifier";
 	}
 
@@ -173,15 +174,14 @@ public class FilmController {
 		model.addAttribute("films", liste);
 		return "film";
 	}
-	
+
 	// Visionne le film sélectionné
-		@GetMapping("/filmvisionner/{id}")
-		public String filmvisionner(Model model, @PathVariable("id") Long id) {
-			Film film = filmRepository.findOne(id);
-			model.addAttribute("film", film);
-			return "filmvisionner";
-		}
-		
+	@GetMapping("/filmvisionner/{id}")
+	public String filmvisionner(Model model, @PathVariable("id") Long id) {
+		Film film = filmRepository.findOne(id);
+		model.addAttribute("film", film);
+		return "filmvisionner";
+	}
 
 	// Supprime le film sélectionné
 	@GetMapping("/filmsupprimer/{id}")
@@ -203,7 +203,7 @@ public class FilmController {
 
 		film.getRealisateur().supprimerFilm(film);
 		realisateurRepository.save(film.getRealisateur());
-		
+
 		filmRepository.delete(id);
 		return "redirect:/film";
 	}
@@ -214,13 +214,40 @@ public class FilmController {
 
 		Resource file = storageService.loadAsResource(filename);
 		return ResponseEntity.ok()
-				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")		
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
 				.body(file);
-				
+
+	}
+	
+	@GetMapping("/files/ch1.jpg")
+	@ResponseBody
+	public ResponseEntity<Resource> serveFile1() {
+
+		Resource file = storageService.loadAsResource("ch1.jpg");
+		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachement; \"" + "ch1.jpg" + "\"").body(file);
+
+	}
+	
+	@GetMapping("/files/ch2.jpg")
+	@ResponseBody
+	public ResponseEntity<Resource> serveFile2() {
+
+		Resource file = storageService.loadAsResource("ch2.jpg");
+		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachement; \"" + "ch2.jpg" + "\"").body(file);
+
 	}
 
 	@ExceptionHandler(StorageFileNotFoundException.class)
 	public ResponseEntity handleStorageFileNotFound(StorageFileNotFoundException exc) {
 		return ResponseEntity.notFound().build();
 	}
+
+	// Afficher les informations d'un film
+	@GetMapping("/film/{id}")
+	public String informationfilm(Model model, @PathVariable("id") Long id) {
+		Film film = filmRepository.findOne(id);
+		model.addAttribute("film", film);
+		return "filminfo";
+	}
+
 }

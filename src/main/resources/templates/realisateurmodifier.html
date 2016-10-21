@@ -11,25 +11,31 @@
 		<div class="inner-content">
 			<div class="outter-wp">
 				<h1>Modifier un réalisateur</h1>
-				<form action="#" th:action="@{/realisateurmodifier}"
-					th:object="${realisateur}" method="post">
-					<input type="hidden" th:field="*{id}" />
-					<table>
-						<tr>
-							<td>Nom :</td>
-							<td><input type="text" th:field="*{nom}" /></td>
-							<td th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}">Name
-								Error</td>
-						</tr>
-						<tr>
-							<td>Prénom :</td>
-							<td><input type="text" th:field="*{prenom}" /></td>
-						</tr>
-						<tr>
-							<td><button type="submit" class="btn btn-primary">Valider le réalisateur</button></td>
-						</tr>
-					</table>
-				</form>
+				<div class="admin-formulaire">
+					<form action="#" th:action="@{/realisateurmodifier}"
+						th:object="${realisateur}" method="post">
+						<input type="hidden" th:field="*{id}" />
+						<table>
+							<tr>
+								<td>Nom :</td>
+								<td><input type="text" th:field="*{nom}" /></td>
+								<td th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}">Name
+									Error</td>
+							</tr>
+							<tr>
+								<td>Prénom :</td>
+								<td><input type="text" th:field="*{prenom}" /></td>
+							</tr>
+							<tr>
+								<td><button type="submit" class="btn btn-primary">Valider</button></td>
+								<td><a class="btn btn-info" th:href="@{/realisateur}">Annuler</a></td>
+							</tr>
+						</table>
+					</form>
+				</div>
+				<div class="admin-table-droite">
+					<div th:replace="admintablerealisateur :: tablerealisateur">&nbsp;</div>
+				</div>
 			</div>
 		</div>
 	</div>

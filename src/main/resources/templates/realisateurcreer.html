@@ -11,6 +11,7 @@
 		<div class="inner-content">
 			<div class="outter-wp">
 				<h1>Créer un réalisateur</h1>
+				<div class="admin-formulaire">
 				<form action="#" th:action="@{/realisateurcreer}"
 					th:object="${realisateur}" method="post">
 					<table>
@@ -25,10 +26,15 @@
 							<td><input type="text" th:field="*{prenom}" /></td>
 						</tr>
 						<tr>
-							<td><button type="submit" class="btn btn-primary">Créer le réalisateur</button></td>
+							<td><button type="submit" class="btn btn-primary">Créer</button></td>
+							<td><a class="btn btn-info" th:href="@{/realisateur}">Annuler</a></td>
 						</tr>
 					</table>
 				</form>
+				</div>
+				<div class="admin-table-droite">
+					<div th:replace="admintablerealisateur :: tablerealisateur">&nbsp;</div>
+				</div>
 			</div>
 		</div>
 	</div>

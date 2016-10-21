@@ -11,6 +11,7 @@
 		<div class="inner-content">
 			<div class="outter-wp">
 				<h1>Modifier un pays</h1>
+				<div class="admin-formulaire">
 				<form action="#" th:action="@{/paysmodifier}" th:object="${pays}"
 					method="post">
 					<input type="hidden" th:field="*{id}" />
@@ -22,10 +23,15 @@
 								Error</td>
 						</tr>
 						<tr>
-							<td><button type="submit" class="btn btn-primary">Valider le pays</button></td>
+							<td><button type="submit" class="btn btn-primary">Valider</button></td>
+							<td><a class="btn btn-info" th:href="@{/pays}">Annuler</a></td>
 						</tr>
 					</table>
 				</form>
+				</div>
+				<div class="admin-table-droite">
+					<div th:replace="admintablepays :: tablepays">&nbsp;</div>
+				</div>
 			</div>
 		</div>
 	</div>

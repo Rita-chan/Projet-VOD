@@ -11,20 +11,26 @@
 		<div class="inner-content">
 			<div class="outter-wp">
 				<h1>Créer un pays</h1>
-				<form action="#" th:action="@{/payscreer}" th:object="${pays}"
-					method="post">
-					<table>
-						<tr>
-							<td>Nom :</td>
-							<td><input type="text" th:field="*{nom}" /></td>
-							<td th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}">Name
-								Error</td>
-						</tr>
-						<tr>
-							<td><button type="submit" class="btn btn-primary">Créer le pays</button></td>
-						</tr>
-					</table>
-				</form>
+				<div class="admin-formulaire">
+					<form action="#" th:action="@{/payscreer}" th:object="${pays}"
+						method="post">
+						<table>
+							<tr>
+								<td>Nom :</td>
+								<td><input type="text" th:field="*{nom}" /></td>
+								<td th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}">Name
+									Error</td>
+							</tr>
+							<tr>
+								<td><button type="submit" class="btn btn-primary">Créer</button></td>
+								<td><a class="btn btn-info" th:href="@{/pays}">Annuler</a></td>
+							</tr>
+						</table>
+					</form>
+				</div>
+				<div class="admin-table-droite">
+					<div th:replace="admintablepays :: tablepays">&nbsp;</div>
+				</div>
 			</div>
 		</div>
 	</div>
