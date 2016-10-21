@@ -1,6 +1,7 @@
 package fr.uha.miage.vod.model;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -31,7 +32,7 @@ public class Utilisateur {
 	private int role;
 	
 	@OneToMany(mappedBy="utilisateur")
-	private Set<Avis> avis = new HashSet<Avis>();
+	private List<Avis> avis = new ArrayList<Avis>();
 	
 	public long getId() {
 		return id;
@@ -75,10 +76,10 @@ public class Utilisateur {
 	public void setRole(int role) {
 		this.role = role;
 	}
-	public Set<Avis> getAvis() {
+	public List<Avis> getAvis() {
 		return avis;
 	}
-	public void setAvis(Set<Avis> avis) {
+	public void setAvis(List<Avis> avis) {
 		this.avis = avis;
 	}
 	

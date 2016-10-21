@@ -1,8 +1,7 @@
 package fr.uha.miage.vod.model;
 
-import java.io.File;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,16 +29,16 @@ public class Film {
 	private Realisateur realisateur;
 	
 	@ManyToMany
-	private Set<Acteur> acteurs = new HashSet<Acteur>(); 
+	private List<Acteur> acteurs = new ArrayList<Acteur>(); 
 	
 	@ManyToOne
 	private Pays pays;
 	
 	@ManyToMany
-	private Set<Categorie> categories = new HashSet<Categorie>();
+	private List<Categorie> categories = new ArrayList<Categorie>();
 	
 	@OneToMany(mappedBy="film")
-	private Set<Avis> avis = new HashSet<Avis>();
+	private List<Avis> avis = new ArrayList<Avis>();
 	
 	public long getId() {
 		return id;
@@ -96,10 +95,10 @@ public class Film {
 	public void setRealisateur(Realisateur realisateur) {
 		this.realisateur = realisateur;
 	}
-	public Set<Acteur> getActeurs() {
+	public List<Acteur> getActeurs() {
 		return acteurs;
 	}
-	public void setActeurs(Set<Acteur> acteurs) {
+	public void setActeurs(List<Acteur> acteurs) {
 		this.acteurs = acteurs;
 	}
 	public Pays getPays() {
@@ -108,16 +107,16 @@ public class Film {
 	public void setPays(Pays pays) {
 		this.pays = pays;
 	}
-	public Set<Categorie> getCategories() {
+	public List<Categorie> getCategories() {
 		return categories;
 	}
-	public void setCategories(Set<Categorie> categories) {
+	public void setCategories(List<Categorie> categories) {
 		this.categories = categories;
 	}
-	public Set<Avis> getAvis() {
+	public List<Avis> getAvis() {
 		return avis;
 	}
-	public void setAvis(Set<Avis> avis) {
+	public void setAvis(List<Avis> avis) {
 		this.avis = avis;
 	}
 	

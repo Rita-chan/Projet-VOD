@@ -1,13 +1,7 @@
 package fr.uha.miage.vod;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Path;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +10,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.core.io.Resource;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
-import fr.uha.miage.vod.controller.FilmController;
 import fr.uha.miage.vod.file.StorageProperties;
 import fr.uha.miage.vod.file.StorageService;
 import fr.uha.miage.vod.model.Acteur;
@@ -92,13 +80,13 @@ public class Application implements CommandLineRunner {
 		real2.setNom("Real2");
 		real2.setPrenom("Elle");
 		
-		Set <Categorie>cate1 = new HashSet<Categorie>();
+		List <Categorie>cate1 = new ArrayList<Categorie>();
 		cate1.add(cat1);
-		Set <Categorie>cate2 = new HashSet<Categorie>();
+		List <Categorie>cate2 = new ArrayList<Categorie>();
 		cate2.add(cat2);
-		Set <Acteur>acte1 = new HashSet<Acteur>();
+		List <Acteur>acte1 = new ArrayList<Acteur>();
 		acte1.add(act1);
-		Set <Acteur>acte2 = new HashSet<Acteur>();
+		List <Acteur>acte2 = new ArrayList<Acteur>();
 		acte2.add(act2);
 		
 		Film film1 = new Film();

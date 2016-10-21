@@ -1,7 +1,7 @@
 package fr.uha.miage.vod.model;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,7 +22,7 @@ public class Pays {
 	private String nom;
 	
 	@OneToMany(mappedBy="pays")
-	private Set<Film> films = new HashSet<Film>();
+	private List<Film> films = new ArrayList<Film>();
 
 	public long getId() {
 		return id;
@@ -40,11 +40,11 @@ public class Pays {
 		this.nom = nom;
 	}
 
-	public Set<Film> getFilms() {
+	public List<Film> getFilms() {
 		return films;
 	}
 
-	public void setFilms(Set<Film> films) {
+	public void setFilms(List<Film> films) {
 		this.films = films;
 	}
 	
