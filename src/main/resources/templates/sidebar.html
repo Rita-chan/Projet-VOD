@@ -19,51 +19,51 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		</div>
 		<div class="drop-navigation drop-navigation">
 			<ul class="nav nav-sidebar">
-				<li class="active"><a href="index.html" class="home-icon"><span
-						class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-				<li><a href="shows.html" class="user-icon"><span
+				<li class="active"><a th:href="@{/}" class="home-icon"><span
+						class="glyphicon glyphicon-home" aria-hidden="true"></span>Accueil</a></li>
+				<li><a th:href="@{/paracteur}" class="user-icon"><span
 						class="glyphicon glyphicon-home glyphicon-blackboard"
-						aria-hidden="true"></span>TV Shows</a></li>
-				<li><a href="history.html" class="sub-icon"><span
+						aria-hidden="true"></span>Par acteur</a></li>
+				<li><a th:href="@{/parcategorie}" class="sub-icon"><span
 						class="glyphicon glyphicon-home glyphicon-hourglass"
-						aria-hidden="true"></span>History</a></li>
-				<li><a href="#" class="menu1"><span
-						class="glyphicon glyphicon-film" aria-hidden="true"></span>Movies<span
-						class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a></li>
-				<ul class="cl-effect-2">
+						aria-hidden="true"></span>Categorie</a></li>
+				<li><a th:href="@{/parpays}" class="menu1"><span
+						class="glyphicon glyphicon-film" aria-hidden="true"></span>Par pays
+						<!-- <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span> -->
+						</a></li>
+				<!-- 
+					<ul class="cl-effect-2">
 					<li><a href="movies.html">English</a></li>
 					<li><a href="movies.html">Chinese</a></li>
 					<li><a href="movies.html">Hindi</a></li>
 				</ul>
-				<!-- script-for-menu -->
+				
+				
+				script-for-menu 
 				<script>
 					$("li a.menu1").click(function() {
 						$("ul.cl-effect-2").slideToggle(300, function() {
 							// Animation complete.
 						});
 					});
-				</script>
-				<li><a href="#" class="menu"><span
-						class="glyphicon glyphicon-film glyphicon-king" aria-hidden="true"></span>Sports<span
-						class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a></li>
-				<ul class="cl-effect-1">
-					<li><a href="sports.html">Football</a></li>
-					<li><a href="sports.html">Cricket</a></li>
-					<li><a href="sports.html">Tennis</a></li>
-					<li><a href="sports.html">Shattil</a></li>
-				</ul>
-				<!-- script-for-menu -->
+				</script> -->
+				
+				<li><a th:href="@{/parrealisateur}" class="menu"><span
+						class="glyphicon glyphicon-film glyphicon-king" 
+						aria-hidden="true"></span>Par réalisateur</a></li>
+				
+				<!-- script-for-menu
 				<script>
 					$("li a.menu").click(function() {
 						$("ul.cl-effect-1").slideToggle(300, function() {
 							// Animation complete.
 						});
 					});
-				</script>
-				<li><a href="movies.html" class="song-icon"><span
-						class="glyphicon glyphicon-music" aria-hidden="true"></span>Songs</a></li>
-				<li><a href="news.html" class="news-icon"><span
-						class="glyphicon glyphicon-envelope" aria-hidden="true"></span>News</a></li>
+				</script> -->
+				
+				<li><a th:href="@{/partitre}" class="song-icon"><span
+						class="glyphicon glyphicon-music" aria-hidden="true"></span>Par titre</a></li>
+				
 			</ul>
 			<!-- script-for-menu -->
 			<script>
