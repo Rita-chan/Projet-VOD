@@ -13,3 +13,14 @@ div .admin-table-droite
 	width: 59%;
 	vertical-align: top;
 }
+
+.slider-time
+{
+	right: 5%;
+}
+
+
+.small-clck {
+	right: 0%;
+	top: 90%;
+}

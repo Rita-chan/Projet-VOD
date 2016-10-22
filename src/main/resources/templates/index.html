@@ -10,76 +10,116 @@
 	<div th:replace="sidebar :: sidebar">&nbsp;</div>
 
 	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-			<div class="main-grids">
-				<div class="recommended" th:each=" categorie : ${categories}">
-					<div class="recommended-grids">
-						<div class="recommended-info">
-							<h3 th:text="${categorie.intitule}"></h3>
-						</div>
-						<div  id="top" class="callbacks_container">
-									<div class="animated-grids">
-										<div class="col-md-3 resent-grid recommended-grid slider-first">
-											<div class="resent-grid-img recommended-grid-img">
-												<a th:href="@{/film/{id}(id=${categorie.films.get(categorie.films.size()-1).id})}"><img th:src="@{/files/{jaquette}(jaquette=${categorie.films.get(categorie.films.size()-1).jaquette})}" alt="" /></a>
-												<div class="time small-time slider-time">
-													<p th:text="${categorie.films.get(categorie.films.size()-1).duree}"></p>
-												</div>
-												<div class="clck small-clck">
-													<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-												</div>
-											</div>
-											<div class="resent-grid-info recommended-grid-info">
-												<h5><a th:href="@{/film/{id}(id=${categorie.films.get(categorie.films.size()-1).id})}" class="title" th:text="${categorie.films.get(categorie.films.size()-1).titre}"></a></h5>
-											</div>
-										</div>
-										<div class="col-md-3 resent-grid recommended-grid slider-first">
-											<div class="resent-grid-img recommended-grid-img">
-												<a th:href="@{/film/{id}(id=${categorie.films.get(categorie.films.size()-1).id})}"><img th:src="@{/files/{jaquette}(jaquette=${categorie.films.get(categorie.films.size()-1).jaquette})}" alt="" /></a>
-												<div class="time small-time slider-time">
-													<p th:text="${categorie.films.get(categorie.films.size()-1).duree}"></p>
-												</div>
-												<div class="clck small-clck">
-													<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-												</div>
-											</div>
-											<div class="resent-grid-info recommended-grid-info">
-												<h5><a th:href="@{/film/{id}(id=${categorie.films.get(categorie.films.size()-1).id})}" class="title" th:text="${categorie.films.get(categorie.films.size()-1).titre}"></a></h5>
-											</div>
-										</div>
-										<div class="col-md-3 resent-grid recommended-grid slider-first">
-											<div class="resent-grid-img recommended-grid-img">
-												<a th:href="@{/film/{id}(id=${categorie.films.get(categorie.films.size()-1).id})}"><img th:src="@{/files/{jaquette}(jaquette=${categorie.films.get(categorie.films.size()-1).jaquette})}" alt="" /></a>
-												<div class="time small-time slider-time">
-													<p th:text="${categorie.films.get(categorie.films.size()-1).duree}"></p>
-												</div>
-												<div class="clck small-clck">
-													<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-												</div>
-											</div>
-											<div class="resent-grid-info recommended-grid-info">
-												<h5><a th:href="@{/film/{id}(id=${categorie.films.get(categorie.films.size()-1).id})}" class="title" th:text="${categorie.films.get(categorie.films.size()-1).titre}"></a></h5>
-											</div>
-										</div>
-										<div class="col-md-3 resent-grid recommended-grid slider-first">
-											<div class="resent-grid-img recommended-grid-img">
-												<a th:href="@{/film/{id}(id=${categorie.films.get(categorie.films.size()-1).id})}"><img th:src="@{/files/{jaquette}(jaquette=${categorie.films.get(categorie.films.size()-1).jaquette})}" alt="" /></a>
-												<div class="time small-time slider-time">
-													<p th:text="${categorie.films.get(categorie.films.size()-1).duree}"></p>
-												</div>
-												<div class="clck small-clck">
-													<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-												</div>
-											</div>
-											<div class="resent-grid-info recommended-grid-info">
-												<h5><a th:href="@{/film/{id}(id=${categorie.films.get(categorie.films.size()-1).id})}" class="title" th:text="${categorie.films.get(categorie.films.size()-1).titre}"></a></h5>
-											</div>
-										</div>
-										<div class="clearfix"> </div>
+		<div class="main-grids">
+			<div class="recommended" th:each=" categorie : ${categories}">
+				<div class="recommended-grids"
+					th:if="${!#lists.isEmpty(categorie.films)}">
+					<div class="recommended-info">
+						<h3 th:text="${categorie.intitule}"></h3>
+					</div>
+					<div id="top" class="callbacks_container">
+						<div class="animated-grids">
+							<div class="col-md-3 resent-grid recommended-grid slider-first">
+								<div class="resent-grid-img recommended-grid-img">
+									<a
+										th:href="@{/film/{id}(id=${categorie.films.get(categorie.films.size()-1).id})}"><img
+										th:src="@{/files/{jaquette}(jaquette=${categorie.films.get(categorie.films.size()-1).jaquette})}"
+										alt="" /></a>
+									<div class="time small-time slider-time">
+										<p
+											th:text="${categorie.films.get(categorie.films.size()-1).duree}"></p>
 									</div>
+									<div class="clck small-clck">
+										<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+									</div>
+								</div>
+								<div class="resent-grid-info recommended-grid-info">
+									<h5>
+										<a
+											th:href="@{/film/{id}(id=${categorie.films.get(categorie.films.size()-1).id})}"
+											class="title"
+											th:text="${categorie.films.get(categorie.films.size()-1).titre}"></a>
+									</h5>
+								</div>
+							</div>
+							<div class="col-md-3 resent-grid recommended-grid slider-first"
+								th:if="${categorie.films.size()-2 >= 0}">
+								<div class="resent-grid-img recommended-grid-img">
+									<a
+										th:href="@{/film/{id}(id=${categorie.films.get(categorie.films.size()-2).id})}"><img
+										th:src="@{/files/{jaquette}(jaquette=${categorie.films.get(categorie.films.size()-2).jaquette})}"
+										alt="" /></a>
+									<div class="time small-time slider-time">
+										<p
+											th:text="${categorie.films.get(categorie.films.size()-2).duree}"></p>
+									</div>
+									<div class="clck small-clck">
+										<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+									</div>
+								</div>
+								<div class="resent-grid-info recommended-grid-info">
+									<h5>
+										<a
+											th:href="@{/film/{id}(id=${categorie.films.get(categorie.films.size()-2).id})}"
+											class="title"
+											th:text="${categorie.films.get(categorie.films.size()-2).titre}"></a>
+									</h5>
+								</div>
+							</div>
+							<div class="col-md-3 resent-grid recommended-grid slider-first"
+								th:if="${categorie.films.size()-3 >= 0}">
+								<div class="resent-grid-img recommended-grid-img">
+									<a
+										th:href="@{/film/{id}(id=${categorie.films.get(categorie.films.size()-3).id})}"><img
+										th:src="@{/files/{jaquette}(jaquette=${categorie.films.get(categorie.films.size()-3).jaquette})}"
+										alt="" /></a>
+									<div class="time small-time slider-time">
+										<p
+											th:text="${categorie.films.get(categorie.films.size()-3).duree}"></p>
+									</div>
+									<div class="clck small-clck">
+										<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+									</div>
+								</div>
+								<div class="resent-grid-info recommended-grid-info">
+									<h5>
+										<a
+											th:href="@{/film/{id}(id=${categorie.films.get(categorie.films.size()-3).id})}"
+											class="title"
+											th:text="${categorie.films.get(categorie.films.size()-3).titre}"></a>
+									</h5>
+								</div>
+							</div>
+							<div class="col-md-3 resent-grid recommended-grid slider-first"
+								th:if="${categorie.films.size()-4 >= 0}">
+								<div class="resent-grid-img recommended-grid-img">
+									<a
+										th:href="@{/film/{id}(id=${categorie.films.get(categorie.films.size()-4).id})}"><img
+										th:src="@{/files/{jaquette}(jaquette=${categorie.films.get(categorie.films.size()-4).jaquette})}"
+										alt="" /></a>
+									<div class="time small-time slider-time">
+										<p
+											th:text="${categorie.films.get(categorie.films.size()-1).duree}"></p>
+									</div>
+									<div class="clck small-clck">
+										<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+									</div>
+								</div>
+								<div class="resent-grid-info recommended-grid-info">
+									<h5>
+										<a
+											th:href="@{/film/{id}(id=${categorie.films.get(categorie.films.size()-4).id})}"
+											class="title"
+											th:text="${categorie.films.get(categorie.films.size()-4).titre}"></a>
+									</h5>
+								</div>
+							</div>
+							<div class="clearfix"></div>
 						</div>
 					</div>
 				</div>
 			</div>
+		</div>
 
 		<!-- <footer th:include="fragments/footer :: footer"></footer>-->
 
