@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="fragments/head :: head">
+<title>Films par acteur - By AC</title>
+<meta charset="UTF-8" />
+</head>
+
+<body>
+
+	<nav th:replace="nav :: nav">&nbsp;</nav>
+
+	<div th:replace="sidebar :: sidebar">&nbsp;</div>
+
+	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+		<div class="main-grids">
+			<h1>Liste de films par acteur</h1>
+			<div th:each=" film : ${acteur.films}">
+				<h2 th:text="${film.titre}"></h2>
+				<a th:href="@{/film/{id}(id=${film.id})}"> <img
+					th:src="@{/files/{jaquette}(jaquette=${film.jaquette})}"
+					height="380" />
+				</a>
+			</div>
+
+		</div>
+	</div>
+
+</body>
+</html>

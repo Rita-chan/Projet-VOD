@@ -35,6 +35,7 @@ public class ActeurController {
 			return "acteurcreer";
 
 		acteurRepository.save(acteur);
+		
 
 		return "redirect:/acteur";
 	}

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head th:include="fragments/head :: head">
-<title>Recherche par acteur - By AC</title>
+<title>Recherche par titre - By AC</title>
 <meta charset="UTF-8" />
 </head>
 
@@ -14,14 +14,14 @@
 
 	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 		<div class="main-grids">
-			<h1>Recherche par acteur</h1>
+			<h1>Recherche par titre</h1>
 
-			<form action="#" th:action="@{/paracteur}" th:object="${acteurs}"
+			<form action="#" th:action="@{/partitre}" th:object="${films}"
 				method="post">
 						<select name="select">
-								<option th:each=" acteur : ${acteurs}"
-									th:text="${acteur.prenom} + ' ' + ${acteur.nom}"
-									th:value="${acteur.id}"></option>
+								<option th:each=" film : ${films}"
+									th:text="${film.titre}"
+									th:value="${film.id}"></option>
 						</select> <br/>
 
 						<button type="submit">Rechercher</button>

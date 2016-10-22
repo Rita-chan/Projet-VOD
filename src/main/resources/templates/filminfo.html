@@ -12,11 +12,11 @@
 	<nav th:replace="nav :: nav">&nbsp;</nav>
 	<div th:replace="sidebar :: sidebar">&nbsp;</div>
 	
-	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" th:fragment="info">
 		<div class="main-grids">
 	<h1>Informations</h1>
 	<div>
-		<img th:src="@{/files/{jaquette}(jaquette=${film.jaquette})}" height="480" />
+		<img th:src="@{/files/{jaquette}(jaquette=${film.jaquette})}" height="300" />
 		<h1 th:text="${film.titre}"></h1>
 		<span th:text="${film.synopsis}"></span> <br/>
 		<span th:each=" categorie : ${film.categories}"> 
