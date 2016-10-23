@@ -91,7 +91,7 @@ public class Application implements CommandLineRunner {
 		
 		Film film1 = new Film();
 		film1.setTitre("Titre1");
-		film1.setSynopsis("Synopsis passionnant du premier film");
+		film1.setSynopsis("Synopsis passionnant du premier film. Synopsis passionnant du premier film. Synopsis passionnant du premier film. Synopsis passionnant du premier film. Synopsis passionnant du premier film.");
 		film1.setDuree("20");
 		film1.setJaquette("ch1.jpg");
 		film1.setSortie(2015);

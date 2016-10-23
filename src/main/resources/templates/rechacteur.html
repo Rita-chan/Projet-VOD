@@ -15,16 +15,17 @@
 	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 		<div class="main-grids">
 			<h1>Recherche par acteur</h1>
-
+			<br/>
+			
 			<form action="#" th:action="@{/paracteur}" th:object="${acteurs}"
 				method="post">
-						<select name="select" class="selectpicker">
-								<option th:each=" acteur : ${acteurs}"
-									th:text="${acteur.prenom} + ' ' + ${acteur.nom}"
-									th:value="${acteur.id}"></option>
-						</select> <br/>
-
-						<button class="btn btn-primary" type="submit">Rechercher</button>
+				<select name="select" class="form-control">
+					<option th:each=" acteur : ${acteurs}"
+						th:text="${acteur.prenom} + ' ' + ${acteur.nom}"
+						th:value="${acteur.id}"></option>
+				</select>
+				<br />
+				<button class="btn btn-primary" type="submit">Rechercher</button>
 
 			</form>
 		</div>

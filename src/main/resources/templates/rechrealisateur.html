@@ -15,16 +15,17 @@
 	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 		<div class="main-grids">
 			<h1>Recherche par réalisateur</h1>
-
+			<br/>
+			
 			<form action="#" th:action="@{/parrealisateur}" th:object="${realisateurs}"
 				method="post">
-						<select name="select">
+						<select name="select" class="form-control">
 								<option th:each=" realisateur : ${realisateurs}"
 									th:text="${realisateur.prenom} + ' ' + ${realisateur.nom}"
 									th:value="${realisateur.id}"></option>
 						</select> <br/>
 
-						<button type="submit">Rechercher</button>
+						<button class="btn btn-primary" type="submit">Rechercher</button>
 
 			</form>
 		</div>

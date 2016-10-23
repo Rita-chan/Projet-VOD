@@ -49,5 +49,22 @@
 			<version>0.3m</version>
 		</dependency>
 
+
+<!-- Pour boostrap-select, je ne sais pas si c'est utile -->
+		<!-- https://mvnrepository.com/artifact/com.efsavage.jquery/jquery-maven -->
+		<dependency>
+		    <groupId>com.efsavage.jquery</groupId>
+		    <artifactId>jquery-maven</artifactId>
+		    <version>1.8.2</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.webjars.bower/bootstrap-hover-dropdown -->
+		<dependency>
+		    <groupId>org.webjars.bower</groupId>
+		    <artifactId>bootstrap-hover-dropdown</artifactId>
+		    <version>2.2.1</version>
+		</dependency>
+		
+
 	</dependencies>
 </project>
