@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8"/>
-<title>Se connecter</title>
+<head th:include="fragments/head :: head">
+	<meta charset="UTF-8"/>
+	<title>Se connecter</title>
 </head>
 <body>
 	<h1>Se connecter</h1>
+	
+	<div>
 	<form action="#" th:action="@{/utilisateurconnecter}" th:object="${utilisateur}" method="post">
-		<table class="table">
+		<table>
 			<tr>
 				<td>Mail :</td>
 				<td><input type="text" th:field="*{mail}" /></td>
@@ -21,6 +23,7 @@
 			</tr>
 		</table>
 	</form>
+	</div>
 
 </body>
 </html>
