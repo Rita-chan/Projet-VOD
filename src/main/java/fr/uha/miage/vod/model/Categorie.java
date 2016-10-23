@@ -53,4 +53,8 @@ public class Categorie {
 	{
 		this.films.remove(film);
 	}
+	
+	public int getNb() {
+		return films.size();
+	}
 }
