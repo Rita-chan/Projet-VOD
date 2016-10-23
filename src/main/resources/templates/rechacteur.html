@@ -18,13 +18,13 @@
 
 			<form action="#" th:action="@{/paracteur}" th:object="${acteurs}"
 				method="post">
-						<select name="select">
+						<select name="select" class="selectpicker">
 								<option th:each=" acteur : ${acteurs}"
 									th:text="${acteur.prenom} + ' ' + ${acteur.nom}"
 									th:value="${acteur.id}"></option>
 						</select> <br/>
 
-						<button type="submit">Rechercher</button>
+						<button class="btn btn-primary" type="submit">Rechercher</button>
 
 			</form>
 		</div>
