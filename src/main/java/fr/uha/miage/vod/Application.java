@@ -67,6 +67,8 @@ public class Application implements CommandLineRunner {
 		cat1.setIntitule("Cat1");
 		Categorie cat2 = new Categorie();
 		cat2.setIntitule("Cat2");
+		Categorie cat3 = new Categorie();
+		cat3.setIntitule("Cat3");
 		
 		Pays pays1 = new Pays();
 		pays1.setNom("Pays1");
@@ -92,7 +94,7 @@ public class Application implements CommandLineRunner {
 		Film film1 = new Film();
 		film1.setTitre("Titre1");
 		film1.setSynopsis("Synopsis passionnant du premier film. Synopsis passionnant du premier film. Synopsis passionnant du premier film. Synopsis passionnant du premier film. Synopsis passionnant du premier film.");
-		film1.setDuree("20");
+		film1.setDuree("20 min");
 		film1.setJaquette("ch1.jpg");
 		film1.setSortie(2015);
 		film1.setVideo("Là");
@@ -106,7 +108,7 @@ public class Application implements CommandLineRunner {
 		Film film2 = new Film();
 		film2.setTitre("Titre2");
 		film2.setSynopsis("Synopsis passionnant du deuxième film");
-		film2.setDuree("30");
+		film2.setDuree("30 min");
 		film2.setJaquette("ch2.jpg");
 		film2.setSortie(2016);
 		film2.setVideo("Là");
@@ -203,6 +205,7 @@ public class Application implements CommandLineRunner {
 		cat1.ajouterFilm(film6);
 		categorieRepository.save(cat1);
 		categorieRepository.save(cat2);
+		categorieRepository.save(cat3);
 		
 		pays1.ajouterFilm(film1);
 		pays2.ajouterFilm(film2);

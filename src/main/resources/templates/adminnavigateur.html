@@ -17,30 +17,35 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<!--/sidebar-menu-->
 				<div class="sidebar-menu">
 					<header class="logo">
-					<a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span> </a> <a href="index.html"> <span id="logo"> <h1>Augment</h1></span> 
+					<!-- <a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span> </a>--> <a href="index.html"> <span id="logo"> <h1>Administration</h1></span> 
 					<!--<img id="logo" src="" alt="Logo"/>--> 
 				  </a> 
 				</header>
 			<div style="border-top:1px solid rgba(69, 74, 84, 0.7)"></div>
 			<!--/down-->
 							<div class="down">	
-									  <a href="index.html"><img src="images/admin.jpg"/></a>
-									  <a href="index.html"><span class=" name-caret">Jasmin Leo</span></a>
-									 <p>System Administrator in Company</p>
-									<ul>
-									<li><a class="tooltips" href="index.html"><span>Profile</span><i class="lnr lnr-user"></i></a></li>
-										<li><a class="tooltips" href="index.html"><span>Settings</span><i class="lnr lnr-cog"></i></a></li>
-										<li><a class="tooltips" href="index.html"><span>Log out</span><i class="lnr lnr-power-switch"></i></a></li>
-										</ul>
+									<a href="adminindex.html"><img src="/admin/images/admin.jpg"/></a>
+									<!-- <a href="index.html"><span class=" name-caret">Jasmin Leo</span></a>-->
+									<div th:if="${session.id != null}">
+										<span class=" name-caret" th:txt="${session.nomprenom}"></span>
 									</div>
-							   <!--//down-->
+									<p>Administrateur GM - By AC</p>
+									<ul>
+										<!-- <li><a class="tooltips" href="index.html"><span>Profile</span><i class="lnr lnr-user"></i></a></li>
+										<li><a class="tooltips" href="index.html"><span>Settings</span><i class="lnr lnr-cog"></i></a></li>
+										<li><a class="tooltips" href="index.html"><span>Log out</span><i class="lnr lnr-power-switch"></i></a></li>-->
+										<li><a class="tooltips" th:href="@{/}"><span>Accueil</span><i class="lnr lnr-home"></i></a></li>
+										<li th:if="${session.id != null}"><a class="tooltips" th:href="@{/deconnexion}"><span>Déconnexion</span><i class="lnr lnr-power-switch"></i></a></li>
+									</ul>
+							</div>
+							<!--//down-->
                            <div class="menu">
 									<ul id="menu" >
-										<li><a th:href="@{/adminindex}"><i class="fa fa-tachometer"></i><span>Accueil admin</span><span class="fa fa-angle-right" style="float: right"></span></a></li>
+										<li><a th:href="@{/adminindex}"><i class="fa fa-tachometer"></i><span>Accueil admin</span></a></li>
 										<li><a th:href="@{/acteur}"><i class="fa fa-user"></i><span>Acteur</span><span class="fa fa-angle-right" style="float: right"></span></a>
 											<ul>
 												<li><a th:href="@{/acteur}"><span>Visualisation</span></a></li>
-												<li><a th:href="@{/acteurcreer}"><span>Création</span></a></li>
+												<!-- <li><a th:href="@{/acteurcreer}"><span>Création</span></a></li>-->
 											</ul>
 										</li>
 										<li><a th:href="@{/avis}"><i class="lnr lnr-pencil"></i><span>Avis</span><span class="fa fa-angle-right" style="float: right"></span></a>
@@ -78,16 +83,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 												<li><a th:href="@{/utilisateur}"><span>Visualisation</span></a></li>
 												<li><a th:href="@{/utilisateurcreer}"><span>Création</span></a></li>
 											</ul>
-										</li>
-									
-									
-										 <li id="menu-academico" ><a href="#"><i class="fa fa-table"></i> <span> Tabs &amp; Panels</span> <span class="fa fa-angle-right" style="float: right"></span></a>
-										   <ul id="menu-academico-sub" >
-											<li id="menu-academico-avaliacoes" ><a href="tabs.html"> Tabs &amp; Panels</a></li>
-											<li id="menu-academico-boletim" ><a href="widget.html">Widgets</a></li>
-											<li id="menu-academico-avaliacoes" ><a href="calender.html">Calendar</a></li>
-											
-										  </ul>
 										</li>
 								  </ul>
 								</div>

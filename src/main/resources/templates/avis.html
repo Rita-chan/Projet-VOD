@@ -5,20 +5,52 @@
 <title id="titrePage">Great Movies - By AC - Admin - Liste des avis</title>
 </head>
 <body>
-	<a th:href="@{/aviscreer}">Créer un avis</a>
+	<div th:replace="adminnavigateur :: header">&nbsp;</div>
+	<div class="left-content">
+	<div class="inner-content">
+	<div class="outter-wp">
+		<!-- <a th:href="@{/aviscreer}">Créer un avis</a>-->
+		
+		<div th:if="${#lists.isEmpty(aviss)}">
+			Il n'existe aucun avis dans la base.
+		</div>
+		
+		<table class="table table-bordered text-center"> 
+		<thead>
+			<tr>
+				<th>Id Avis</th>
+				<th>Film</th>
+				<th>Utilisateur</th>
+				<th>Note</th>
+				<th>Commentaire</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="avis : ${aviss}">
+				<td th:text="${avis.id}" />
+				<td th:text="${avis.film.titre}" />
+				<td th:text="${avis.utilisateur}"/>
+				<td th:text="${avis.note}"/>
+				<td th:text="${avis.commentaire}"/>
+				<td>
+					<!-- <a class="btn-sm btn-primary" th:href="@{/avismodifier/{id}(id=${avis.id})}">Editer</a>-->
+					<a class="btn-sm btn-info" th:href="@{/avissupprimer/{id}(id=${avis.id})}">Supprimer</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+		
+		<!-- <ul>
+			<li th:each="avis : ${aviss}"><span th:text="${avis.id}"></span>
+				- <span th:text="${avis.note}"></span> <span th:text="${avis.commentaire}"></span>
+				
+				<a th:href="@{/avismodifier/{id}(id=${avis.id})}">Editer</a> |
+				<a th:href="@{/avissupprimer/{id}(id=${avis.id})}">Supprimer</a>
+				</li>
 	
-	<div th:if="${#lists.isEmpty(aviss)}">
-		Il n'existe aucun avis dans la base.
-	</div>
-	<ul>
-		<li th:each="avis : ${aviss}"><span th:text="${avis.id}"></span>
-			- <span th:text="${avis.note}"></span> <span th:text="${avis.commentaire}"></span>
-			
-			<a th:href="@{/avismodifier/{id}(id=${avis.id})}">Editer</a> |
-			<a th:href="@{/avissupprimer/{id}(id=${avis.id})}">Supprimer</a>
-			</li>
-
-	</ul>
-	<a th:href="@{/}">Retour à l'index</a>
+		</ul>
+		<a th:href="@{/}">Retour à l'index</a>-->
+	</div></div></div>
 </body>
 </html>

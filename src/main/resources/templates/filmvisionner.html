@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="adminimport :: headImport">
-<meta charset="UTF-8"/>
-<title id="titrePage">Great Movies - By AC - Admin - Voir un film</title>
+<head th:include="fragments/head :: head">
+	<title>Voir un film - By AC</title>
+	<meta charset="UTF-8" />
 </head>
 <body>
-<video th:object="${film}" controls="controls">
-
-  <source th:src="@{/files/{video}(video=${film.video})}" type="video/mp4"/> 
-  <!-- <source th:src="@{/files/konata timotei!! ^^.mp4" type="video/mp4"/>  -->
-</video>
+	<nav th:replace="nav :: nav">&nbsp;</nav>
+	<div th:replace="sidebar :: sidebar">&nbsp;</div>
+	
+	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" th:fragment="info">
+		<div class="main-grids">
+			<video th:object="${film}" controls="controls">
+			
+			  <source th:src="@{/files/{video}(video=${film.video})}" type="video/mp4"/>
+			</video>
+		</div>
+	</div>
 </body>
 </html>

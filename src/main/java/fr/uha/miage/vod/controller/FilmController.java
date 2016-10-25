@@ -5,6 +5,8 @@ import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -22,14 +24,17 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import fr.uha.miage.vod.Application;
 import fr.uha.miage.vod.file.StorageFileNotFoundException;
 import fr.uha.miage.vod.file.StorageService;
 import fr.uha.miage.vod.model.Acteur;
+import fr.uha.miage.vod.model.Avis;
 import fr.uha.miage.vod.model.Categorie;
 import fr.uha.miage.vod.model.Film;
 import fr.uha.miage.vod.model.Pays;
 import fr.uha.miage.vod.model.Realisateur;
 import fr.uha.miage.vod.repository.ActeurRepository;
+import fr.uha.miage.vod.repository.AvisRepository;
 import fr.uha.miage.vod.repository.CategorieRepository;
 import fr.uha.miage.vod.repository.FilmRepository;
 import fr.uha.miage.vod.repository.PaysRepository;
@@ -60,6 +65,9 @@ public class FilmController {
 
 	@Autowired
 	private RealisateurRepository realisateurRepository;
+	
+	@Autowired
+	private AvisRepository avisRepository;
 
 	// Affiche le formulaire de création d'un film
 	@GetMapping("/filmcreer")
@@ -242,12 +250,35 @@ public class FilmController {
 		return ResponseEntity.notFound().build();
 	}
 
-	// Afficher les informations d'un film
+	// Afficher les informations d'un film, permet de creer un avis, affiche les avis
 	@GetMapping("/film/{id}")
 	public String informationfilm(Model model, @PathVariable("id") Long id) {
 		Film film = filmRepository.findOne(id);
 		model.addAttribute("film", film);
+		
+		Avis avis = new Avis();
+		avis.setFilm(film);
+		model.addAttribute("avis", avis);
+		List<Avis> listeAvis = (List<Avis>) avisRepository.findAll();
+		model.addAttribute("listeAvis", listeAvis);
+		
 		return "filminfo";
 	}
 
+	@PostMapping("/filminfo")
+	public String informationfilm(@Valid Avis avis, BindingResult bindingResult) {
+
+		avisRepository.save(avis);
+
+		
+		final Logger log = LoggerFactory.getLogger(Application.class);
+		log.info("SAVED BATEAU WITH ID : "+avis.getFilm());
+		Film film = avis.getFilm();
+		film.ajouterAvis(avis);
+		filmRepository.save(film);
+
+		String redirect = "redirect:/film/" + film.getId();
+		
+		return redirect;
+	}
 }

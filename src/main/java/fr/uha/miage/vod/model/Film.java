@@ -119,6 +119,9 @@ public class Film {
 	public void setAvis(List<Avis> avis) {
 		this.avis = avis;
 	}
-	
+	public void ajouterAvis(Avis avi)
+	{
+		//this.avis.add(avi);
+	}
 	
 }
