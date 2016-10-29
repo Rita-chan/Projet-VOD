@@ -233,21 +233,21 @@ public class FilmController {
 
 	}
 	
-	@GetMapping("/files/ch1.jpg")
+	@GetMapping("/files/ed.jpg")
 	@ResponseBody
 	public ResponseEntity<Resource> serveFile1() {
 
-		Resource file = storageService.loadAsResource("ch1.jpg");
-		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachement; \"" + "ch1.jpg" + "\"").body(file);
+		Resource file = storageService.loadAsResource("ed.jpg");
+		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachement; \"" + "ed.jpg" + "\"").body(file);
 
 	}
 	
-	@GetMapping("/files/ch2.jpg")
+	@GetMapping("/files/bbb.png")
 	@ResponseBody
 	public ResponseEntity<Resource> serveFile2() {
 
-		Resource file = storageService.loadAsResource("ch2.jpg");
-		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachement; \"" + "ch2.jpg" + "\"").body(file);
+		Resource file = storageService.loadAsResource("bbb.png");
+		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachement; \"" + "bbb.png" + "\"").body(file);
 
 	}
 

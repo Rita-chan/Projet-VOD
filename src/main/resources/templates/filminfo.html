@@ -35,12 +35,12 @@
 			<span th:text="${film.version}"></span> <span> | </span>
 			
 			<span th:text="${film.duree}"></span> <br/>
-			<span>De </span>
+			<span><strong>De </strong></span>
 			<!-- Mettre un lien : recherche par réalisateur -->
 			<span th:each=" real : ${film.realisateur}">
 				<span th:text="${real.prenom}"></span> <span th:text="${real.nom}"></span> <br/>
 				</span>
-			<span>Avec </span> 
+			<span><strong>Avec </strong></span> <br/>
 			<!-- Mettre un lien : recherche par acteur -->
 				<span th:each=" acteur : ${film.acteurs}"> 
 				<span th:text="${acteur.prenom}"></span> <span th:text="${acteur.nom}"> </span> <br/>
