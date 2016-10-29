@@ -264,9 +264,12 @@ public class FilmController {
 		
 		Avis avis = new Avis();
 		avis.setFilm(film);
-		long idUtil = (long) session.getAttribute("id");
-		Utilisateur util = utilisateurRepository.findOne(idUtil);
-		avis.setUtilisateur(util);
+		if (session.getAttribute("id") != null)
+		{
+			long idUtil = (long) session.getAttribute("id");
+			Utilisateur util = utilisateurRepository.findOne(idUtil);
+			avis.setUtilisateur(util);
+		}
 		model.addAttribute("avis", avis);
 		List<Avis> listeAvis = (List<Avis>) avisRepository.findAll();
 		model.addAttribute("listeAvis", listeAvis);
