@@ -3,6 +3,7 @@ package fr.uha.miage.vod.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -33,12 +34,14 @@ import fr.uha.miage.vod.model.Categorie;
 import fr.uha.miage.vod.model.Film;
 import fr.uha.miage.vod.model.Pays;
 import fr.uha.miage.vod.model.Realisateur;
+import fr.uha.miage.vod.model.Utilisateur;
 import fr.uha.miage.vod.repository.ActeurRepository;
 import fr.uha.miage.vod.repository.AvisRepository;
 import fr.uha.miage.vod.repository.CategorieRepository;
 import fr.uha.miage.vod.repository.FilmRepository;
 import fr.uha.miage.vod.repository.PaysRepository;
 import fr.uha.miage.vod.repository.RealisateurRepository;
+import fr.uha.miage.vod.repository.UtilisateurRepository;
 
 @Controller
 public class FilmController {
@@ -68,6 +71,9 @@ public class FilmController {
 	
 	@Autowired
 	private AvisRepository avisRepository;
+
+	@Autowired
+	private UtilisateurRepository utilisateurRepository;
 
 	// Affiche le formulaire de création d'un film
 	@GetMapping("/filmcreer")
@@ -252,12 +258,15 @@ public class FilmController {
 
 	// Afficher les informations d'un film, permet de creer un avis, affiche les avis
 	@GetMapping("/film/{id}")
-	public String informationfilm(Model model, @PathVariable("id") Long id) {
+	public String informationfilm(Model model, @PathVariable("id") Long id, HttpSession session) {
 		Film film = filmRepository.findOne(id);
 		model.addAttribute("film", film);
 		
 		Avis avis = new Avis();
 		avis.setFilm(film);
+		long idUtil = (long) session.getAttribute("id");
+		Utilisateur util = utilisateurRepository.findOne(idUtil);
+		avis.setUtilisateur(util);
 		model.addAttribute("avis", avis);
 		List<Avis> listeAvis = (List<Avis>) avisRepository.findAll();
 		model.addAttribute("listeAvis", listeAvis);
@@ -271,8 +280,9 @@ public class FilmController {
 		avisRepository.save(avis);
 
 		
-		final Logger log = LoggerFactory.getLogger(Application.class);
-		log.info("SAVED BATEAU WITH ID : "+avis.getFilm());
+		/*final Logger log = LoggerFactory.getLogger(Application.class);
+		log.info("SAVED BATEAU WITH ID : "+avis.getFilm());*/
+		
 		Film film = avis.getFilm();
 		film.ajouterAvis(avis);
 		filmRepository.save(film);

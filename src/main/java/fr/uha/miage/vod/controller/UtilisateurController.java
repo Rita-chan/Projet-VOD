@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import fr.uha.miage.vod.model.Categorie;
 import fr.uha.miage.vod.model.Utilisateur;
 import fr.uha.miage.vod.repository.UtilisateurRepository;
 

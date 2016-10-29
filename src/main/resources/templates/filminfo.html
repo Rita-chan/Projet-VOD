@@ -18,8 +18,8 @@
 	<div>
 		<img th:src="@{/files/{jaquette}(jaquette=${film.jaquette})}" height="300" />
 		<h1 th:text="${film.titre}"></h1>
-		<p th:text="${film.synopsis}"></p> <br/>
-		<p>
+		<p class="tsmall" th:text="${film.synopsis}"></p> <br/>
+		<p class="tsmall">
 			<!-- Mettre un lien : recherche par réalisateur -->
 			<span th:each=" categorie : ${film.categories}"> 
 				<span th:text="${categorie.intitule}"></span>
@@ -56,13 +56,12 @@
 			<br/>
 			<br/>
 			
-			<!-- À rajouter : si l'utilisateur est connecter   => afficher le form -->
-			<!-- À rajouter : enregistrer le nom de l'utilisateur -->
-			<div>
-			<hr/>
+			<div  th:if="${session.id != null}">
+			<hr class="coms"/>
 			<h2>Donnez votre avis</h2>
 			<form action="#" th:action="@{/filminfo}" th:object="${avis}" method="post">
 				<input type="hidden" th:field="*{film}" class="form-control"/>
+				<input type="hidden" th:field="*{utilisateur}" class="form-control"/>
 				<div class="form-group">
 					<label>Note :</label>
 					<input type="text" th:field="*{note}" class="form-control" />
@@ -76,11 +75,12 @@
 			</div>
 			
 			<div th:if="${!#lists.isEmpty(film.avis)}">
+				<hr class="coms"/>
 				<h2>Avis</h2>
-				<div th:each=" avi : ${film.avis}">
+				<div th:class="tsmall" th:each=" avi : ${film.avis}">
 					<hr/>
 					<span>Utilisateur : </span>
-					<span th:text="${avi.utilisateur}"></span>
+					<span th:text="${avi.utilisateur.login}"></span>
 					<br/>
 					<span>Note : </span>
 					<span th:text="${avi.note}"></span>

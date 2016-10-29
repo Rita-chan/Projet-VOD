@@ -35,3 +35,18 @@ table
 	width: 30%;
 	text-align: center;
 }
+
+.tlarge
+{
+	font-size: large;
+}
+
+.tsmall
+{
+	font-size: small;
+}
+
+.coms
+{
+	border: dashed;
+}
