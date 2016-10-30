@@ -35,6 +35,12 @@
 			<span th:text="${film.version}"></span> <span> | </span>
 			
 			<span th:text="${film.duree}"></span> <br/>
+			
+			<span><strong>Note </strong></span>
+			<span th:if="${film.note != -1}"><span th:text="${film.note}"/>/5</span>
+			<span th:if="${film.note == -1}">Non définie</span>
+			<br/>
+			
 			<span><strong>De </strong></span>
 			<!-- Mettre un lien : recherche par réalisateur -->
 			<span th:each=" real : ${film.realisateur}">

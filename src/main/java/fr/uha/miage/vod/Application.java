@@ -121,6 +121,7 @@ public class Application implements CommandLineRunner {
 		film1.setCategories(cate1);
 		//film1.setActeurs(acte2);
 		film1.setActeurs(acte1);
+		film1.setNote(-1);
 		
 		film1.setRealisateur(real1);
 		film1.setPays(pays1);
@@ -138,6 +139,7 @@ public class Application implements CommandLineRunner {
 		film2.setActeurs(acte2);
 		film2.setRealisateur(real2);
 		film2.setPays(pays1);
+		film2.setNote(-1);
 		
 		
 		acteurRepository.save(act1);

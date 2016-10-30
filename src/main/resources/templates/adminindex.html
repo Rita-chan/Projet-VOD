@@ -66,25 +66,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<!--/content-inner-->
 		<div class="left-content">
 			<div class="inner-content">
-				<!-- header-starts -->
-				<div class="header-section">
-					<!--menu-right-->
-					<div class="top_menu">
-
-
-						<!--/profile_details-->
-						<div class="profile_details_left">
-
-								<h4>Administration GM - By AC</h4>
-
-						</div>
-						<div class="clearfix"></div>
-						<!--//profile_details-->
-					</div>
-					<!--//menu-right-->
-					<div class="clearfix"></div>
-				</div>
-				<!-- //header-ends -->
+				<!--/header + sidebar-menu-->
+		<div th:replace="adminnavigateur :: header">&nbsp;</div>
 				<div class="outter-wp">
 					<!--custom-widgets-->
 					<div class="custom-widgets">
@@ -170,167 +153,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<!--//outer-wp-->
 				</div>
 				<!--footer section start-->
-				<footer>
-					<p>
-						and copy 2016 Augment . All Rights Reserved | Design by <a
-							href="https://w3layouts.com/" target="_blank">W3layouts.</a>
-					</p>
-				</footer>
+				<div th:replace="adminfooter :: footer">&nbsp;</div>
 				<!--footer section end-->
 			</div>
 		</div>
 		<!--//content-inner-->
-		<!--/sidebar-menu-->
-		<div class="sidebar-menu">
-			<header class="logo">
-				<a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span>
-				</a><span id="logo">
-						<h1>Administration</h1>
-				</span> <!--<img id="logo" src="" alt="Logo"/>-->
-			</header>
-			<div style="border-top: 1px solid rgba(69, 74, 84, 0.7)"></div>
-			<!--/down-->
-			<div class="down">
-
-				<img src="/admin/images/admin.jpg" />
-				<div th:if="${session.id != null}">
-					<span class=" name-caret" th:txt="${session.nomprenom}"></span>
-				</div>
-				<p>Administrateur GM - By AC</p>
-				<ul>
-					<!--  <li><a class="tooltips" href="index.html"><span>Profile</span><i
-							class="lnr lnr-user"></i></a></li>
-					<li><a class="tooltips" href="index.html"><span>Settings</span><i
-							class="lnr lnr-cog"></i></a></li>
-							-->
-						
-							<li><a class="tooltips" th:href="@{/}"><span>Accueil</span><i
-							class="lnr lnr-home"></i></a></li>
-					<li th:if="${session.id != null}"><a class="tooltips" th:href="@{/deconnexion}"><span>Déconnexion</span><i class="lnr lnr-power-switch"></i></a></li>
-				</ul>
-			</div>
-			<!--//down-->
-			<div class="menu">
-				<ul id="menu">
-
-					<li><a th:href="@{/acteur}"><i class="fa fa-user"></i><span>Acteur</span></a>
-						<ul>
-							<li><a th:href="@{/acteur}"><span>Visualisation</span></a></li>
-							<li><a th:href="@{/acteurcreer}"><span>Création</span></a></li>
-						</ul></li>
-					<li><a th:href="@{/avis}"><i class="lnr lnr-pencil"></i><span>Avis</span></a>
-						<ul>
-							<li><a th:href="@{/avis}"><span>Visualisation</span></a></li>
-							<li><a th:href="@{/aviscreer}"><span>Création</span></a></li>
-						</ul></li>
-					<li><a th:href="@{/categorie}"><i class="fa fa-tags"></i><span>Catégorie</span></a>
-						<ul>
-							<li><a th:href="@{/categorie}"><span>Visualisation</span></a></li>
-							<li><a th:href="@{/categoriecreer}"><span>Création</span></a></li>
-						</ul></li>
-					<li><a th:href="@{/film}"><i class="fa fa-film"></i><span>Films</span></a>
-						<ul>
-							<li><a th:href="@{/film}"><span>Visualisation</span></a></li>
-							<li><a th:href="@{/filmcreer}"><span>Création</span></a></li>
-						</ul></li>
-					<li><a th:href="@{/pays}"><i class="fa fa-flag-o"></i><span>Pays</span></a>
-						<ul>
-							<li><a th:href="@{/pays}"><span>Visualisation</span></a></li>
-							<li><a th:href="@{/payscreer}"><span>Création</span></a></li>
-						</ul></li>
-					<li><a th:href="@{/realisateur}"><i class="fa fa-user"></i><span>Réalisateur</span></a>
-						<ul>
-							<li><a th:href="@{/realisateur}"><span>Visualisation</span></a></li>
-							<li><a th:href="@{/realisateurcreer}"><span>Création</span></a></li>
-						</ul></li>
-					<li><a th:href="@{/utilisateur}"><i class="fa fa-users"></i><span>Utilisateur</span></a>
-						<ul>
-							<li><a th:href="@{/utilisateur}"><span>Visualisation</span></a></li>
-							<li><a th:href="@{/utilisateurcreer}"><span>Création</span></a></li>
-						</ul></li>
-
-
-					<li><a href="index.html"><i class="fa fa-tachometer"></i>
-							<span>Dashboard</span></a></li>
-					<li id="menu-academico"><a href="#"><i class="fa fa-table"></i>
-							<span> Tabs &amp; Panels</span> <span class="fa fa-angle-right"
-							style="float: right"></span></a>
-						<ul id="menu-academico-sub">
-							<li id="menu-academico-avaliacoes"><a href="tabs.html">
-									Tabs &amp; Panels</a></li>
-							<li id="menu-academico-boletim"><a href="widget.html">Widgets</a></li>
-							<li id="menu-academico-avaliacoes"><a href="calender.html">Calendar</a></li>
-
-						</ul></li>
-					<li id="menu-academico"><a href="#"><i
-							class="fa fa-file-text-o"></i> <span>Ui Elements</span> <span
-							class="fa fa-angle-right" style="float: right"></span></a>
-						<ul id="menu-academico-sub">
-							<li id="menu-academico-avaliacoes"><a href="forms.html">Forms</a></li>
-							<li id="menu-academico-boletim"><a href="validation.html">Validation
-									Forms</a></li>
-							<li id="menu-academico-boletim"><a href="table.html">Tables</a></li>
-							<li id="menu-academico-boletim"><a href="buttons.html">Buttons</a></li>
-						</ul></li>
-					<li><a href="typography.html"><i class="lnr lnr-pencil"></i>
-							<span>Typography</span></a></li>
-					<li id="menu-academico"><a href="#"><i
-							class="lnr lnr-book"></i> <span>Pages</span> <span
-							class="fa fa-angle-right" style="float: right"></span></a>
-						<ul id="menu-academico-sub">
-							<li id="menu-academico-avaliacoes"><a href="login.html">Login</a></li>
-							<li id="menu-academico-boletim"><a href="register.html">Register</a></li>
-							<li id="menu-academico-boletim"><a href="404.html">404</a></li>
-							<li id="menu-academico-boletim"><a href="sign.html">Sign
-									up</a></li>
-							<li id="menu-academico-boletim"><a href="profile.html">Profile</a></li>
-						</ul></li>
-					<li><a href="#"><i class="lnr lnr-envelope"></i> <span>Mail
-								Box</span><span class="fa fa-angle-right" style="float: right"></span></a>
-						<ul>
-							<li><a href="inbox.html"><i class="fa fa-inbox"></i>
-									Inbox</a></li>
-							<li><a href="compose.html"><i
-									class="fa fa-pencil-square-o"></i> Compose Mail</a></li>
-							<li><a href="editor.html"><span
-									class="lnr lnr-highlight"></span> Editors Page</a></li>
-
-						</ul></li>
-					<li id="menu-academico"><a href="#"><i
-							class="lnr lnr-layers"></i> <span>Components</span> <span
-							class="fa fa-angle-right" style="float: right"></span></a>
-						<ul id="menu-academico-sub">
-							<li id="menu-academico-avaliacoes"><a href="grids.html">Grids</a></li>
-							<li id="menu-academico-boletim"><a href="media.html">Media
-									Objects</a></li>
-
-						</ul></li>
-					<li><a href="chart.html"><i class="lnr lnr-chart-bars"></i>
-							<span>Charts</span> <span class="fa fa-angle-right"
-							style="float: right"></span></a>
-						<ul>
-							<li><a href="map.html"><i class="lnr lnr-map"></i> Maps</a></li>
-							<li><a href="graph.html"><i class="lnr lnr-apartment"></i>
-									Graph Visualization</a></li>
-						</ul></li>
-					<li id="menu-comunicacao"><a href="#"><i
-							class="fa fa-smile-o"></i> <span>More</span><span
-							class="fa fa-angle-double-right" style="float: right"></span></a>
-						<ul id="menu-comunicacao-sub">
-							<li id="menu-mensagens" style="width: 120px"><a
-								href="project.html">Projects <i class="fa fa-angle-right"
-									style="float: right; margin-right: -8px; margin-top: 2px;"></i></a>
-								<ul id="menu-mensagens-sub">
-									<li id="menu-mensagens-enviadas" style="width: 130px"><a
-										href="ribbon.html">Ribbons</a></li>
-									<li id="menu-mensagens-recebidas" style="width: 130px"><a
-										href="blank.html">Blank</a></li>
-								</ul></li>
-							<li id="menu-arquivos"><a href="500.html">500</a></li>
-						</ul></li>
-				</ul>
-			</div>
-		</div>
+		
+		
 		<div class="clearfix"></div>
 	</div>
 

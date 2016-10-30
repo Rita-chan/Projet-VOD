@@ -104,10 +104,28 @@ public class UtilisateurController {
 		return "utilisateur";
 	}
 
-	// Supprime l'Utilisateur sélectionné
+	// Supprime l'utilisateur sélectionné
 	@GetMapping("/utilisateursupprimer/{id}")
 	public String utilisateursupprimer(@PathVariable("id") Long id) {
 		utilisateurRepository.delete(id);
+		return "redirect:/utilisateur";
+	}
+	
+	// Donne le rôle d'Admin à l'utilisateur sélectionné
+	@GetMapping("/utilisateurattribueradmin/{id}")
+	public String utilisateurattribueradmin(@PathVariable("id") Long id) {
+		Utilisateur util = utilisateurRepository.findOne(id);
+		util.setRole(1);
+		utilisateurRepository.save(util);
+		return "redirect:/utilisateur";
+	}
+	
+	// Retire le rôle d'Admin à l'utilisateur sélectionné
+	@GetMapping("/utilisateurretireradmin/{id}")
+	public String utilisateurretireradmin(@PathVariable("id") Long id) {
+		Utilisateur util = utilisateurRepository.findOne(id);
+		util.setRole(0);
+		utilisateurRepository.save(util);
 		return "redirect:/utilisateur";
 	}
 

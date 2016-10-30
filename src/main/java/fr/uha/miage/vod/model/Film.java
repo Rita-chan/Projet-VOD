@@ -24,6 +24,7 @@ public class Film {
 	private int sortie;
 	private String video;
 	private String version;
+	private double note;
 	
 	@ManyToOne
 	private Realisateur realisateur;
@@ -121,7 +122,13 @@ public class Film {
 	}
 	public void ajouterAvis(Avis avi)
 	{
-		//this.avis.add(avi);
+		this.avis.add(avi);
+	}
+	public double getNote() {
+		return note;
+	}
+	public void setNote(double note) {
+		this.note = note;
 	}
 	
 }

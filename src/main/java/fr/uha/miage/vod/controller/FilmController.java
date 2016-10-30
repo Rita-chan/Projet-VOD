@@ -115,6 +115,8 @@ public class FilmController {
 		if (bindingResult.hasErrors())
 			return "filmcreer";
 
+		film.setNote(-1);
+		
 		film.setJaquette(jaquette.getOriginalFilename());
 		film.setVideo(video.getOriginalFilename());
 		filmRepository.save(film);
@@ -281,13 +283,22 @@ public class FilmController {
 	public String informationfilm(@Valid Avis avis, BindingResult bindingResult) {
 
 		avisRepository.save(avis);
-
-		
-		/*final Logger log = LoggerFactory.getLogger(Application.class);
-		log.info("SAVED BATEAU WITH ID : "+avis.getFilm());*/
 		
 		Film film = avis.getFilm();
+		double note = film.getNote();
+		if(note == -1)
+		{
+			note = 0;
+		}
+		int nb = film.getAvis().size() -1;
+		double moyenne = (note * nb + avis.getNote()) / (nb+1);
 		film.ajouterAvis(avis);
+		
+		//pour avoir deux chiffres après la virgule
+		double virgule = moyenne * 100;
+		int arrondi = (int)virgule;
+		film.setNote((double)arrondi/100);
+		
 		filmRepository.save(film);
 
 		String redirect = "redirect:/film/" + film.getId();

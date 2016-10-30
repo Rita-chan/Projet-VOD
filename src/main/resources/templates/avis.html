@@ -29,7 +29,7 @@
 		<tbody>
 			<tr th:each="avis : ${aviss}">
 				<td th:text="${avis.id}" />
-				<td th:text="${avis.film.titre}" />
+				<td th:text="${avis.film}" />
 				<td th:text="${avis.utilisateur}"/>
 				<td th:text="${avis.note}"/>
 				<td th:text="${avis.commentaire}"/>

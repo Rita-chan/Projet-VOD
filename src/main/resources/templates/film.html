@@ -21,6 +21,7 @@
 						<tr>
 							<th>Id Film</th>
 							<th>Titre</th>
+							<th>Note</th>
 							<th>Synopsis</th>
 							<th>Durée</th>
 							<th>Jaquette</th>
@@ -38,6 +39,7 @@
 						<tr th:each="film : ${films}">
 							<td th:text="${film.id}" />
 							<td th:text="${film.titre }" />
+							<td> <span th:if="${film.note == -1}">Non définie</span> <span th:if="${film.note != -1}" th:text="${film.note}" /></td>
 							<td th:text="${film.synopsis}" width="280px"/>
 							<td th:text="${film.duree}" />
 
