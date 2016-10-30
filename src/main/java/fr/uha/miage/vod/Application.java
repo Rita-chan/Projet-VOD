@@ -91,9 +91,9 @@ public class Application implements CommandLineRunner {
 		
 		List <Categorie>cate1 = new ArrayList<Categorie>();
 		cate1.add(cat1);
+		cate1.add(cat2);
 		List <Categorie>cate2 = new ArrayList<Categorie>();
 		cate2.add(cat2);
-		cate2.add(cat1);
 
 		
 		List <Acteur>acte1 = new ArrayList<Acteur>();
@@ -136,7 +136,7 @@ public class Application implements CommandLineRunner {
 		film2.setVideo("bbb.mp4");
 		film2.setVersion("VF");
 		film2.setCategories(cate2);
-		film2.setActeurs(acte2);
+		film2.setActeurs(acte3);
 		film2.setRealisateur(real2);
 		film2.setPays(pays1);
 		film2.setNote(-1);
@@ -170,7 +170,6 @@ public class Application implements CommandLineRunner {
 		acteurRepository.save(act5);
 		
 		cat1.ajouterFilm(film1);
-		cat1.ajouterFilm(film2);
 		cat2.ajouterFilm(film1);
 		cat2.ajouterFilm(film2);
 
@@ -199,6 +198,7 @@ public class Application implements CommandLineRunner {
 		util1.setMail("util1@util1.fr");
     	String hashed1 = BCrypt.hashpw("util1", BCrypt.gensalt(12));
     	util1.setMdp(hashed1);
+    	util1.setRole(0);
 		
 		Utilisateur util2 = new Utilisateur();
 		util2.setNom("Util2");
@@ -207,6 +207,7 @@ public class Application implements CommandLineRunner {
 		util2.setMail("util2@util2.fr");
 		String hashed2 = BCrypt.hashpw("util2", BCrypt.gensalt(12));
     	util2.setMdp(hashed2);
+    	util2.setRole(0);
 		
 		Utilisateur admin = new Utilisateur();
 		admin.setNom("Admin");

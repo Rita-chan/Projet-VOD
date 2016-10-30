@@ -1,5 +1,6 @@
 package fr.uha.miage.vod.controller;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +22,20 @@ public class CategorieController {
 
 	// Affiche le formulaire de création d'une catégorie
 	@GetMapping("/categoriecreer")
-	public String categoriecreerform(Model model) {
-		model.addAttribute("categorie", new Categorie());
-		Iterable<Categorie> liste = categorieRepository.findAll();
-		model.addAttribute("categories", liste);
-		return "categoriecreer";
+	public String categoriecreerform(Model model, HttpSession session) {
+		if ((session.getAttribute("id") != null) && ((int) session.getAttribute("role") == 1)) {
+			model.addAttribute("categorie", new Categorie());
+			Iterable<Categorie> liste = categorieRepository.findAll();
+			model.addAttribute("categories", liste);
+			return "categoriecreer";
+		}
+		else if(session.getAttribute("id") != null) {
+			return "redirect:/";
+		}
+		
+		else {
+			return "redirect:/utilisateurconnecter";
+		}
 	}
 
 	// Enregistre la catégorie créée, en verifiant qu'elle corresponde aux
@@ -42,12 +52,21 @@ public class CategorieController {
 
 	// Affiche le formulaire d'édition d'une catégorie
 	@GetMapping("/categoriemodifier/{id}")
-	public String categoriemodifierform(@PathVariable("id") Long id, Model model) {
-		Categorie categorie = categorieRepository.findOne(id);
-		model.addAttribute("categorie", categorie);
-		Iterable<Categorie> liste = categorieRepository.findAll();
-		model.addAttribute("categories", liste);
-		return "categoriemodifier";
+	public String categoriemodifierform(@PathVariable("id") Long id, Model model, HttpSession session) {
+		if ((session.getAttribute("id") != null) && ((int) session.getAttribute("role") == 1)) {
+			Categorie categorie = categorieRepository.findOne(id);
+			model.addAttribute("categorie", categorie);
+			Iterable<Categorie> liste = categorieRepository.findAll();
+			model.addAttribute("categories", liste);
+			return "categoriemodifier";
+		}
+		else if(session.getAttribute("id") != null) {
+			return "redirect:/";
+		}
+		
+		else {
+			return "redirect:/utilisateurconnecter";
+		}
 	}
 
 	// Enregistre la catégorie modifiée, en vérifiant qu'elle corresponde aux
@@ -63,16 +82,34 @@ public class CategorieController {
 
 	// Affiche la liste des catégories
 	@GetMapping("/categorie")
-	public String categorie(Model model) {
-		Iterable<Categorie> liste = categorieRepository.findAll();
-		model.addAttribute("categories", liste);
-		return "categorie";
+	public String categorie(Model model, HttpSession session) {
+		if ((session.getAttribute("id") != null) && ((int) session.getAttribute("role") == 1)) {
+			Iterable<Categorie> liste = categorieRepository.findAll();
+			model.addAttribute("categories", liste);
+			return "categorie";
+		}
+		else if(session.getAttribute("id") != null) {
+			return "redirect:/";
+		}
+		
+		else {
+			return "redirect:/utilisateurconnecter";
+		}
 	}
 
 	// Supprime la catégorie sélectionnée
 	@GetMapping("/categoriesupprimer/{id}")
-	public String categoriesupprimer(@PathVariable("id") Long id) {
-		categorieRepository.delete(id);
-		return "redirect:/categorie";
+	public String categoriesupprimer(@PathVariable("id") Long id, HttpSession session) {
+		if ((session.getAttribute("id") != null) && ((int) session.getAttribute("role") == 1)) {
+			categorieRepository.delete(id);
+			return "redirect:/categorie";
+		}
+		else if(session.getAttribute("id") != null) {
+			return "redirect:/";
+		}
+		
+		else {
+			return "redirect:/utilisateurconnecter";
+		}
 	}
 }

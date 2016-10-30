@@ -1,5 +1,6 @@
 package fr.uha.miage.vod.controller;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +22,18 @@ public class AvisController {
 
 	// Affiche le formulaire de création d'un avis
 	@GetMapping("/aviscreer")
-	public String aviscreerform(Model model) {
-		model.addAttribute("avis", new Avis());
-		return "aviscreer";
+	public String aviscreerform(Model model, HttpSession session) {
+		if ((session.getAttribute("id") != null) && ((int) session.getAttribute("role") == 1)) {
+			model.addAttribute("avis", new Avis());
+			return "aviscreer";
+		}
+		else if(session.getAttribute("id") != null) {
+			return "redirect:/";
+		}
+		
+		else {
+			return "redirect:/utilisateurconnecter";
+		}
 	}
 
 	// Enregistre l'avis créé, en verifiant qu'il corresponde aux critères
@@ -39,10 +49,19 @@ public class AvisController {
 
 	// Affiche le formulaire d'édition d'un avis
 	@GetMapping("/avismodifier/{id}")
-	public String avismodifierform(@PathVariable("id") Long id, Model model) {
-		Avis avis = avisRepository.findOne(id);
-		model.addAttribute("avis", avis);
-		return "avismodifier";
+	public String avismodifierform(@PathVariable("id") Long id, Model model, HttpSession session) {
+		if ((session.getAttribute("id") != null) && ((int) session.getAttribute("role") == 1)) {
+			Avis avis = avisRepository.findOne(id);
+			model.addAttribute("avis", avis);
+			return "avismodifier";
+		}
+		else if(session.getAttribute("id") != null) {
+			return "redirect:/";
+		}
+		
+		else {
+			return "redirect:/utilisateurconnecter";
+		}
 	}
 
 	// Enregistre l'avis modifié en vérifiant qu'il corresponde aux critères
@@ -57,16 +76,34 @@ public class AvisController {
 
 	// Affiche la liste des avis
 	@GetMapping("/avis")
-	public String acteur(Model model) {
-		Iterable<Avis> liste = avisRepository.findAll();
-		model.addAttribute("aviss", liste);
-		return "avis";
+	public String acteur(Model model, HttpSession session) {
+		if ((session.getAttribute("id") != null) && ((int) session.getAttribute("role") == 1)) {
+			Iterable<Avis> liste = avisRepository.findAll();
+			model.addAttribute("aviss", liste);
+			return "avis";
+		}
+		else if(session.getAttribute("id") != null) {
+			return "redirect:/";
+		}
+		
+		else {
+			return "redirect:/utilisateurconnecter";
+		}
 	}
 
-	// Supprime l'acteur sélectionné
+	// Supprime l'avis sélectionné
 	@GetMapping("/avissupprimer/{id}")
-	public String avissupprimer(@PathVariable("id") Long id) {
-		avisRepository.delete(id);
-		return "redirect:/avis";
+	public String avissupprimer(@PathVariable("id") Long id, HttpSession session) {
+		if ((session.getAttribute("id") != null) && ((int) session.getAttribute("role") == 1)) {
+			avisRepository.delete(id);
+			return "redirect:/avis";
+		}
+		else if(session.getAttribute("id") != null) {
+			return "redirect:/";
+		}
+		
+		else {
+			return "redirect:/utilisateurconnecter";
+		}
 	}
 }

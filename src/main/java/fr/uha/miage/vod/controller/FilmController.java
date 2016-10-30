@@ -77,7 +77,9 @@ public class FilmController {
 
 	// Affiche le formulaire de création d'un film
 	@GetMapping("/filmcreer")
-	public String filmcreerform(Model model) {
+	public String filmcreerform(Model model, HttpSession session) {
+		
+		if ((session.getAttribute("id") != null) && ((int) session.getAttribute("role") == 1)) {
 		model.addAttribute("film", new Film());
 
 		model.addAttribute("files",
@@ -104,6 +106,14 @@ public class FilmController {
 		model.addAttribute("films", liste);
 
 		return "filmcreer";
+		}
+		else if(session.getAttribute("id") != null) {
+			return "redirect:/";
+		}
+		
+		else {
+			return "redirect:/utilisateurconnecter";
+		}
 	}
 
 	// Enregistre le film créé, en verifiant qu'il corresponde aux
@@ -149,7 +159,9 @@ public class FilmController {
 
 	// Affiche le formulaire d'édition d'un film
 	@GetMapping("/filmmodifier/{id}")
-	public String filmmodifierform(@PathVariable("id") Long id, Model model) {
+	public String filmmodifierform(@PathVariable("id") Long id, Model model, HttpSession session) {
+		
+		if ((session.getAttribute("id") != null) && ((int) session.getAttribute("role") == 1)) {
 		Film film = filmRepository.findOne(id);
 		model.addAttribute("film", film);
 
@@ -169,40 +181,63 @@ public class FilmController {
 		model.addAttribute("films", liste);
 
 		return "filmmodifier";
+		}
+		else if(session.getAttribute("id") != null) {
+			return "redirect:/";
+		}
+		
+		else {
+			return "redirect:/utilisateurconnecter";
+		}
 	}
 
 	// Enregistre le film modifiée, en vérifiant qu'il corresponde aux
 	// critères
 	@PostMapping("/filmmodifier")
-	public String filmmodifier(@Valid Film film, BindingResult bindingResult) {
+	public String filmmodifier(@Valid Film film, BindingResult bindingResult, HttpSession session) {
 		/*
 		 * f (bindingResult.hasErrors()) return "filmmodifier";
 		 */
-		filmsupprimer(film.getId());
+		filmsupprimer(film.getId(), session);
 		filmRepository.save(film);
 		return "redirect:/film";
 	}
 
 	// Affiche la liste des films
 	@GetMapping("/film")
-	public String film(Model model) {
+	public String film(Model model, HttpSession session) {
+		if ((session.getAttribute("id") != null) && ((int) session.getAttribute("role") == 1)) {
 		Iterable<Film> liste = filmRepository.findAll();
 		model.addAttribute("films", liste);
 		return "film";
+		}
+		else if(session.getAttribute("id") != null) {
+			return "redirect:/";
+		}
+		
+		else {
+			return "redirect:/utilisateurconnecter";
+		}
 	}
 
 	// Visionne le film sélectionné
 	@GetMapping("/filmvisionner/{id}")
-	public String filmvisionner(Model model, @PathVariable("id") Long id) {
+	public String filmvisionner(Model model, @PathVariable("id") Long id, HttpSession session) {
+		if(session.getAttribute("id") != null) {
 		Film film = filmRepository.findOne(id);
 		model.addAttribute("film", film);
-		return "filmvisionner";
+		return "filmvisionner"; 
+		}
+		else {
+			return "redirect:/utilisateurconnecter";
+		}
 	}
 
 	// Supprime le film sélectionné
 	@GetMapping("/filmsupprimer/{id}")
-	public String filmsupprimer(@PathVariable("id") Long id) {
+	public String filmsupprimer(@PathVariable("id") Long id, HttpSession session) {
 
+		if ((session.getAttribute("id") != null) && ((int) session.getAttribute("role") == 1)) {
 		Film film = filmRepository.findOne(id);
 		for (Acteur acteur : film.getActeurs()) {
 			acteur.supprimerFilm(film);
@@ -222,6 +257,14 @@ public class FilmController {
 
 		filmRepository.delete(id);
 		return "redirect:/film";
+		}
+		else if(session.getAttribute("id") != null) {
+			return "redirect:/";
+		}
+		
+		else {
+			return "redirect:/utilisateurconnecter";
+		}
 	}
 
 	@GetMapping("/files/{filename:.+}")

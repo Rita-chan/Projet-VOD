@@ -1,5 +1,6 @@
 package fr.uha.miage.vod.controller;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,57 +19,95 @@ public class PaysController {
 
 	@Autowired
 	private PaysRepository paysRepository;
-	
-	//Affiche le formulaire de création d'un pays
+
+	// Affiche le formulaire de création d'un pays
 	@GetMapping("/payscreer")
-	public String payscreerform(Model model){
-		model.addAttribute("pays", new Pays());
-		Iterable<Pays> liste = paysRepository.findAll();
-		model.addAttribute("payss", liste);
-		return "payscreer";
-	}
-	//Enregistre le pays créé, en verifiant qu'il corresponde aux critères
-	@PostMapping("/payscreer")
-	public String payscreer(@Valid Pays pays, BindingResult bindingResult){
-		if(bindingResult.hasErrors())
+	public String payscreerform(Model model, HttpSession session) {
+		if ((session.getAttribute("id") != null) && ((int) session.getAttribute("role") == 1)) {
+			model.addAttribute("pays", new Pays());
+			Iterable<Pays> liste = paysRepository.findAll();
+			model.addAttribute("payss", liste);
 			return "payscreer";
+		}
+		else if(session.getAttribute("id") != null) {
+			return "redirect:/";
+		}
 		
+		else {
+			return "redirect:/utilisateurconnecter";
+		}
+	}
+
+	// Enregistre le pays créé, en verifiant qu'il corresponde aux critères
+	@PostMapping("/payscreer")
+	public String payscreer(@Valid Pays pays, BindingResult bindingResult) {
+		if (bindingResult.hasErrors())
+			return "payscreer";
+
 		paysRepository.save(pays);
-		
+
 		return "redirect:/pays";
 	}
-		
-	//Affiche le formulaire d'édition d'un pays		
+
+	// Affiche le formulaire d'édition d'un pays
 	@GetMapping("/paysmodifier/{id}")
-	public String paysmodifierform(@PathVariable("id") Long id, Model model){
-		Pays pays = paysRepository.findOne(id);
-		model.addAttribute("pays", pays);
-		Iterable<Pays> liste = paysRepository.findAll();
-		model.addAttribute("payss", liste);
-		return "paysmodifier";
-	}
-	//Enregistre le pays modifié, en vérifiant qu'il corresponde aux critères
-	@PostMapping("/paysmodifier")
-	public String paysmodifier(@Valid Pays pays, BindingResult bindingResult){
-		if(bindingResult.hasErrors())
+	public String paysmodifierform(@PathVariable("id") Long id, Model model, HttpSession session) {
+		if ((session.getAttribute("id") != null) && ((int) session.getAttribute("role") == 1)) {
+			Pays pays = paysRepository.findOne(id);
+			model.addAttribute("pays", pays);
+			Iterable<Pays> liste = paysRepository.findAll();
+			model.addAttribute("payss", liste);
 			return "paysmodifier";
+		}
+		else if(session.getAttribute("id") != null) {
+			return "redirect:/";
+		}
 		
+		else {
+			return "redirect:/utilisateurconnecter";
+		}
+	}
+
+	// Enregistre le pays modifié, en vérifiant qu'il corresponde aux critères
+	@PostMapping("/paysmodifier")
+	public String paysmodifier(@Valid Pays pays, BindingResult bindingResult) {
+		if (bindingResult.hasErrors())
+			return "paysmodifier";
+
 		paysRepository.save(pays);
 		return "redirect:/pays";
 	}
 
-	//Affiche la liste des pays
+	// Affiche la liste des pays
 	@GetMapping("/pays")
-	public String pays(Model model){
-		Iterable<Pays> liste = paysRepository.findAll();
-		model.addAttribute("payss", liste);
-		return "pays";
+	public String pays(Model model, HttpSession session) {
+		if ((session.getAttribute("id") != null) && ((int) session.getAttribute("role") == 1)) {
+			Iterable<Pays> liste = paysRepository.findAll();
+			model.addAttribute("payss", liste);
+			return "pays";
+		}
+		else if(session.getAttribute("id") != null) {
+			return "redirect:/";
+		}
+		
+		else {
+			return "redirect:/utilisateurconnecter";
+		}
 	}
-	
-	//Supprime le pays sélectionné
+
+	// Supprime le pays sélectionné
 	@GetMapping("/payssupprimer/{id}")
-	public String payssupprimer(@PathVariable("id") Long id){
-		paysRepository.delete(id);
-		return "redirect:/pays";
+	public String payssupprimer(@PathVariable("id") Long id, HttpSession session) {
+		if ((session.getAttribute("id") != null) && ((int) session.getAttribute("role") == 1)) {
+			paysRepository.delete(id);
+			return "redirect:/pays";
+		}
+		else if(session.getAttribute("id") != null) {
+			return "redirect:/";
+		}
+		
+		else {
+			return "redirect:/utilisateurconnecter";
+		}
 	}
 }
