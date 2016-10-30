@@ -10,10 +10,14 @@
 	
 	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" th:fragment="info">
 		<div class="main-grids">
+			<h1 th:text="${film.titre}" />
 			<video th:object="${film}" width="690" controls="controls" th:poster="@{/files/{jaquette}(jaquette=${film.jaquette})}">
 			
 			  <source th:src="@{/files/{video}(video=${film.video})}" type="video/mp4"/>
-			</video>
+			</video><br/><br/>
+			<div class="signin">
+				<a th:href="@{/film/{id}(id=${film.id})}">Retour à la fiche du film</a>
+			</div>
 		</div>
 	</div>
 </body>
