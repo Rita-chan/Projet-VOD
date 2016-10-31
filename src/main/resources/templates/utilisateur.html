@@ -40,8 +40,8 @@
 				<td><span th:if="${utilisateur.role} == 1">Admin</span> </td>
 				<td>
 					<a class="btn-sm btn-primary" th:href="@{/utilisateurmodifier/{id}(id=${utilisateur.id})}">Editer</a> <br/>
-					<a class="btn-sm btn-primary" th:href="@{/utilisateurattribueradmin/{id}(id=${utilisateur.id})}">Attribuer rôle Admin</a> <br/>
-					<a class="btn-sm btn-primary" th:href="@{/utilisateurretireradmin/{id}(id=${utilisateur.id})}">Retirer rôle Admin</a> <br/>
+					<a th:if="${utilisateur.role} == 0" class="btn-sm btn-primary" th:href="@{/utilisateurattribueradmin/{id}(id=${utilisateur.id})}">Attribuer rôle Admin</a> <br/>
+					<a th:if="${utilisateur.role} == 1" class="btn-sm btn-primary" th:href="@{/utilisateurretireradmin/{id}(id=${utilisateur.id})}">Retirer rôle Admin</a> <br/>
 					<a class="btn-sm btn-info" th:href="@{/utilisateursupprimer/{id}(id=${utilisateur.id})}">Supprimer</a>
 				</td>
 			</tr>

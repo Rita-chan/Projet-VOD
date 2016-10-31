@@ -8,47 +8,7 @@
 	<meta charset="UTF-8"/>
 	<title>Se connecter - By AC</title>
 </head>
-<body>
-	<!-- <h1>Modifier un utilisateur</h1>
-	<form action="#" th:action="@{/utilisateurcreer}" th:object="${utilisateur}" method="post">
-		<input type="hidden" th:field="*{id}" />
-		<table class="table">
-			<tr>
-				<td>Nom :</td>
-				<td><input type="text" th:field="*{nom}" /></td>
-			</tr>
-			<tr>
-				<td>Prénom :</td>
-				<td><input type="text" th:field="*{prenom}" /></td>
-			</tr>
-			<tr>
-				<td>Login :</td>
-				<td><input type="text" th:field="*{login}" /></td>
-				<td th:if="${#fields.hasErrors('login')}" th:errors="*{login}">Login
-					Error</td>
-			</tr>
-			<tr>
-				<td>Mail :</td>
-				<td><input type="text" th:field="*{mail}" /></td>
-				<td th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}">Mail
-					Error</td>
-			</tr>
-			<tr>
-				<td>Mot de passe :</td>
-				<td><input type="text" th:field="*{mdp}" /></td>
-				<td th:if="${#fields.hasErrors('mdp')}" th:errors="*{mdp}">MDP
-					Error</td>
-			</tr>
-			<tr>
-				<td>Role :</td>
-				<td><input type="text" th:field="*{role}" /></td>
-			</tr>
-			<tr>
-				<td><button type="submit">Valider l'utilisateur</button></td>
-			</tr>
-		</table>
-	</form>-->
-	
+<body>	
 	<nav th:replace="nav :: nav">&nbsp;</nav>
 
 	<div th:replace="sidebar :: sidebar">&nbsp;</div>
@@ -59,7 +19,9 @@
 	
 	<div>
 	<form action="#" th:action="@{/utilisateurmodifier}" th:object="${utilisateur}" method="post">
-		
+		<input type="hidden" th:field="*{id}" />
+		<input type="hidden" th:field="*{role}" />
+		<input type="hidden" th:field="*{mail}" />
 		<div class="form-group">
 			<label>Nom :</label>
 			<input type="text" th:field="*{nom}" class="form-control" />
@@ -74,7 +36,7 @@
 		</div>
 		<div class="form-group">
 			<label>Mail :</label>
-			<input type="text" th:field="*{mail}" class="form-control" />
+			<input type="text" th:field="*{mail}" class="form-control" disabled="disabled"/>
 		</div>
 		<div class="form-group">
 			<label>Mot de passe :</label>

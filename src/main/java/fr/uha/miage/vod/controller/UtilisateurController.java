@@ -56,7 +56,7 @@ public class UtilisateurController {
 			// Enregistre le mdp hashé
 			utilisateur.setMdp(hashed);
 
-			utilisateur.setRole(1);
+			utilisateur.setRole(0);
 
 			// Sauvegarde l'utilisateur
 			utilisateurRepository.save(utilisateur);
@@ -104,13 +104,17 @@ public class UtilisateurController {
 	// Enregistre l'utilisateur modifié, en vérifiant qu'il corresponde aux
 	// critères
 	@PostMapping("/utilisateurmodifier")
-	public String utilisateurmodifier(@Valid Utilisateur utilisateur, BindingResult bindingResult) {
+	public String utilisateurmodifier(@Valid Utilisateur utilisateur, BindingResult bindingResult, HttpSession session) {
 		
 			if (bindingResult.hasErrors())
 				return "utilisateurmodifier";
 
+			String hashed3 = BCrypt.hashpw(utilisateur.getMdp(), BCrypt.gensalt(12));
+	    	utilisateur.setMdp(hashed3);
 			utilisateurRepository.save(utilisateur);
-			return "redirect:/utilisateur";
+			
+			session.setAttribute("nomprenom", utilisateur.getPrenom() + " " + utilisateur.getNom());
+			return "redirect:/";
 		
 	}
 

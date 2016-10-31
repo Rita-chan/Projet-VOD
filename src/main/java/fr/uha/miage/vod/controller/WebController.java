@@ -8,11 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
+import fr.uha.miage.vod.model.Avis;
 import fr.uha.miage.vod.model.Categorie;
 import fr.uha.miage.vod.model.Film;
 import fr.uha.miage.vod.model.Utilisateur;
+import fr.uha.miage.vod.repository.AvisRepository;
 import fr.uha.miage.vod.repository.CategorieRepository;
 import fr.uha.miage.vod.repository.FilmRepository;
 import fr.uha.miage.vod.repository.UtilisateurRepository;
@@ -28,6 +29,9 @@ public class WebController {
 
 	@Autowired
 	private UtilisateurRepository utilisateurRepository;
+	
+	@Autowired
+	private AvisRepository avisRepository;
 
 	@GetMapping("/")
 	public String home(Model model) {
@@ -59,6 +63,10 @@ public class WebController {
 			int nbFilm = ((List<Film>) listeFilm).size();
 			model.addAttribute("nbFilm", nbFilm);
 
+			Iterable<Avis> listeAvis = avisRepository.findAll();
+			int nbAvis = ((List<Avis>) listeAvis).size();
+			model.addAttribute("nbAvis", nbAvis);
+			
 			return "adminindex";
 		}
 		
