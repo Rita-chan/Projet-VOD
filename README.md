@@ -1,4 +1,4 @@
-# Projet-VOD
+# Projet-VOD : Great Movies
 Il s'agit de notre projet d'application web en M2 MIAGE <br>
 BOHN Cindy <br>
 JEAN Anita <br>
