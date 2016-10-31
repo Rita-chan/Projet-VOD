@@ -129,7 +129,8 @@ public class RechercheController {
 			long id = film.getId();
 			model.addAttribute("film", film);
 			
-			return "filmspartitre";
+			//return "filmspartitre";
+			return "redirect:/film/" + id;
 		}
 	
 }
