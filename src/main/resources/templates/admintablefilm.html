@@ -28,9 +28,9 @@
 				<!-- <td th:text="${film.synopsis}" />
 				<td th:text="${film.duree}" /> -->
 				<!-- <td th:text="${film.jaquette}" /> -->
-		 	<!-- <td> <img th:src= "@{/files/{jaquette}(jaquette=${film.jaquette})}" height="42" width="42"/> </td>-->
+		 		<td> <img th:src= "@{/files/{jaquette}(jaquette=${film.jaquette})}" height="42" width="42"/> </td>
 				<td th:text="${film.sortie}" />
-				<td th:text="${film.video}" />
+				<!-- <td th:text="${film.video}" />-->
 				<td th:text="${film.version}" />
 				<td> <span th:each=" categorie : ${film.categories}"> <span th:text="${categorie.intitule}"></span> </span></td>
 				<td> <span th:each=" acteur : ${film.acteurs}"> <span th:text="${acteur.prenom}"></span> <span th:text="${acteur.nom}"> </span> <br /></span></td>

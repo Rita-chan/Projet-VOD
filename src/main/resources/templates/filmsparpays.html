@@ -14,7 +14,7 @@
 
 	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 		<div class="main-grids">
-			<h1>Liste de films par pays</h1>
+			<h1>Liste de films pour le pays : <span th:text="${pays.nom}"/></h1>
 			<div class="col-lg-3" th:each=" film : ${pays.films}">
 				<h2 th:text="${film.titre}"></h2>
 				<a th:href="@{/film/{id}(id=${film.id})}"> <img

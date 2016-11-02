@@ -87,7 +87,7 @@ public class Application implements CommandLineRunner {
 		real1.setPrenom("Ton");
 		Realisateur real2 = new Realisateur();
 		real2.setNom("Goedegebure");
-		real2.setPrenom("sacha");
+		real2.setPrenom("Sacha");
 		
 		List <Categorie>cate1 = new ArrayList<Categorie>();
 		cate1.add(cat1);
